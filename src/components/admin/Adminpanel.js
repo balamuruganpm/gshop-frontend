@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';  
 import 'font-awesome/css/font-awesome.min.css';
 import '../../css/admin css/adminpanel.css'
-import { Dropdown} from 'react-bootstrap';  
+
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 import ListAltSharpIcon from '@mui/icons-material/ListAltSharp';
@@ -19,7 +19,7 @@ function Adminpanel(props) {
     return (
         <div>
          {/* nav bar */}
-          <nav className="navbar navbar-expand-lg admin_bg">
+          {/* <nav className="navbar navbar-expand-lg admin_bg">
             <div className="container-fluid">
                 <img src="/images/a11.png" alt="" className="navbar-brand  logo_image text-light fw-bold text-uppercase" width="150px" style={{marginLeft:"3rem"}} />
                 <i class="fa-solid fa-bars" id='admin_bars' onClick={toggle}></i>
@@ -51,7 +51,7 @@ function Adminpanel(props) {
         
             </div>
 
-          </nav>
+          </nav> */}
          {/* navbar end */}
 
          {/* offCanvas */}
@@ -65,7 +65,7 @@ function Adminpanel(props) {
                       
                        <NavLink to='/dashboard' style={{textDecoration:"none", color:"#333"}}  activeclassName="admin_active" > 
                        <li className='admin-sideContent'>
-                            <h3 className='nav-link px-2 ms-1 admin-side-content' >
+                            <h3 className='nav-link px-2 ms-1 admin-side-content' style={{color:"#fff"}} >
                              <p className='icon'><DashboardIcon className='icon' /></p><p className='ms-1 show_side_title'>Dashboard</p>
                             </h3>
                         </li>
@@ -73,7 +73,7 @@ function Adminpanel(props) {
 
                        
                         <li className='admin-sideContent' >
-                            <h3 className='nav-link px-2 ms-1 admin-side-content'>
+                            <h3 className='nav-link px-2 ms-1 admin-side-content'  style={{color:"#fff"}}>
                              <p className='icon'><ListAltSharpIcon className='icon' onClick={()=>setCategory(!showCategory)} /></p><p className='ms-1  d-sm-inline  title show_side_title'   onClick={()=>setCategory(!showCategory)}>Category</p><p id="right-icon"><i class="fa-solid fa-angles-left fa-fade" onClick={()=>setCategory(!showCategory)} ></i></p>
                             </h3>
                         </li>
@@ -81,26 +81,26 @@ function Adminpanel(props) {
                         { showCategory &&
                         <>
                         <div className='admin-nestedContent'>
-                         <NavLink to='/category'  activeclassName="admin_active" style={{textDecoration:"none", color:"#333"}}>
+                         <NavLink to='/category'  activeclassName="admin_active" style={{textDecoration:"none"}}>
                             <li className='admin-sideContent'>
                             <h3 className='nav-link px-2 ms-1 admin-nested-content'>
                              <p className='ms-1  d-sm-inline  title'>Categories</p>
                             </h3>
                            </li>
                         </NavLink>
-                        <NavLink to='/addcategory' style={{textDecoration:"none", color:"#333"}}  activeclassName="admin_active">
+                        {/* <NavLink to='/addcategory' style={{textDecoration:"none", color:"#333"}}  activeclassName="admin_active">
                             <li className='admin-sideContent'>
                             <h3 className='nav-link px-2 ms-1 admin-nested-content'>
                              <p className='ms-1  d-sm-inline  title'>Add Categories</p>
                             </h3>
                            </li>
-                        </NavLink>
+                        </NavLink> */}
                         </div>
                         </>
                    
                    }
                          <li className='admin-sideContent'>             
-                            <h3 className='nav-link  admin-side-content'>
+                            <h3 className='nav-link  admin-side-content'  style={{color:"#fff"}}>
                             <p className='icon'  onClick={()=>setProducts(!showProducts)} ><i class="fa-brands fa-product-hunt" style={{marginLeft:"-0.5rem"}}></i></p><p className='ms-1  d-sm-inline show_side_title title'  onClick={()=>setProducts(!showProducts)} >Product</p><p id="right-icon"><i class="fa-solid fa-angles-left fa-fade" onClick={()=>setProducts(!showProducts)} ></i></p></h3>
                         </li>
                         {showProducts &&
@@ -113,14 +113,14 @@ function Adminpanel(props) {
                            </li>
                         </NavLink>
                         <li className='admin-sideContent'>
-                            <h3 className='nav-link px-2 admin-nested-content'>
+                            <h3 className='nav-link px-2 admin-nested-content'  >
                             <p className='ms-1 d-sm-inline  title' style={{fontSize:"13px"}}>Inactive Products</p></h3>
                         </li>
                         </div>
                         </>
                          }
                         <li className='admin-sideContent'>
-                            <h3 className='nav-link px-2 admin-side-content'>
+                            <h3 className='nav-link px-2 admin-side-content'  style={{color:"#fff"}}>
                             <p className='icon'  onClick={()=>setOrderContainer(!showOrderContainer)} ><LocalMallRoundedIcon  className='icon'/></p><p className='ms-1 show_side_title d-sm-inline  title'  onClick={()=>setOrderContainer(!showOrderContainer)} >Sales</p><p id="right-icon"><i class="fa-solid fa-angles-left fa-fade" onClick={()=>setOrderContainer(!showOrderContainer)} ></i></p>
                             </h3>
                         </li>
@@ -149,7 +149,7 @@ function Adminpanel(props) {
                      
                           <NavLink to='/customers' style={{textDecoration:"none", color:"#333"}}> 
                           <li className='admin-sideContent'>
-                            <h3 className='nav-link px-2 admin-side-content' >
+                            <h3 className='nav-link px-2 admin-side-content'  style={{color:"#fff"}} >
                             <p className='icon'><i class="fa-solid fa-users" style={{fontSize:"16px"}}></i></p><p className='ms-1 show_side_title d-sm-inline title'>Customers</p>
                             </h3>
                            </li>
@@ -157,7 +157,7 @@ function Adminpanel(props) {
                                 
                         <NavLink to='/customers' style={{textDecoration:"none", color:"#333"}}> 
                           <li className='admin-sideContent'>
-                            <h3 className='nav-link px-2 admin-side-content' >
+                            <h3 className='nav-link px-2 admin-side-content'style={{color:"#fff"}}>
                             <p className='icon'><i class="fa-solid fa-person-walking-luggage" style={{fontSize:"18px"}}></i></p><p className='ms-1 show_side_title d-sm-inline title'>Offers</p>
                             </h3>
                            </li>

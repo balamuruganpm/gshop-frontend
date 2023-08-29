@@ -12,10 +12,7 @@ function Cart(props) {
 
 
 
-  const checkoutHandler = () =>
-  {
-      navigate('/checkout')
-  }
+
     return (
         <div>
     <section className="main-container col1-layout">
@@ -59,28 +56,7 @@ function Cart(props) {
                       <td className="price"><span>₹ {item.price * item.quantity}</span></td>
                       <td className="action" onClick={()=> dispatch(removeItemFromCart(item.product))}><i className="icon-close"></i></td>
                     </tr>
-                    {/* <tr>
-                      <td className="cart_product"><a href="#"><img src="images/a2.jpg" alt="Product" /></a></td>
-                      <td className="cart_description"><p className="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Green</a></small><br/>
-                        <small><a href="#">Size : XL</a></small></td>
-                      <td className="availability out-of-stock"><span className="label">No stock</span></td>
-                      <td className="price"><span>₹00.00</span></td>
-                      <td className="qty"><input className="form-control input-sm" type="text" value="0" /></td>
-                      <td className="price"><span>00.00</span></td>
-                      <td className="action"><a href="#"><i className="icon-close"></i></a></td>
-                    </tr>
-                    <tr>
-                      <td className="cart_product"><a href="#"><img src="/images/a3.jpg" alt="Product" /></a></td>
-                      <td className="cart_description"><p className="product-name"><a href="#">Ipsums Dolors Untra </a></p>
-                        <small><a href="#">Color : Blue</a></small><br/>
-                        <small><a href="#">Size : S</a></small></td>
-                      <td className="availability in-stock"><span className="label">In stock</span></td>
-                      <td className="price"><span>₹99.00</span></td>
-                      <td className="qty"><input className="form-control input-sm" type="text" value="2" /></td>
-                      <td className="price"><span>₹188.00</span></td>
-                      <td className="action"><a href="#"><i className="icon-close"></i></a></td>
-                    </tr> */}
+                    
                   </tbody>
                   </>
                   ))}
@@ -97,7 +73,7 @@ function Cart(props) {
                   </tfoot>
                 </table>
               </div>
-              <div className="cart_navigation"> <a className="continue-btn" href="#"> <Link to='/'><i className="fa fa-arrow-left"> </i>&nbsp; Continue shopping</Link></a>  <a className="checkout-btn" href="#"><Link to='/check_out'><i className="fa fa-check"></i> Proceed to checkout</Link></a> </div>
+              <div className="cart_navigation"> <Link to='/' className="continue-btn"><i className="fa fa-arrow-left"> </i>&nbsp; Continue shopping</Link>  <Link to='/check_out' className="checkout-btn"><i className="fa fa-check"></i> Proceed to checkout</Link> </div>
             </div>
           </div>
         </div>

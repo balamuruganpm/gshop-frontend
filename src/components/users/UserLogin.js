@@ -1,11 +1,12 @@
 import React from 'react';
 import '../../css/style.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useState,useEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux'
 import{clearAuthError, login} from '../../actions/userActions';
 import {toast} from 'react-toastify'
 import Service from '../home/Service'
+
 
 
 function MyAccount(props) {
@@ -15,8 +16,7 @@ const [email,setEmail] = useState("");
 const [password,setPassword] = useState("")
 const[showContainer,setContainer]=useState(true);
 const dispatch = useDispatch();
-
-
+const navigate = useNavigate()
 
 const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
 
@@ -25,12 +25,25 @@ const submitHandler= (e)=>{
     dispatch(login(email,password))
     setContainer(!showContainer)
 
+    if(isAuthenticated){
+      toast('successfully LogIn',{
+        type:"success",
+        position:toast.POSITION.TOP_RIGHT,
+      
+      })
+       navigate('/')
+    }
+
+ 
+
     // if(!isAuthenticated){
     //     toast('Please Register',{
     //         position:toast.POSITION.TOP_RIGHT,
           
     //       })
     // }
+
+ 
 
 }
 
@@ -48,12 +61,12 @@ useEffect(()=>{
 
     return (
         <div>
-   <div class="breadcrumbs">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
+   <div className="breadcrumbs">
+    <div className="container">
+      <div className="row">
+        <div className="col-xs-12">
           <ul>
-            <Link to='/'><li class="home"> <a title="Go to Home Page" href="index.html">Home</a><span>&raquo;</span></li></Link>
+            <Link to='/'><li className="home"> <a title="Go to Home Page" href="index.html">Home</a><span>&raquo;</span></li></Link>
             <Link to='/my_account'><li><strong>My Account</strong></li></Link>
           </ul>
         </div>
@@ -63,37 +76,38 @@ useEffect(()=>{
   {/* <!-- Breadcrumbs End -->  */}
   
   {/* <!-- Main Container --> */}
-  <section class="main-container col1-layout">
-    <div class="main container">
+  <section className="main-container col1-layout">
+    <div className="main container">
       
         
-        <div class="page-content">
+        <div className="page-content">
           
-            <div class="account-login">
+            <div className="account-login">
               
    
           
-              <div class="box-authentication">
+              <div className="box-authentication">
                 <h4>Login</h4>
-               <p class="before-login-text">Welcome back! Sign in to your account</p>
+               <p className="before-login-text">Welcome back! Sign in to your account</p>
                <form onSubmit={submitHandler}>
-                <label for="emmail_login">Email address<span class="required">*</span></label>
-                <input id="emmail_login" type="text" value={email} name='email' onChange={e=>setEmail(e.target.value)} class="form-control" />
-                <label for="password_login">Password<span class="required">*</span></label>
-                <input id="password_login" type="password" value={password} name='password' onChange={e=>setPassword(e.target.value)} class="form-control" />
-                <p class="forgot-pass"><a href="#">Lost your password?</a></p>
-                <button class="button" type="submit" disabled={loading}><i class="fa fa-lock"></i>&nbsp; <span>Login</span></button><label class="inline" for="rememberme">
+                <label for="emmail_login">Email address<span className="required">*</span></label>
+                <input id="emmail_login" type="text" value={email} name='email' onChange={e=>setEmail(e.target.value)} className="form-control"/>
+                <label for="password_login">Password<span className="required">*</span></label>
+                <input id="password_login" type="password" value={password} name='password' onChange={e=>setPassword(e.target.value)} className="form-control"/>
+                <p className="forgot-pass"><a href="#">Lost your password?</a></p>
+                <button  type="submit" className="button"><i className="fa fa-lock"></i> Login</button>
+                <label className="inline" for="rememberme">
 				        <input type="checkbox" value="forever" id="rememberme" name="rememberme" /> Remember me
 				        </label>
                </form>
               </div>
-              <div class="box-authentication">
+              <div className="box-authentication">
                 <h4>Register</h4><p>Create your very own account</p> 											
-                <label for="emmail_register">Email address<span class="required">*</span></label>
-                <input id="emmail_register" type="text" class="form-control" value={email} onChange={e=> setEmail(e.target.value)} name="email" />
-                <Link to='/register'><button class="button"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button></Link>
+                <label for="emmail_register">Email address<span className="required">*</span></label>
+                <input id="emmail_register" type="text" className="form-control"/>
+                <Link to='/register'><button className="button"><i className="fa fa-user"></i>&nbsp; <span>Register</span></button></Link>
                 
-                <div class="register-benefits">
+                <div className="register-benefits">
 												<h5>Sign up today and you will be able to :</h5>
 												<ul>
 													<li>Speed your way through checkout</li>

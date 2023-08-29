@@ -7,6 +7,7 @@ import cartReducer from './slice/cartSlice'
 import orderReducer  from './slice/orderSlice';
 import userReducer from './slice/userSlice'
 import categoryReducer from './slice/categorySlice'
+import filterReducer from './slice/filterSlice'
 const reducer = combineReducers({
     productsState: productsReducer,
     productState:productReducer,
@@ -14,7 +15,9 @@ const reducer = combineReducers({
     cartState:cartReducer,
     orderState:orderReducer,
     userState:userReducer,
-    categoryState:categoryReducer
+    categoryState:categoryReducer,
+    filterState:filterReducer
+
 
 })
 

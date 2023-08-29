@@ -11,6 +11,7 @@ import Products from '../products/Products';
 import FeaturedProduct from '../products/FeaturedProduct';
 import BestSale from '../products/BestSale';
 import LatestNews from '../products/LatestNews';
+import CategoryWiseProduct from '../products/CategoryWiseProduct';
 
 function Home2(props) {
   const settings = {
@@ -111,8 +112,8 @@ return (
             </Slider>
        
             <Service/>
-  
-
+            <CategoryWiseProduct/>
+     
             <Products/>
    
             <FeaturedProduct/>

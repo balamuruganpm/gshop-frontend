@@ -9,7 +9,7 @@ import 'mdbreact/dist/css/mdb.css';
 import {Link} from 'react-router-dom'
 import '../../../css/admin css/order.css'
 import '../../../css/admin css/category.css'
-
+import Adminpanel from '../Adminpanel';
 import {clearError, clearOrderDeleted } from '../../../slice/orderSlice';
 
 import { NavLink } from 'react-router-dom';
@@ -128,6 +128,7 @@ function OrdersReport(props) {
 
     return (
        <Fragment>
+        <Adminpanel/>
 
         <div className="admin-container" style={{marginTop:"3rem", display:"block"}}>
               <div className='add_title'>

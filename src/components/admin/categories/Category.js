@@ -4,25 +4,28 @@ import {MDBDataTable} from 'mdbreact';
  import '../../../css/admin css/products.css' ;
  import '../../../css/admin css/category.css'
 import {useSelector, useDispatch} from 'react-redux'
-import { useEffect } from 'react';
-import {getAdminProducts} from '../../../actions/productActions';
-import { deleteProduct } from '../../../actions/productActions';
-import { clearError } from '../../../slice/productsSlice';
-import { clearProductDeleted } from '../../../slice/productSlice';
+import { useEffect} from 'react';
+import {getAdminProducts} from '../../../actions/productActions'
+ import {getAdminCategories} from '../../../actions/categoryAction';
+ import { deleteCategory } from '../../../actions/categoryAction';
+import { clearError } from '../../../slice/categorySlice';
+import { clearCategoryDeleted } from '../../../slice/categorySlice';
 import {Button} from 'react-bootstrap'
 import {NavLink, Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import Loader from '../../layouts/Loader';
+import Adminpanel from '../Adminpanel';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 
 
 const Products = () => {
-    const {products = [], loading = true, error} = useSelector (state => state.productsState)
+    const {categories = [], loading = true, error} = useSelector (state => state.categoryState)
     const dispatch = useDispatch();
-
-
-    const{ isProductDeleted, error:productError } = useSelector(state => state.productState)
+    const{products=[]} = useSelector(state=>state.productsState)
    
+    const{ isCategoryDeleted, error:categoryError } = useSelector(state => state.categoryState)
+   
+
     const setProducts = () =>{
         const data = {
             columns : [
@@ -45,8 +48,8 @@ const Products = () => {
                 },
                
                 {
-                    label: 'Name',
-                    field: 'name',
+                    label: 'Stock',
+                    field: 'stock',
                     sort: 'asc'
                 },
                 {
@@ -62,18 +65,17 @@ const Products = () => {
             ],
             rows : []
         }
-        products.forEach( (product,index) => {
+        categories.forEach( (category,index) => {
             data.rows.push({
                 serialno:<p>{index+1}</p>,
                 image:<PhotoLibraryIcon className='c-image' style={{fontSize:"24px"}}/>,
-                category : product.category,
-                name: product.name,
+                category : category.category,
+                stock:(products[0]?.category, console.log(products[0]?.category) ),
                 status:<p style={{color:"blue"}}>Active</p>,
-                
                 actions: (
                     <Fragment>
-                        <Link to={`/admin/product/updateproduct/${product._id}`} className="btn btn-primary  py-1  res_btn ml-1"> <i className="fa fa-pencil"></i></Link>
-                        <Button onClick={e => deleteHandler(e, product._id)} className="btn btn-danger py-1 ml-2 res_btn">
+                        <Link to={`/admin/category/updatecategory/${category._id}`} className="btn btn-primary  py-1  res_btn ml-1"> <i className="fa fa-pencil"></i></Link>
+                        <Button onClick={e => deleteHandler(e, category._id)} className="btn btn-danger py-1 ml-2 res_btn">
                             <i className="fa fa-trash"></i>
                         </Button>
                     </Fragment>
@@ -85,39 +87,42 @@ const Products = () => {
         return data;
     }
 
-      
     const deleteHandler = (e,id)=>{
         e.target.disabled = true;
-        dispatch(deleteProduct(id))
+        dispatch(deleteCategory(id))
     }
+
+
 
 
     useEffect(()=>{
 
-      
-
-        if(error || productError){
-         toast(error || productError,{
+        if(error || categoryError){
+         toast(error || categoryError,{
              position:toast.POSITION.BOTTOM_CENTER,
              type:'error',
              onOpen: ()=>{dispatch(clearError())}
          })
          return
         }
-        if(isProductDeleted){
-         toast('Product Deleted Succesfully!',{
+        if(isCategoryDeleted){
+         toast('Category Deleted Succesfully!',{
              type: 'success',
              position: toast.POSITION.BOTTOM_CENTER,
-             onOpen: () => dispatch(clearProductDeleted())
+             onOpen: () => dispatch(clearCategoryDeleted())
          })
          return;
      }
+        dispatch(getAdminCategories)
         dispatch(getAdminProducts)
-     },[dispatch,error, isProductDeleted, productError])
+     },[dispatch,error, isCategoryDeleted, categoryError])
+
+ 
 
   return (
         <>
 
+           <Adminpanel/>
              <div className='add_title admin-container'>
                <h2 className='cate_title'>Category List</h2>
                <NavLink to='/addcategory'><button className='view_cate'> Add Category</button></NavLink>
@@ -135,6 +140,8 @@ const Products = () => {
                 />
             </div>
              }
+
+
         </>
   )
 }

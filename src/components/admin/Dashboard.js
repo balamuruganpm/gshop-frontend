@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import {getAdminProducts} from '../../actions/productActions'
 import {getUsers} from '../../actions/userActions'
 import {adminOrders as adminOrdersAction} from '../../actions/orderAction'
-
+import Adminpanel from './Adminpanel';
 import {Line} from 'react-chartjs-2';
 
 import {
@@ -54,9 +54,9 @@ function Dashboard(props) {
     return (
         <div>
     {/* main continer */}
-
+    <Adminpanel/>
         <main className="mt-5 pt-3 admin-container me-0">
-
+       
         <div className='widget-grid'>
          <div className='widget-container'>  
          <div className='dash_widget'>

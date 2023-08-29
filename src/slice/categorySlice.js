@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const categorySlice = createSlice({
-    name:"category",
+    name:"categories",
     initialState:{
         loading:false,
         category:{},
@@ -27,6 +27,7 @@ const categorySlice = createSlice({
 
         categoryFail(state, action)
         {
+            
             return{
                 loading: false,
                 error: action.payload
@@ -121,6 +122,23 @@ const categorySlice = createSlice({
          
             }
         },
+        adminCategoryRequest(state, action){
+            return {
+                loading: true
+            }
+        },
+        adminCategorySuccess(state, action){
+            return {
+                loading: false,
+                categories: action.payload.categories,
+            }
+        },
+        adminCategoryFail(state, action){
+            return {
+                loading: false,
+                error:  action.payload
+            }
+        },
         clearCategoryDeleted(state,action){
             return{
                 ...state,
@@ -151,7 +169,10 @@ export const{
     deleteCategoryFail,
     deleteCategoryRequest,
     deleteCategorySuccess,
-    clearCategoryDeleted
+    clearCategoryDeleted,
+    adminCategoryFail,
+    adminCategorySuccess,
+    adminCategoryRequest
 
 } = actions;
 

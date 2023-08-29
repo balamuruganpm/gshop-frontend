@@ -66,10 +66,11 @@
 
 
  .admin-sidebar{
-
+   margin-top:rem;
    border-right:0.5px solid lightgray;
    height:150vh;
-   background-color: #3333;
+   background-color: #525252;
+   z-index: 10;
 
  }
 
@@ -96,7 +97,6 @@
     width:var(--offcanvs-width);
     width:100%;
     min-height:50vh;
-    color:#333;
     position: relative;
 }
 .admin-orders{
@@ -179,6 +179,10 @@
     transform: scale(1.03);
     color:#fff;
 }
+.down_angle{
+display: none;
+  
+   }
 
 @media screen and (max-width: 768px){
    .admin_bg{
@@ -205,7 +209,8 @@
       }
       .down_angle{
        position:absolute;
-       right:1rem;  
+       right:1rem; 
+       display: initial; 
      
       }
       .down_angle:hover{
@@ -238,10 +243,11 @@
     background-color: #3333;
     width:100px;
     padding:5px 5px;
-    margin-left:0.5rem;
+    margin-left:0.1rem;
     opacity:0;
-    z-index:1000;
+    z-index:100;
     border-radius: 5px;
+
  }
   
 .admin-sideContent {

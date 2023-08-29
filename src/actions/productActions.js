@@ -3,18 +3,19 @@ import { adminProductsFail, adminProductsRequest,adminProductsSuccess, productsF
 import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProductFail, newProductRequest, newProductSuccess, productFail, productRequest, productSuccess, updateProductFail, updateProductRequest, updateProductSuccess } from "../slice/productSlice";
 
 
+
 export const getProducts = async (dispatch)=>{
- 
+      const cat = ''
     try{
          dispatch(productsRequest())
-         const {data} =  await axios.get('/api/v1/product');
+         const {data} =  await axios.get(`/api/v1/products?cat=${cat}`);
          dispatch(productsSuccess(data))
 
     }
-    catch(error){
+    catch (error){
        //handle error
 
-       dispatch(productsFail(error.response.data.message)) 
+        dispatch(productsFail(error.response.data.message)) 
 
     }
 
@@ -52,10 +53,13 @@ export const createNewProduct = productData => async(dispatch)=>{
         dispatch(newProductRequest())
         const { data } = await axios.post(`/api/v1/admin/product/new`,productData);
         dispatch(newProductSuccess(data))
-    }catch(error){
+    }
+    catch(error){
         dispatch(newProductFail(error.response.data.message))
     }
 }
+
+
 export const updateProduct = (id,productData) => async(dispatch)=>{
     try{
         dispatch(updateProductRequest())

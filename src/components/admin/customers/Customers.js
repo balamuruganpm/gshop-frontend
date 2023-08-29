@@ -7,7 +7,7 @@ import {deleteUser, getUsers} from '../../../actions/userActions';
 import {MDBDataTable} from 'mdbreact';
 import Loader from '../../layouts/Loader';
 import {clearError, clearUserDeleted } from '../../../slice/userSlice';
-
+import Adminpanel from '../Adminpanel';
 
 
 
@@ -111,7 +111,7 @@ function Customers(props) {
 
     return (
        <Fragment>
-  
+          <Adminpanel/>
      {loading ? <Loader/> :
    
      <div className='pt-3 admin-container me-0' style={{marginTop:"3rem",marginLeft:"3rem", width:"75%", height:"80vh", display:"block"}}>

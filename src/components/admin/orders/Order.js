@@ -7,7 +7,7 @@ import Loader from '../../layouts/Loader';
 import {MDBDataTable} from 'mdbreact';
 import 'mdbreact/dist/css/mdb.css';
 import '../../../css/admin css/order.css'
-
+import Adminpanel from '../Adminpanel';
 import {clearError, clearOrderDeleted } from '../../../slice/orderSlice';
 
 import { NavLink } from 'react-router-dom';
@@ -127,7 +127,7 @@ function Order(props) {
 
     return (
        <Fragment>
-
+        <Adminpanel/>
         <div className="admin-container" style={{marginTop:"3rem", display:"block"}}>
               <div className='add_title'>
                <h2>Order List</h2>

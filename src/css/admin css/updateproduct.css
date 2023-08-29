@@ -1,0 +1,45 @@
+
+.select-img{
+    width:500px;
+    height:7vh;
+    font-size:18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color:#333;
+    border: 1px solid rgba(202, 202, 202,06);
+    outline: 0;
+    margin-bottom: 1rem;
+}
+
+.choose-img{
+    width:500px;
+    height:7vh;
+    display: none;
+    
+   }
+   #choose-lable{
+    width:500px;
+    height:7vh;
+    padding:0.5rem;
+    
+   }
+   .img-icon{
+    width:50px;
+    height:6.8vh;
+    background-color: #1dd1aa;
+    position: absolute;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    margin-left:38.6%;
+    margin-top:-0.01rem;
+    color:#fff;
+    i{
+        font-size:24px;
+    }
+
+   }
+
+    

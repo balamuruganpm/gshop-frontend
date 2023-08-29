@@ -1,32 +1,23 @@
 import React,{useState, useEffect} from 'react';
-import {NavLink, useNavigate} from 'react-router-dom'
+import {NavLink, useNavigate, useParams} from 'react-router-dom'
  import '../../../css/admin css/category.css'
 import { useDispatch, useSelector } from 'react-redux';
 import {toast} from 'react-toastify';
-import { clearCategoryCreated,clearError } from '../../../slice/categorySlice';
-import { createNewCategory } from '../../../actions/categoryAction';
-import { getCategory } from '../../../actions/categoryAction';
+import {clearCategoryUpdated,clearError } from '../../../slice/categorySlice';
+import {getCategory, updateCategory } from '../../../actions/categoryAction';
 import Adminpanel from '../Adminpanel';
-import axios from 'axios';
-function AddCategory(props) {
+function UpdateCategory(props) {
     const[images,setImages]=useState([]);
-    const[imagesPreview, setImagesPreview]=useState([]);
-
-    const{loading, isCategoryCreated, error, categories=[] } = useSelector(state => state.categoryState)
-
     const [categoryname,setCategoryName] = useState("");
     const[subCategory,setSubCategory]=useState("");
-    
-    const fetchCategory = ()=>
-    {
-      axios.get('/api/v1/admin/categories')
-      .then((cat)=>{
-        setCategoryName(cat.data.categories)
-      })
-      .catch(error=>{
-        console.log(error);
-      })
-    }
+    const[imagesPreview, setImagesPreview]=useState([]);
+    const[imagesCleared,setImagesCleared]=useState(false);
+    const{loading, isCategoryUpdated, error,  category=[] } = useSelector(state => state.categoryState)
+    const { id:categoryId } = useParams();
+
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const onImagesChange = (e)=>{
         const files = Array.from(e.target.files);
@@ -46,53 +37,42 @@ function AddCategory(props) {
         })
     
     }
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+
   const clearImagesHandler = ()=>{
     setImages([]);
     setImagesPreview([]);
+    setImagesPreview([]);
+    setImagesCleared(true)
 
   }
-
-  const addCategories=[
-
-    'Gift',
-    'Indoor plants',
-    'Numismatist',
-    'His & Her Essentials',
-    'Utility products',
-
-
-  ]
 
 
   const submitHandler = (e)=>{
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('categories', categoryname)
+   
+      formData.append('category', categoryname)
+
     formData.append('subcategory', subCategory)
 
     images.forEach(image =>{
      formData.append('images', image)
     })
-  dispatch(createNewCategory(formData))
-
+    formData.append('imagesCleared' , imagesCleared);
+    dispatch(updateCategory(categoryId, formData))
 
 }
-useEffect(()=>{
-  fetchCategory()
-},[])
+
 
   useEffect(()=>{
-
-    if(isCategoryCreated){
-        toast('Category Created Succesfully!',{
+    if(isCategoryUpdated){
+        toast('Category Updated Succesfully!',{
             type: 'success',
             position: toast.POSITION.BOTTOM_CENTER,
-            onOpen: () => dispatch(clearCategoryCreated())
+            onOpen: () => dispatch(clearCategoryUpdated())
         })
-        navigate('/admin/product/allproducts')
+        
         navigate('/category')
         return;
     }
@@ -104,9 +84,28 @@ useEffect(()=>{
         })
         return
     }
+    dispatch(getCategory(categoryId))
+  },[isCategoryUpdated,error,dispatch,navigate, categoryId])
 
- 
-  },[isCategoryCreated,error,dispatch,navigate])
+    
+  useEffect(() => {
+
+        if(category._id) {
+            setCategoryName(category.category);
+            setSubCategory(category.subcategory);
+         
+            
+            let images = []
+            category.images.forEach(image => {
+    
+              images.push(image.image)
+    
+            });
+            setImagesPreview(images)
+        }
+    
+
+},[category])
    
 
 
@@ -116,7 +115,7 @@ useEffect(()=>{
         <div>
           <Adminpanel/>
              <div className='add_title admin-container'>
-               <h2>Add Category </h2>
+               <h2>Update Category </h2>
                <NavLink to='/category'><button className='view_cate'>  View Category</button></NavLink>
              </div>
              <div className='pt-3 admin-container me-0 form_element' style={{marginTop:"7rem",marginLeft:"3rem", display:"block", width:"75%"}}>
@@ -130,14 +129,7 @@ useEffect(()=>{
                  
                   </div>
                 <div className='cate_inputfield'>
-                <select class="form-control" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}>
-                    
-                    {addCategories.map((category,index)=>(
-                    <option value={category}  key={index}>{category}</option>
-                    ))}
-                   
-                  </select>
-  
+                <input type="text" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}  className='cate_input' />
                 <div className='cate_input select_img'><input type="file" className='hide_input' onChange={onImagesChange} multiple/></div>
                 <input type="checkbox" classname="cate_input check" />
                 <textarea cols="50" rows="10" className='cate_input description' ></textarea>
@@ -158,7 +150,7 @@ useEffect(()=>{
                      </div>
                    
                  </div>
-                 <button type="submit" disabled = {loading} className='add_category' >Add Category</button>
+                 <button type="submit" disabled = {loading} className='add_category' >Update Category</button>
 
                   </form>
             </div>
@@ -168,4 +160,4 @@ useEffect(()=>{
     );
 }
 
-export default AddCategory;
+export default UpdateCategory;

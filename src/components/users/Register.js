@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import {useDispatch} from 'react-redux'
 import{register} from '../../actions/userActions';
+import { useNavigate } from 'react-router-dom';
 function Register(props) {
   const[userData,setUserData] = useState({
     name:"",
@@ -19,7 +20,7 @@ const onChange= (e)=> {
 
 
 const dispatch = useDispatch();
-
+const navigate=useNavigate()
 const submitRegister=(e)=>{
   e.preventDefault();
   const formData = new FormData();
@@ -30,16 +31,18 @@ const submitRegister=(e)=>{
   formData.append('phone', userData.phone)  
 
   dispatch(register(formData))
+
+  navigate('/')
   
 }
     return (
         <div>
-    <div class="breadcrumbs">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
+    <div className="breadcrumbs">
+    <div className="container">
+      <div className="row">
+        <div className="col-xs-12">
           <ul>
-            <Link to='/'><li class="home"> <a title="Go to Home Page" href="index.html">Home</a><span>&raquo;</span></li></Link>
+            <Link to='/'><li className="home"> <a title="Go to Home Page" href="index.html">Home</a><span>&raquo;</span></li></Link>
             <Link to='/register'><li><strong>New Customer</strong></li></Link>
           </ul>
         </div>
@@ -49,69 +52,69 @@ const submitRegister=(e)=>{
   {/* <!-- Breadcrumbs End -->  */}
   
   {/* <!-- Main Container --> */}
-  <section class="main-container col1-layout">
-    <div class="main container">
-      <div class="page-content">
-        <div class="account-login">
-          <div class="box-authentication new-customer-box Account Page">
+  <section className="main-container col1-layout ">
+    <div className="main container">
+      <div className="page-content">
+        <div className="account-login">
+          <div className="box-authentication new-customer-box Account Page">
             <form onSubmit={submitRegister}>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="check-title">
+              <div className="row" style={{marginLeft:"1px"}}>
+                <div className="col-xs-12">
+                  <div className="check-title" id="reg_title">
                     <h4>New Customer</h4>
                   </div>
                 </div>
                
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <label>First Name:</label>
-                  <div class="input-text">
-                    <input type="text" name="name" onChange={onChange} class="form-control"/>
+                  <div className="input-text">
+                    <input type="text" name="name" onChange={onChange} required className="form-control"/>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <label>Last Name:</label>
-                  <div class="input-text">
-                    <input type="text" name="name" onChange={onChange} class="form-control" />
+                  <div className="input-text">
+                    <input type="text" onChange={onChange} required className="form-control" />
                   </div>
                 </div>
-                <div class="col-xs-12">
+                <div className="col-sm-6">
                   <label>Address:</label>
-                  <div class="input-text">
-                    <input type="text" name="address" onChange={onChange}class="form-control"/>
+                  <div className="input-text">
+                    <input type="text" name="address" required onChange={onChange}className="form-control"/>
                   </div>
                 </div>
-                <div class="col-xs-12">
+                <div className="col-sm-6">
                   <label>City/Town:</label>
-                  <div class="input-text">
-                    <input type="text" name="address" onChange={onChange} class="form-control"/>
+                  <div className="input-text">
+                    <input type="text" name="address" required onChange={onChange} className="form-control"/>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <label>Email:</label>
-                  <div class="input-text">
-                    <input type="text" name="email" onChange={onChange} class="form-control"/>
+                  <div className="input-text">
+                    <input type="text" name="email" required onChange={onChange} className="form-control"/>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <label>Password:</label>
-                  <div class="input-text">
-                    <input type="password" name="password" onChange={onChange} class="form-control"/>
+                  <div className="input-text">
+                    <input type="password" name="password" required onChange={onChange} className="form-control"/>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div className="col-sm-6">
                   <label>Phone:</label>
-                  <div class="input-text">
-                    <input type="text" name="phone" onChange={onChange} class="form-control"/>
+                  <div className="input-text">
+                    <input type="text" name="phone" required onChange={onChange} className="form-control"/>
                   </div>
                 </div>
-                <div class="col-xs-12">
-                  <div class="billing-checkbox">
-                    <label class="inline" for="rememberme">
+                <div className="col-xs-12">
+                  <div className="billing-checkbox">
+                    <label className="inline" for="rememberme">
                       <input type="checkbox" value="forever" id="rememberme" name="rememberme"/>
                       Sign up for our newsletter! </label>
                   </div>
-                  <div class="submit-text">
-                    <button class="button" type="submit"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
+                  <div className="submit-text">
+                    <button className="button" type="submit"><i className="fa fa-user"></i>&nbsp; <span>Register</span></button>
                   </div>
                 </div>
 
@@ -125,31 +128,31 @@ const submitRegister=(e)=>{
   {/* <!-- Main Container End -->  */}
   {/* <!-- service section --> */}
   
-  <div class="jtv-service-area">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-sm-4 col-xs-12">
-          <div class="jtv-service">
-            <div class="ser-icon"> <i class="fa fa-truck flip-horizontal"></i> </div>
-            <div class="service-content">
+  <div className="jtv-service-area">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-4 col-sm-4 col-xs-12">
+          <div className="jtv-service">
+            <div className="ser-icon"> <i className="fa fa-truck flip-horizontal"></i> </div>
+            <div className="service-content">
               <h5>FREE SHIPPING WORLDWIDE </h5>
               <p>free ship-on oder over $299.00</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-sm-4 col-xs-12">
-          <div class="jtv-service">
-            <div class="ser-icon"> <i class="fa fa-mail-forward"></i> </div>
-            <div class="service-content">
+        <div className="col-lg-4 col-sm-4 col-xs-12">
+          <div className="jtv-service">
+            <div className="ser-icon"> <i className="fa fa-mail-forward"></i> </div>
+            <div className="service-content">
               <h5>MONEY BACK GUARATEE! </h5>
               <p>30 days money back guarantee!</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-sm-4 col-xs-12">
-          <div class="jtv-service">
-            <div class="ser-icon"> <i class="fa fa-comments flip-horizontal"></i> </div>
-            <div class="service-content">
+        <div className="col-lg-4 col-sm-4 col-xs-12">
+          <div className="jtv-service">
+            <div className="ser-icon"> <i className="fa fa-comments flip-horizontal"></i> </div>
+            <div className="service-content">
               <h5>24/7 CUSTOMER SERVICE </h5>
               <p>We support online 24 hours a day</p>
             </div>

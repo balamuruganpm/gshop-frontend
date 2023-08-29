@@ -2,6 +2,7 @@ import React from 'react'
 import {Fragment} from 'react'
 import {MDBDataTable} from 'mdbreact';
 import '../../../css/admin css/products.css'
+
 import {useSelector, useDispatch} from 'react-redux'
 import { useEffect } from 'react';
 import {getAdminProducts} from '../../../actions/productActions';
@@ -11,7 +12,7 @@ import { clearProductDeleted } from '../../../slice/productSlice';
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {toast} from 'react-toastify'
-
+import Adminpanel from '../Adminpanel';
 const Products = () => {
     const {products = [], loading = true, error} = useSelector (state => state.productsState)
     const dispatch = useDispatch();
@@ -45,15 +46,21 @@ const Products = () => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Stock',
-                    field: 'stock',
+                    label: 'MRP Price',
+                    field: 'mrpprice',
+                    sort: 'asc'
+                },
+                {
+                    label: 'Product Code',
+                    field: 'productcode',
                     sort: 'asc'
                 },
                 {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'asc'
-                }
+                },
+        
             ],
             rows : []
         }
@@ -64,8 +71,10 @@ const Products = () => {
                 serialno:<p>{index+1}</p>,
                 image:product.images.map(image=>(<img src={image.image} alt="" style={{width:"50px", height:"40px"}}/>)),
                 price : `$${product.price}`,
+                mrpprice : `$${product.mrpPrice}`,
                 name: product.name,
-                stock: product.stock,
+                productcode: product.productcode,
+               
                 
                 actions: (
                     <Fragment>
@@ -113,10 +122,13 @@ const Products = () => {
 
   return (
     <>
-     <h3 className='add_title pt-4 me-0 admin-container' id="product_title">Product List</h3>
+    <Adminpanel/>
+             <div className='add_title admin-container'>
+               <h2 className='cate_title'>Product List</h2>
+               <Link to='/addproduct'><button className='view_cate'> Add Product</button></Link>
+             </div>
 
-    <div className='pt-3 admin-container me-0' style={{marginTop:"7rem",marginLeft:"3rem", width:"75%"}}>
-      
+             <div className='pt-3 admin-container me-0' style={{marginTop:"7rem",marginLeft:"3rem", width:"75%"}}>
                 <MDBDataTable
                 data={setProducts()}
                 bordered
@@ -125,7 +137,7 @@ const Products = () => {
                 hover
                 className="py-1 w-100 h-10 mt-2 "
                 />
-   </div>
+            </div>
    </>
   )
 }
