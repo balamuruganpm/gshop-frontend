@@ -1,0 +1,158 @@
+ .admin-container{
+     left:17%;
+     top:2%;
+     position: absolute;
+     width:80%;
+     min-height:100vh;  
+     margin:auto;
+     display: flex;
+     align-items:flex-start;
+     justify-content: space-between;
+ }
+ .widget-grid{
+     width:100%;
+     height:80%;
+     position: absolute;
+     align-items: center;
+     justify-content: center;
+     display: flex;
+ }
+     .widget-container{
+       
+         display: grid; 
+         grid-gap:3rem;
+         grid-template-columns:repeat(4, 1fr);
+     }
+         .dash_widget{
+             border:none;
+             width:200px;
+         }
+         .widget0{
+             color:#fff;
+             background: #f857a6;  /* fallback for old browsers */
+           background: -webkit-linear-gradient(to right, #ff5858, #f857a6);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #ff5858, #f857a6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+         
+
+         }
+         .widget1{
+             color:#fff;
+             background: #2193b0;  /* fallback for old browsers */
+             background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
+             background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                   
+         }
+         .widget2{
+             color:#fff;
+             background: #4CB8C4;  /* fallback for old browsers */
+             background: -webkit-linear-gradient(to right, #3CD3AD, #4CB8C4);  /* Chrome 10-25, Safari 5.1-6 */
+             background: linear-gradient(to right, #3CD3AD, #4CB8C4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            
+         }
+         .widget3{
+             color:#fff;
+             background: #FF512F;  /* fallback for old browsers */
+             background: -webkit-linear-gradient(to right, #F09819, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+             background: linear-gradient(to right, #F09819, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+         }
+     .widget0:hover{
+        box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        transform: scale(1.03);
+        color:#fff;
+        cursor: pointer;
+     }
+     .widget1:hover{
+        box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        transform: scale(1.03);
+        color:#fff;
+        cursor: pointer;
+     }
+     .widget2:hover{
+        box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        transform: scale(1.03);
+        color:#fff;
+        cursor: pointer;
+     }
+     .widget3:hover{
+        box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        transform: scale(1.03);
+        color:#fff;
+        cursor: pointer;
+     }
+  
+     
+
+ 
+
+ .charts-container{
+
+     display:flex;
+ }
+     .charts{
+         width:600px;
+         height:400px;
+         position: absolute;
+         left:2rem; 
+         padding:1rem;
+         background-color: #fff;
+         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     }
+    
+ .list-container{
+     -webkit-box-shadow : 2px 4px 10px 1px rgba(0,0,0,0.47);
+     box-shadow:  2px 4px 10px 1px rgba(201,201,201,0.47);
+     width:93%;
+     min-height:30vh;
+     position:absolute;
+     top:70%;
+     left:2rem; 
+     padding:20px;
+   
+ }
+ 
+ @media screen and (max-width: 768px){
+    .admin-container{
+        left:8%;
+        top:2%;
+        position: absolute;
+        width:100%;
+        min-height:100vh;  
+        margin:auto;
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        justify-content: space-between;
+        z-index:-1;
+    }
+    .widget-grid{
+        width:100%;
+        height:80%;
+        position: absolute;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        top:10rem;
+    }
+        .widget-container{
+          
+            display: grid; 
+            grid-gap:3rem;
+            grid-template-columns:repeat(1, 1fr);
+        }
+            .dash_widget{
+                border:none;
+                width:300px;
+                margin-left:1.5rem;
+
+            }
+            .dash_widget:hover{
+                cursor: pointer;
+            }
+     
+ }

@@ -1,0 +1,317 @@
+ :root{
+     --offcanvs-width:270px;
+     --topNavbarHeight:56px;
+     --sidenav-width:400px;
+ }
+
+
+
+
+ .admin_bg{
+     background:#3333;
+
+ }
+ #admin_bars{
+  position: absolute;
+  display: none;
+ }
+ .admin-drop-down-container{
+     width:150px;
+     height:40px;
+     color:#333333;
+     outline-width:0;
+      margin-right:3rem;
+      margin-top:-0.6rem;
+
+ }
+ .acc-img{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    position: absolute;
+    right:15rem;
+  }
+.admin-drop-container{
+    width:130px;
+    height:auto;
+    background:#fff;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+    border:none;           
+     }
+.admin-list-drop{
+    width:170px;
+    margin:5px;
+    text-align:left;
+    }
+            
+.admin-list-drop:hover{
+    cursor: pointer;
+    background:#fe5800/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                
+    }   
+.admin-drop-menu{
+    border:none;
+    outline-width:0;
+    width:180px;
+    height:39px;
+    color:#333;
+    margin-left:-2rem;
+    margin-top:-0.1rem;
+              
+}
+
+
+ .admin-sidebar{
+
+   border-right:0.5px solid lightgray;
+   height:150vh;
+   background-color: #3333;
+
+ }
+
+ .admin-side-nav{
+  
+     list-style: none;
+     margin:0;
+     padding:0;
+     width:230px;
+     min-height:400px;
+     margin-top:5rem;
+     position: relative;
+     display: flex;
+     align-items: center;
+ 
+
+ }
+.admin-side-nav-element{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-between;
+    width:var(--offcanvs-width);
+    width:100%;
+    min-height:50vh;
+    color:#333;
+    position: relative;
+}
+.admin-orders{
+    width:150px;
+    height:100px;
+    transition:400ms;
+    transform:scaleY(1.03);
+}
+.admin-side-content{
+    width:180px;
+    height:40px;
+    display: flex;
+    position: absolute;
+    align-items:center;
+    justify-content: flex-start;
+    margin-top:1.2rem;
+    font-size:16px;
+    gap:15px;
+}
+.icon{
+    font-size:18px;
+    margin-right:0.4rem;
+}
+.add_title{
+    padding-left:0.3rem;
+}
+#right-icon{
+    position:absolute;
+    top:0.4rem;
+    right:1rem;
+    transition:400ms;
+  }
+#right-icon:hover{
+    cursor: pointer;
+    }
+             
+.admin_active{
+    background:#fe5800; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    transform: scale(1.03);
+    }
+.admin-sideContent
+         {
+            
+    width:180px;  
+    height:40px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    transition: 400ms;
+              
+}
+.admin-nestedContent{
+    width:180px;  
+    min-height:40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content:center;
+    transition: 400ms; 
+    background-color: #fff;
+    box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+    }
+.admin-nested-content{
+    width:150px;
+    height:40px;
+    display: flex;
+    position: absolute;
+    align-items:center;
+    justify-content: flex-start;
+    margin-top:1.2rem;
+    font-size:16px;
+    margin-left:1rem;
+}
+.admin-sideContent:hover{
+    background: #fe5800;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+    transform: scale(1.03);
+    color:#fff;
+}
+
+@media screen and (max-width: 768px){
+   .admin_bg{
+       width:100%;
+    }
+    .logo_image{
+        width:150px;
+        position:absolute;
+        left:2.5rem;
+       
+     }
+     #admin_bars{
+        position: absolute;
+        display: initial;
+        font-size:18px;
+        left:2.5rem;
+       }
+       #admin_bars:hover{
+        cursor: pointer;
+       }
+
+     .acc-img{
+       right:2rem;
+      }
+      .down_angle{
+       position:absolute;
+       right:1rem;  
+     
+      }
+      .down_angle:hover{
+        cursor: pointer;
+      }
+     .admin-drop-down-container{
+          display: none;
+          
+     }
+     .admin-sidebar{
+
+        border-right:0.5px solid lightgray;
+        height:150vh;
+        background-color: rgb(214, 214, 214);
+ 
+     
+      }
+     
+     .admin-side-nav-element{
+   
+        align-items:flex-start;
+        left:0.5rem;
+
+
+   
+    }
+ .show_side_title{
+    position: relative;
+    display: block;
+    background-color: #3333;
+    width:100px;
+    padding:5px 5px;
+    margin-left:0.5rem;
+    opacity:0;
+    z-index:1000;
+    border-radius: 5px;
+ }
+  
+.admin-sideContent {
+           width:50px;  
+    
+
+        }
+
+.admin-side-content{
+    width:60px;
+    height:40px;
+    left:0.5rem;
+}
+.admin-side-content:hover .show_side_title{
+  opacity:1; 
+}
+.admin-side-content:hover {
+  color:#fff; 
+  }
+#right-icon{
+display: none;
+  }
+  .admin-nestedContent{
+    width:150px;  
+    min-height:40px;
+
+    z-index:100;
+    }
+    .admin-nested-content{
+        left:-1rem;
+    }
+    .admin-nested-content:hover{
+        background: #fe5800;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color:#fff;
+        width:140px;
+     
+        margin-left:1.2rem;
+        margin-top:0.3rem;
+      
+    }
+    .res_dropDown{
+        width:130px;
+        height:150px;
+        background-color: #fff;
+        position: absolute;
+        right:0.5rem;
+        top:4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        z-index:100;
+        box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+
+    }
+    .res_list{
+        
+        margin:0.5rem;
+        padding:7px 10px;
+        font-weight:400;
+    }
+    .res_list:hover{
+        background: #fe5800;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        transform: scale(1.03);
+        color:#fff;
+    }
+    .res_dropDown:hover{
+        cursor: pointer;
+    }
+
+}

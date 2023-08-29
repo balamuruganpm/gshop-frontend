@@ -1,0 +1,169 @@
+.status_btns_container{
+    width:900px;
+    min-height:100px;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly;
+    margin-left:14.5rem;
+}
+.status_btn{
+    width:120px;
+    height:40px;
+    background-color:#3333;
+    color:#333333;
+    border-radius:3px;
+    border: none;
+    outline: 0;
+    transition: 400ms; 
+    box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+
+}
+.status_btn:hover{
+    background-color: #fe5800;
+    transform: scale(1.03);
+    color: #fff;
+}
+.order_report_title{
+    width:130%;
+    height:40px;
+    background-color: green;
+    padding-left:1rem;
+    display: flex;
+    align-items: center;
+    font-size:18px;
+    color: #fff;
+    font-weight: 500;
+}
+.res_order{
+ width:100%;
+ height:100vh;
+
+}
+.orders_report{
+    width:130%; 
+    margin-left:0;
+    min-height:70px;
+    border-right:2px solid green;
+    border-bottom:2px solid green;
+    border-left:2px solid green;
+    justify-content: space-around;
+}
+.status_label{
+    font-size:16px;
+    font-weight: 400;
+    margin-right:5px;
+}
+.select_status{
+    width:230px;
+    height:40px;
+
+    
+}
+.pick_date{
+    width:150px;
+    height:40px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+@media screen and (max-width: 768px){
+    .order_title{
+        margin-left:-4.5rem;
+        margin-top:-3rem;
+    }
+    .status_btns_container{
+        width:550px;
+        min-height:200px;
+             
+        display: grid; 
+        gap:1px;
+        grid-template-columns:repeat(3, 1fr);
+        margin-left:-5rem;
+        margin-right:1rem;
+
+    }
+    .status_btn{
+        width:130px;
+        height:40px;
+ 
+    
+    }
+    .status_btn:hover{
+        background-color: #fe5800;
+        transform: scale(1.03);
+        color: #fff;
+    }
+  
+ 
+    .status_label{
+        font-size:16px;
+        font-weight: 400;
+        margin-right:5px;
+    }
+    .select_status{
+        width:230px;
+        height:40px;
+        
+    }
+    .pick_date{
+        width:150px;
+        height:40px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .res_order{
+        width:500px;
+        margin-left:-1.5rem;
+        margin-top:3rem;
+
+    }
+    .order_report_title{
+        width:90%;
+        position: absolute;
+        left:0;
+        right:0;
+    }
+    .orders_report{
+        width:90%; 
+        margin-left:0;
+        min-height:70px;
+        border-right:2px solid green;
+        border-bottom:2px solid green;
+        border-left:2px solid green;
+        justify-content: space-around;
+    }
+    .status_btns_container{
+        position:relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        width:503px;
+        height:30vh;
+        margin-left:-4.4rem;
+        padding-top:2rem;
+        padding-left:1rem;
+    }
+    .status_label{
+        font-size:16px;
+        font-weight: 400;
+        margin-right:5px;
+    }
+    .select_status{
+        width:230px;
+        height:40px;
+    
+        
+    }
+    .pick_date{
+        width:150px;
+        height:40px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .search_btn{
+        position: absolute;
+        margin-top:12rem;
+        margin-right:1rem;
+
+    }
+}
