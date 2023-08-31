@@ -8,7 +8,7 @@ export const getProducts = async (dispatch)=>{
       const cat = ''
     try{
          dispatch(productsRequest())
-         const {data} =  await axios.get(`/api/v1/products?cat=${cat}`);
+         const {data} =  await axios.get(`http://ec2-3-106-55-184.ap-southeast-2.compute.amazonaws.com:8001/api/v1/products?cat=${cat}`);
          dispatch(productsSuccess(data))
 
     }
