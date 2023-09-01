@@ -71,7 +71,11 @@ export const deleteCategory = id => async(dispatch)=>{
 export const getAdminCategories = async(dispatch)=>{
     try{
         dispatch(adminCategoryRequest())
+<<<<<<< HEAD
         const { data } = await axios.get(`${process.env.REACT_APP_URL}/api/v1/admin/categories`);
+=======
+        const { data } = await axios.get(`api/v1/admin/categories`);
+>>>>>>> 5b84069333893c05e4511032ca6d0a6b02aa3724
         dispatch(adminCategorySuccess(data))
     }catch(error){
         dispatch(adminCategoryFail(error.response.data.message))

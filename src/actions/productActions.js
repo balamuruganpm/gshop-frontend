@@ -9,6 +9,7 @@ export const getProducts = async (dispatch)=>{
     try{
          dispatch(productsRequest())
          const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products`);
+
          dispatch(productsSuccess(data))
 
     }
