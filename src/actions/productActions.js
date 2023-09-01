@@ -5,10 +5,10 @@ import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProdu
 
 
 export const getProducts = async (dispatch)=>{
-      const cat = ''
+
     try{
          dispatch(productsRequest())
-         const {data} =  await axios.get(`/api/v1/products?cat=${cat}`);
+         const {data} =  await axios.get(`${process.env.APP_URL}/api/v1/products`);
          dispatch(productsSuccess(data))
 
     }
