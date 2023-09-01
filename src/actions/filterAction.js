@@ -7,7 +7,7 @@ export const getNewArrivals =  async (dispatch)=>{
     try{
         
         dispatch(filterRequest())
-         const {data} = await axios.get(`/api/v1/filter?sortBy=${sortBy}`);
+         const {data} = await axios.get(`${process.env.REACT_APP_URL}/api/v1/filter?sortBy=${sortBy}`);
          dispatch(filterSuccess(data))
 
     }
@@ -27,7 +27,7 @@ export const getProductByFilter = product => async (dispatch)=>{
     try{
         
         dispatch(productByFilterRequest())
-         const {data} = await axios.post(`/api/v1/search`,product)
+         const {data} = await axios.post(`${process.env.REACT_APP_URL}/api/v1/search`,product)
          console.log(data)
          
          dispatch(productByFilterSuccess(data))
