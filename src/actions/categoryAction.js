@@ -71,7 +71,7 @@ export const deleteCategory = id => async(dispatch)=>{
 export const getAdminCategories = async(dispatch)=>{
     try{
         dispatch(adminCategoryRequest())
-        const { data } = await axios.get(`http://ec2-3-106-55-184.ap-southeast-2.compute.amazonaws.com/api/v1/admin/categories`);
+        const { data } = await axios.get(`api/v1/admin/categories`);
         dispatch(adminCategorySuccess(data))
     }catch(error){
         dispatch(adminCategoryFail(error.response.data.message))
