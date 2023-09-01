@@ -77,7 +77,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://ec2-3-106-55-184.ap-southeast-2.compute.amazonaws.com:8001",
+  "proxy":"http://ec2-3-106-55-184.ap-southeast-2.compute.amazonaws.com",
   "devDependencies": {
     "@types/jquery": "^3.5.16"
   }
