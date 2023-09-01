@@ -3,7 +3,7 @@ import React from 'react';
 function FeaturedProduct(props) {
     return (
         <>
-        <div className="container" style={{marginTop:"4rem"}}>
+        <div className="container" style={{marginTop:"6rem"}}>
         <div className="block-static2-inner">
           <div className="img"><a href="#"><img className="alignnone size-full" src="images/banner8.jpg" alt="banner8" /></a></div>
           <div className="content">

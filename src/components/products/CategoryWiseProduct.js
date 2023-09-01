@@ -72,7 +72,7 @@ function CategoryWiseProduct(props) {
     <>
         <div className="container" style={{width:"120%"}}>
 
-        {/* <div className="special-products">
+        <div className="special-products">
            <div className="page-header">
              <h2>Categories</h2>
            </div>
@@ -108,9 +108,9 @@ function CategoryWiseProduct(props) {
 
               </div>
           </div>
-        </div> */}
+        </div>
 
-<div className='border-top border-bottom bg-light p-3'>
+{/* <div className='border-top border-bottom bg-light p-3'>
         <select onChange={handleCategory}  className='form-control'>
 						{categories &&
 							categories.map(c => (
@@ -120,7 +120,7 @@ function CategoryWiseProduct(props) {
                </select>
 					</div>
 		
-        </div>
+        </div> */}
        
         <div className="container" style={{width:"120%"}}>
          <div className="special-products">
@@ -171,6 +171,7 @@ function CategoryWiseProduct(props) {
         </div>
       </div>
       </div>
+        </div>
         </div>
     </>
     );
