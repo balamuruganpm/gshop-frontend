@@ -122,7 +122,7 @@ function CategoryWiseProduct(props) {
 		
         </div> */}
        
-        <div className="container" style={{width:"120%"}}>
+        {/* <div className="container" style={{width:"120%"}}>
          <div className="special-products">
             <div className="page-header">
            <h2>GIFTS</h2>
@@ -171,7 +171,7 @@ function CategoryWiseProduct(props) {
         </div>
       </div>
       </div>
-        </div>
+        </div> */}
         </div>
     </>
     );
