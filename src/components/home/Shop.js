@@ -6,37 +6,27 @@ import '../../css/responsive.css';
 import '../../css/flexslider.css'
 import  {Link} from 'react-router-dom'
 import Service from './Service'
-import Slider from 'react-slick'
+
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../actions/productActions';
 import {toast} from 'react-toastify';
-import ReactSlider from 'react-slider'
 
+import Slider  from 'rc-slider';
+import Tooltip from 'rc-tooltip';
+import 'rc-slider/assets/index.css'
+import 'rc-tooltip/assets/bootstrap.css';
+import ShopSlider from './ShopSlider';
+import ShopSliderone from './ShopSliderone';
 function Shop(props) {
 
-  const slides = {
-    dots: true,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
 
-  };
-  const our__product = {
-
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    speed: 1000,
-
-
-  };
   const {products =[], loading, error} = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
 
   const [value, setValue] = useState([]);
-
+  const [price,setPrice]=useState([1,1000]);
+  const [priceChanged,setPriceChanged] = useState(price)
   useEffect(()=>{
     if(error){
       return toast.error(error,{
@@ -45,9 +35,9 @@ function Shop(props) {
     }
 
     console.log(getProducts)
-  dispatch(getProducts) 
+  dispatch(getProducts(price)) 
 
- }, [error, dispatch])
+ }, [error, dispatch,priceChanged])
 
 
     return (
@@ -183,8 +173,8 @@ function Shop(props) {
               <h3>Price</h3>
             </div>
             <div className="block-content">
-              <div className="slider-range">
-              <ReactSlider
+              <div className="slider-range" onMouseUp={()=>setPriceChanged(price)}>
+              {/* <ReactSlider
               className="horizontal-slider"
               thumbClassName="example-thumb"
               trackClassName="example-track"
@@ -197,7 +187,34 @@ function Shop(props) {
               pearling
               minDistance={10}
               onChange={(value,index)=>setValue(value)}
-              /> <br/>
+              /> <br/> */}
+
+              <Slider
+              range ={true}
+              marks = {
+                  {
+                    1:'$1',
+                    1000:'$1000'
+                  }
+
+              }
+              min={1}
+              max={1000}
+              defaultValue={price}
+            
+              onChange={(price)=>{
+                setPrice(price)
+            }}
+              handleRender={
+                renderProps => {
+                    return (
+                        <Tooltip  overlay={`$${renderProps.props['aria-valuenow']}`}  >
+                             <div {...renderProps.props}>  </div>
+                        </Tooltip>
+                    )
+                }
+            }
+              />
             <div className="amount-range-price">Range: ₹{value[0]} - ₹{value[1]}</div>
              
                 <ul className="check-box-list">
@@ -230,26 +247,7 @@ function Shop(props) {
               
               {/* <!-- Wrapper for slides --> */}
               <div className="carousel-inner" id="slide__add" role="listbox">
-                <Slider {...slides}>
-                <div className="item active"> <img src="/images/add-slide1.jpg" alt="slide1"/>
-                  <div className="carousel-caption">
-                    <h3><a href="single_product.html" title=" Sample Product">Sale Up to 50% off</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" className="info">shopping Now</a> </div>
-                </div>
-                <div className="item"> <img src="/images/add-slide2.jpg" alt="slide2"/>
-                  <div className="carousel-caption">
-                    <h3><a href="single_product.html" title=" Sample Product">Smartwatch Collection</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#" className="info">All Collection</a> </div>
-                </div>
-                <div className="item"> <img src="/images/add-slide3.jpg" alt="slide3"/>
-                  <div className="carousel-caption">
-                    <h3><a href="single_product.html" title=" Sample Product">Summer Sale</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </div>
-                </div>
-                </Slider>
+                <ShopSliderone/>
               </div>
              
               {/* <!-- Controls -->  */}
@@ -266,21 +264,7 @@ function Shop(props) {
                 <div className=""> 
                   
                   {/* <!-- Item --> */}
-                  <Slider {...slides} >
-                  <div className="item">
-                     <a href="#x"><img alt="" src="/images/cat-slider-img1.jpg"/></a>
-                       <div className="inner-info">
-                       <div className="cat-img-title"> <span>Up To 20% Off Decor</span>
-                        <h2 className="cat-heading"><strong>Vintage Casual</strong></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                        <a className="info" href="#">Shop Now</a> </div>
-                        </div>
-                  </div>
-                  {/* <!-- End Item -->  */}
-                  
-                  {/* <!-- Item --> */}
-                  <div className="item"> <a href="#x"><img alt="" src="/images/ss.jpg" /></a> </div>
-                  </Slider>
+                     <ShopSlider/>
                   {/* <!-- End Item -->  */}
                   
                 </div>

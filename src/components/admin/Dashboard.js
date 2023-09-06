@@ -10,36 +10,16 @@ import {getAdminProducts} from '../../actions/productActions'
 import {getUsers} from '../../actions/userActions'
 import {adminOrders as adminOrdersAction} from '../../actions/orderAction'
 import Adminpanel from './Adminpanel';
-import {Line} from 'react-chartjs-2';
-
-import {
-    Chart as ChartJS,
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement
-}from 'chart.js';
 
 
-ChartJS.register(
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement
-)
+
 
 function Dashboard(props) {
    
-    //  const data = {
-    //     labels:["May 12","May 13","May 14","May 15","May 16","May 17","May 18"],
-    //     datasets:[{
-    //         data:[8, 7.8, 8, 7, 5, 6],
-    //         borderColor:"#FF512F"
-    //     }]
-    //  }
-    //  const options = [];
+
 
     const {products = []} = useSelector(state => state.productsState)
+    const {categories = []} = useSelector(state => state.categorysState)
     const {adminOrders = []} = useSelector(state => state.orderState)
     const {users = []} = useSelector(state => state.userState)
     const dispatch = useDispatch();
@@ -98,7 +78,7 @@ function Dashboard(props) {
           <div className="card-body">
             <AutoFixNormalIcon />
             <h5 className="card-title">Categories</h5>
-           <h1>{products.length}</h1>
+           <h1>{categories.length}</h1>
            </div>
          </div>
          </Link>
@@ -106,12 +86,7 @@ function Dashboard(props) {
          </div> 
         </div>
         
-{/* 
-        <div className='charts-container'>
-         <div className='charts'> Charts
-         <Line data = {data} options = {options}></Line>
-        </div>
-        </div> */}
+
 
       
         </main>
