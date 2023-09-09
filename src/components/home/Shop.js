@@ -21,21 +21,18 @@ function Shop(props) {
 
   const {products =[], loading, error} = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
-
-
   const [price,setPrice]=useState([1,1000]);
   const [priceChanged,setPriceChanged] = useState(price)
+
   useEffect(()=>{
     if(error){
       return toast.error(error,{
        position: toast.POSITION.BOTTOM_CENTER
       })
     }
+     dispatch(getProducts(priceChanged)) 
 
-    console.log(getProducts)
-  dispatch(getProducts(price)) 
-
- }, [error, dispatch,priceChanged,price])
+ },[error, dispatch,priceChanged])
 
 
     return (
@@ -187,7 +184,7 @@ function Shop(props) {
               onChange={(value,index)=>setValue(value)}
               /> <br/> */}
 
-            <div style={{marginTop:"1rem"}}>  <Slider
+             <Slider style={{marginTop:"1rem"}}
               range ={true}
               marks = {
                   {
@@ -214,7 +211,7 @@ function Shop(props) {
                 }
             }
               />
-              </div>
+              
             <div className="amount-range-price" style={{marginTop:"2rem"}}>Range: ₹{price[0]} - ₹{price[1]}</div>
              
                 <ul className="check-box-list">
