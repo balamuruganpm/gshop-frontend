@@ -6,12 +6,10 @@ import '../../css/responsive.css';
 import '../../css/flexslider.css'
 import  {Link} from 'react-router-dom'
 import Service from './Service'
-
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../actions/productActions';
 import {toast} from 'react-toastify';
-
 import Slider  from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import 'rc-slider/assets/index.css'
