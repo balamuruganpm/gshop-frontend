@@ -30,7 +30,9 @@ function Shop(props) {
        position: toast.POSITION.BOTTOM_CENTER
       })
     }
-     dispatch(getProducts(priceChanged)) 
+     dispatch(getProducts(priceChanged))
+     
+     console.log(getProducts(priceChanged));
 
  },[error, dispatch,priceChanged])
 
@@ -169,20 +171,6 @@ function Shop(props) {
             </div>
             <div className="block-content">
               <div className="slider-range" onMouseUp={()=>setPriceChanged(price)}>
-              {/* <ReactSlider
-              className="horizontal-slider"
-              thumbClassName="example-thumb"
-              trackClassName="example-track"
-              defaultValue={[0, 500]}
-              max={500}
-              min={0}
-              ariaLabel={['Lower thumb', 'Upper thumb']}
-              ariaValuetext={state => `Thumb value ${state.valueNow}`}
-              renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-              pearling
-              minDistance={10}
-              onChange={(value,index)=>setValue(value)}
-              /> <br/> */}
 
              <Slider style={{marginTop:"1rem"}}
               range ={true}
