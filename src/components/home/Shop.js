@@ -22,7 +22,7 @@ function Shop(props) {
   const {products =[], loading, error} = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
 
-  const [value, setValue] = useState([]);
+
   const [price,setPrice]=useState([1,1000]);
   const [priceChanged,setPriceChanged] = useState(price)
   useEffect(()=>{
@@ -35,7 +35,7 @@ function Shop(props) {
     console.log(getProducts)
   dispatch(getProducts(price)) 
 
- }, [error, dispatch,priceChanged])
+ }, [error, dispatch,priceChanged,price])
 
 
     return (
@@ -187,7 +187,7 @@ function Shop(props) {
               onChange={(value,index)=>setValue(value)}
               /> <br/> */}
 
-              <Slider
+              <Slider style={{marginTop:"-2rem"}}
               range ={true}
               marks = {
                   {
@@ -213,7 +213,7 @@ function Shop(props) {
                 }
             }
               />
-            <div className="amount-range-price">Range: ₹{value[0]} - ₹{value[1]}</div>
+            <div className="amount-range-price">Range: ₹{price[0]} - ₹{price[1]}</div>
              
                 <ul className="check-box-list">
                   <li>
