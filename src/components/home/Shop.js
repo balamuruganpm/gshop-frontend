@@ -202,6 +202,7 @@ function Shop(props) {
             
               onChange={(price)=>{
                 setPrice(price)
+                 console.log(price[0], price[1]);
             }}
               handleRender={
                 renderProps => {
@@ -305,14 +306,14 @@ function Shop(props) {
           
     
               { products && products.map(product =>(  
-              <div className="product-item" style={{ marginRight:"1rem"}}>
-                <div className="item-inner" >
+                <div className="product-item" style={{ marginRight:"1rem"}}>
+                 <div className="item-inner" >
                   <div className="product-thumb has-hover-img"> 
                    <Link to={`/product/${product._id}`}> <figure style={{border: "1px #eee solid"}}>{product.images.length > 0 && <> <img src={product.images[0].image} alt="" /> <img className="hover-img" src={product.hoverimages[0].image} alt="" /> </> }</figure></Link>
                 
-                <div className="pr-info-area animated animate2"><a href="quick_view.html" className="quick-view"><i className="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" className="wishlist"><i className="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" className="compare"><i className="fa fa-exchange"><span>Compare</span></i></a> </div>
-                  </div>
-                  <div className="item-info" >
+                  <div className="pr-info-area animated animate2"><a href="quick_view.html" className="quick-view"><i className="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" className="wishlist"><i className="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" className="compare"><i className="fa fa-exchange"><span>Compare</span></i></a> </div>
+                   </div>
+                    <div className="item-info" >
                     <div className="info-inner" >
                   
                       <div className="item-content item-details">
