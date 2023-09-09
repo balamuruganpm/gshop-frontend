@@ -11,6 +11,7 @@ export const getProducts = (price) => async (dispatch)=>{
          let link = `${process.env.REACT_APP_URL}/api/v1/products`
          if(price){
             link += `?price[lte]=${price[0]}&price[gte]=${price[1]}`
+            console.log(price[0], price[1]);
          }
          const {data} =  await axios.get(link);
 

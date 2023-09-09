@@ -105,7 +105,7 @@ const logoutHandler = () => {
         <div className="row" style={{background:"transparent",zIndex:"1000"}}>
           <div className="col-sm-4 col-md-3 col-xs-8"> 
             {/* <!-- Header Logo --> */}
-            <Link to='/'><div className="logo"><a title="e-commerce" href="index.html"><img alt="e-commerce" src="/images/a11.png"/></a> </div></Link>
+            <Link to='/'><div className="logo"><a title="e-commerce" href="index.html"><img alt="e-commerce" src="/images/g.png"/></a> </div></Link>
             {/* <!-- End Header Logo -->  */}
           </div>
           <div className="col-md-9 col-sm-8 col-xs-4">
