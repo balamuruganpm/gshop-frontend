@@ -187,7 +187,7 @@ function Shop(props) {
               onChange={(value,index)=>setValue(value)}
               /> <br/> */}
 
-              <Slider style={{marginTop:"-2rem"}}
+            <div style={{marginTop:"1rem"}}>  <Slider
               range ={true}
               marks = {
                   {
@@ -199,7 +199,7 @@ function Shop(props) {
               min={1}
               max={1000}
               defaultValue={price}
-            
+              className="horizontal-slider"
               onChange={(price)=>{
                 setPrice(price)
                  console.log(price[0], price[1]);
@@ -214,7 +214,8 @@ function Shop(props) {
                 }
             }
               />
-            <div className="amount-range-price">Range: ₹{price[0]} - ₹{price[1]}</div>
+              </div>
+            <div className="amount-range-price" style={{marginTop:"2rem"}}>Range: ₹{price[0]} - ₹{price[1]}</div>
              
                 <ul className="check-box-list">
                   <li>
