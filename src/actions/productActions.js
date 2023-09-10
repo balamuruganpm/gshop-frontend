@@ -4,11 +4,11 @@ import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProdu
 
 
 
-export const getProducts = (price,keyword,category,rating,currentPage) => async (dispatch)=>{
+export const getProducts = (price,keyword,category,rating) => async (dispatch)=>{
 
     try{
          dispatch(productsRequest())
-         let link = `/api/v1/products?page=${currentPage}`;
+         let link = `${process.env.REACT_APP_URL}/api/v1/products`;
         
         if(keyword) {
             link += `&keyword=${keyword}`
