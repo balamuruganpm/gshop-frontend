@@ -41,10 +41,11 @@ export const getProduct = id => async (dispatch)=>{
      
 }
 
-export const getAdminProducts = async(dispatch)=>{
+export const getAdminProducts = (price) => async(dispatch)=>{
     try{
         dispatch(adminProductsRequest())
-        const { data } = await axios.get(`${process.env.REACT_APP_URL}/api/v1/admin/products`);
+        const { data } = await axios.get(`${process.env.REACT_APP_URL}/api/v1/admin/products?price[gte]=${price[0]}&price[lte]=${price[1]}`);
+       console.log(data);
         dispatch(adminProductsSuccess(data))
     }catch(error){
         dispatch(adminProductsFail(error.response.data.message))
