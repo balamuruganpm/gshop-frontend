@@ -19,7 +19,7 @@ import ShopSliderone from './ShopSliderone';
 function Shop(props) {
 
 
-  const {products, loading, error} = useSelector((state) => state.productsState);
+  const {products=[], loading, error} = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
   const [price,setPrice]=useState([1,1000]);
   const [priceChanged,setPriceChanged] = useState(price)
@@ -30,7 +30,7 @@ function Shop(props) {
        position: toast.POSITION.BOTTOM_CENTER
       })
     }
-     dispatch(getProducts(priceChanged)) 
+     dispatch(getProducts()) 
 
  },[error, dispatch,priceChanged])
 
@@ -290,7 +290,7 @@ function Shop(props) {
             <div className="product-grid-area" id="our__product">
           
     
-              { products && products.map(product =>(  
+              { products && products?.map(product =>(  
                 <div className="product-item" style={{ marginRight:"1rem"}}>
                  <div className="item-inner" >
                   <div className="product-thumb has-hover-img"> 
