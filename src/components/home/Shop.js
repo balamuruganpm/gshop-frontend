@@ -31,8 +31,6 @@ function Shop(props) {
       })
     }
      dispatch(getProducts(priceChanged))
-     
-     console.log(getProducts(priceChanged));
 
  },[error, dispatch,priceChanged])
 
