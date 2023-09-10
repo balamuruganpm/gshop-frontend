@@ -4,27 +4,12 @@ import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProdu
 
 
 
-export const getProducts = (price,keyword,category,rating) => async (dispatch)=>{
+export const getProducts = (price) => async (dispatch)=>{
 
     try{
          dispatch(productsRequest())
-         let link = `${process.env.REACT_APP_URL}/api/v1/products`;
-        
-        if(keyword) {
-            link += `&keyword=${keyword}`
-        }
-        if(price) {
-            link += `&price[gte]=${price[0]}&price[lte]=${price[1]}`
-        }
-        if(category) {
-            link += `&category=${category}`
-        }
-        if(rating) {
-            link += `&ratings=${rating}`
-        }
-        
-        const { data }  =  await axios.get(link);
-        dispatch(productsSuccess(data))
+          const { data }  =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products`);
+         dispatch(productsSuccess(data))
     }
     catch (error){
        //handle error
