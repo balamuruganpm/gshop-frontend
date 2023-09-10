@@ -5,21 +5,18 @@ import { getProducts } from '../../actions/productActions';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 function Products(props) {
-    const {products =[], loading, error} = useSelector((state) => state.productsState);
+  const {products =[], loading, error} = useSelector((state) => state.productsState);
     const dispatch = useDispatch();
    
-   
-
     useEffect(()=>{
       if(error){
         return toast.error(error,{
          position: toast.POSITION.BOTTOM_CENTER
         })
       }
+       dispatch(getProducts)
   
-
-    dispatch(getProducts) 
-   }, [error, dispatch])
+   },[error, dispatch])
     return (
 
             
