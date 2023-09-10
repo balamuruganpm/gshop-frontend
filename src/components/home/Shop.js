@@ -30,7 +30,7 @@ function Shop(props) {
        position: toast.POSITION.BOTTOM_CENTER
       })
     }
-     dispatch(getProducts()) 
+     dispatch(getProducts) 
 
  },[error, dispatch,priceChanged])
 
