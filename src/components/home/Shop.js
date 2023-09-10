@@ -19,7 +19,7 @@ import ShopSliderone from './ShopSliderone';
 function Shop(props) {
 
 
-  const {products =[], loading, error} = useSelector((state) => state.productsState);
+  const {products, loading, error} = useSelector((state) => state.productsState);
   const dispatch = useDispatch();
   const [price,setPrice]=useState([1,1000]);
   const [priceChanged,setPriceChanged] = useState(price)
@@ -30,9 +30,9 @@ function Shop(props) {
        position: toast.POSITION.BOTTOM_CENTER
       })
     }
-     dispatch(getProducts) 
+     dispatch(getProducts(priceChanged)) 
 
- },[error, dispatch,priceChanged,price])
+ },[error, dispatch,priceChanged])
 
 
     return (
