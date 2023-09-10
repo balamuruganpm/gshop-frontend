@@ -46,6 +46,9 @@ export const getAdminProducts = (price) => async(dispatch)=>{
         dispatch(adminProductsRequest())
 
         let link = `${process.env.REACT_APP_URL}/api/v1/admin/products`
+        if(price){
+            link +=`?price[gte]=${price[0]}&price[lte]=${price[1]}`
+        }
         const { data } = await axios.get(link);
        console.log(data);
         dispatch(adminProductsSuccess(data))
