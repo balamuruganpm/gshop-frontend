@@ -5,19 +5,21 @@ import { getProducts } from '../../actions/productActions';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 function Products(props) {
-  const {products =[], loading, error} = useSelector((state) => state.productsState);
+    const {products =[], loading, error} = useSelector((state) => state.productsState);
     const dispatch = useDispatch();
    
+   
+
     useEffect(()=>{
       if(error){
         return toast.error(error,{
          position: toast.POSITION.BOTTOM_CENTER
         })
       }
-       dispatch(getProducts)
-       console.log(getProducts);
   
-   },[error, dispatch])
+
+    dispatch(getProducts) 
+   }, [error, dispatch])
     return (
 
             
@@ -30,7 +32,7 @@ function Products(props) {
         <div className="slider-items-products">
           <div id="special-products-slider" className="product-flexslider hidden-buttons">
             <div className="product-grid">
-              { products && products.map(product =>(
+              { products && products?.map(product =>(
 
 
               <div className="product-item" key={product._id}>

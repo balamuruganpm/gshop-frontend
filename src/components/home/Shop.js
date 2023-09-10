@@ -30,7 +30,7 @@ function Shop(props) {
        position: toast.POSITION.BOTTOM_CENTER
       })
     }
-     dispatch(getProducts)
+     dispatch(getProducts(priceChanged)) 
 
  },[error, dispatch,priceChanged])
 
@@ -169,6 +169,7 @@ function Shop(props) {
             </div>
             <div className="block-content">
               <div className="slider-range" onMouseUp={()=>setPriceChanged(price)}>
+
 
              <Slider style={{marginTop:"1rem"}}
               range ={true}
