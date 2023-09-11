@@ -6,7 +6,7 @@ import {  saveShippingInfo} from '../../slice/cartSlice'
 import { register } from '../../actions/userActions';
 function CheckOut(props) {
 
-  const { user =[] } = useSelector(state=>state.authState);
+  const { user} = useSelector(state=>state.authState);
    const dispatch = useDispatch()
  useEffect(()=>{
     dispatch(register)
@@ -455,15 +455,15 @@ function CheckOut(props) {
                <dt className="complete"> Billing Address <span className="separator">|</span> <a href="#">Change</a> </dt>
                <dd className="complete">
                 <address>
-                    {user && user.map(user =>(
-                        <>
+                   
+                      
                                  <p>{user.firstname}</p>
                                  <p>{user.lastname}</p>
                                  <p>{user.street}</p>
                                  <p>{user.city}</p>
                                   <p>{user.phone}</p>
-                     </>
-                     ) )}
+                     
+                 
         
               
                 </address>
