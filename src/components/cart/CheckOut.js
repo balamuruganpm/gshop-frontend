@@ -455,7 +455,7 @@ function CheckOut(props) {
                <dt className="complete"> Billing Address <span className="separator">|</span> <a href="#">Change</a> </dt>
                <dd className="complete">
                 <address>
-                    {user && user?.map(user =>(
+                    {user && user.map(user =>(
                         <>
                                  <p>{user.firstname}</p>
                                  <p>{user.lastname}</p>
