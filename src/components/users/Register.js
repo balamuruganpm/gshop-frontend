@@ -26,8 +26,8 @@ const navigate=useNavigate()
 const submitRegister=(e)=>{
   e.preventDefault();
   const formData = new FormData();
-  formData.append('firstname', userData.name)
-  formData.append('lastname', userData.name)
+  formData.append('firstname', userData.firstname)
+  formData.append('lastname', userData.lastname)
   formData.append('email', userData.email)
   formData.append('password', userData.password)
   formData.append('street', userData.street)  
