@@ -76,13 +76,13 @@ const logoutHandler = () => {
                <>
               <div>
                 
-                <div className="myaccount" onClick={()=> setDropdown(!dropdown)}><i className="fa fa-user" style={{color:"#FFFFFF", marginRight:"5px"}}></i><span className="hidden-xs"  style={{color:"#FFFFFF"}}>{user.name}</span></div>
+                <div className="myaccount" onClick={()=> setDropdown(!dropdown)}><i className="fa fa-user" style={{color:"#FFFFFF", marginRight:"5px"}}></i><span className="hidden-xs"  style={{color:"#FFFFFF"}}>{user.firstname}</span></div>
               
               {dropdown &&  <div className='res_homedropDown'>
-                {user.role === 'admin' && <div className='res_homelist' onClick={()=>{navigate('/dashboard')}}><p><i class="fa-regular fa-address-card" style={{marginRight:"0.5rem"}}></i> DashBoard</p></div>}
-                <div className='res_homelist' onClick={()=>{navigate('/profile')}}> <p><i class="fa-regular fa-address-card" style={{marginRight:"1rem"}}></i>Profile</p> </div>
+                {user.role === 'admin' && <div className='res_homelist' onChange={()=>setDropdown(!dropdown)}  onClick={()=>{navigate('/dashboard')}}><p><i class="fa-regular fa-address-card" style={{marginRight:"0.5rem"}}></i> DashBoard</p></div>}
+                <div className='res_homelist' onClick={()=> setDropdown(!dropdown)}> <p><i class="fa-regular fa-address-card" style={{marginRight:"1rem"}} onClick={()=>{navigate('/profile')}}></i>Profile</p> </div>
 
-                <div className='res_homelist' onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
+                <div className='res_homelist' onChange={()=>setDropdown(!dropdown)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
                 </div>
                  }
                 </div>
