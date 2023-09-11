@@ -1,10 +1,13 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React,{useState} from 'react';
+import {Link,useNavigate} from 'react-router-dom';
 import '../../css/style.css'
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import {  saveShippingInfo} from '../../slice/cartSlice'
 function CheckOut(props) {
 
-  const { auth } = useSelector(state=>state.authState);
+  const { users =[] } = useSelector(state=>state.authState);
+
+ 
     return (
         <div>
   {/* <!-- Breadcrumbs --> */}
@@ -449,14 +452,17 @@ function CheckOut(props) {
                <dt className="complete"> Billing Address <span className="separator">|</span> <a href="#">Change</a> </dt>
                <dd className="complete">
                 <address>
-                Deo Jone<br/>
-                Company Name<br/>
-                7064 Lorem <br/>
-                Ipsum <br/>
-                Vestibulum 0 666/13<br/>
-                United States<br/>
-                T: 12345678 <br/>
-                F: 987654
+                    {users && users.map(user =>(
+                        <>
+                                 <p>{user.firstname}</p>
+                                 <p>{user.lastname}</p>
+                                 <p>{user.street}</p>
+                                 <p>{user.city}</p>
+                                  <p>{user.phone}</p>
+                     </>
+                     ) )}
+        
+              
                 </address>
               </dd>
               <dt className="complete"> Shipping Address <span className="separator">|</span> <a href="#">Change</a> </dt>

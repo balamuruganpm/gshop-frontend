@@ -6,10 +6,12 @@ import{register} from '../../actions/userActions';
 import { useNavigate } from 'react-router-dom';
 function Register(props) {
   const[userData,setUserData] = useState({
-    name:"",
+    firstname:"",
+    lastname:"",
     email:"",
     password:"",
-    address:"",
+    street:"",
+    city:"",
     phone:''
   
 });
@@ -24,10 +26,12 @@ const navigate=useNavigate()
 const submitRegister=(e)=>{
   e.preventDefault();
   const formData = new FormData();
-  formData.append('name', userData.name)
+  formData.append('firstname', userData.name)
+  formData.append('lastname', userData.name)
   formData.append('email', userData.email)
   formData.append('password', userData.password)
-  formData.append('address', userData.address)  
+  formData.append('street', userData.street)  
+  formData.append('city', userData.city)  
   formData.append('phone', userData.phone)  
 
   dispatch(register(formData))
