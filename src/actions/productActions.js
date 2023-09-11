@@ -8,9 +8,8 @@ export const getProducts = (price) => async (dispatch)=>{
 
     try{
          dispatch(productsRequest())
-         let link = `${process.env.REACT_APP_URL}/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}`
-         const {data} =  await axios.get(link);
-
+         const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}`);
+         console.log(data);
          dispatch(productsSuccess(data))
 
     }
