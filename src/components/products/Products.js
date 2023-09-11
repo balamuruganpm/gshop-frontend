@@ -18,7 +18,7 @@ function Products(props) {
       }
   
 
-    dispatch(getProducts(null)) 
+    dispatch(getProducts()) 
    }, [error, dispatch])
     return (
 
@@ -32,7 +32,7 @@ function Products(props) {
         <div className="slider-items-products">
           <div id="special-products-slider" className="product-flexslider hidden-buttons">
             <div className="product-grid">
-              { products && products?.map(product =>(
+              { products && products.map(product =>(
 
 
               <div className="product-item" key={product._id}>
