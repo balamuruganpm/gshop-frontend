@@ -72,25 +72,25 @@ const submitRegister=(e)=>{
                 <div className="col-sm-6">
                   <label>First Name:</label>
                   <div className="input-text">
-                    <input type="text" name="name" onChange={onChange} required className="form-control"/>
+                    <input type="text" name="firstname" onChange={onChange} required className="form-control"/>
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <label>Last Name:</label>
                   <div className="input-text">
-                    <input type="text" onChange={onChange} required className="form-control" />
+                    <input type="text" name="lastname" onChange={onChange} required className="form-control" />
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <label>Address:</label>
                   <div className="input-text">
-                    <input type="text" name="address" required onChange={onChange}className="form-control"/>
+                    <input type="text" name="street" required onChange={onChange}className="form-control"/>
                   </div>
                 </div>
                 <div className="col-sm-6">
                   <label>City/Town:</label>
                   <div className="input-text">
-                    <input type="text" name="address" required onChange={onChange} className="form-control"/>
+                    <input type="text" name="city" required onChange={onChange} className="form-control"/>
                   </div>
                 </div>
                 <div className="col-sm-6">
