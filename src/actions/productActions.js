@@ -4,12 +4,12 @@ import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProdu
 
 
 
-export const getProducts = async (dispatch)=>{
+export const getProducts = (price) => async (dispatch)=>{
 
     try{
          dispatch(productsRequest())
- 
-         const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products`);
+         let link = `${process.env.REACT_APP_URL}/api/v1/products?price[gte]=${price[0]}&price[lte]=${price[1]}`
+         const {data} =  await axios.get(link);
 
          dispatch(productsSuccess(data))
 
@@ -41,16 +41,13 @@ export const getProduct = id => async (dispatch)=>{
      
 }
 
-export const getAdminProducts = (price) => async(dispatch)=>{
+export const getAdminProducts =  async(dispatch)=>{
     try{
         dispatch(adminProductsRequest())
 
-        let link = `${process.env.REACT_APP_URL}/api/v1/admin/products`
-        if(price){
-            link +=`?price[gte]=${price[0]}&price[lte]=${price[1]}`
-        }
-        const { data } = await axios.get(link);
-       console.log(data);
+      
+        const { data } = await axios.get(`${process.env.REACT_APP_URL}/api/v1/admin/products`);
+
         dispatch(adminProductsSuccess(data))
     }catch(error){
         dispatch(adminProductsFail(error.response.data.message))

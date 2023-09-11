@@ -18,7 +18,7 @@ function Products(props) {
       }
   
 
-    dispatch(getProducts) 
+    dispatch(getProducts(null)) 
    }, [error, dispatch])
     return (
 
