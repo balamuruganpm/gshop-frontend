@@ -4,7 +4,7 @@ import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProdu
 
 
 
-export const getProducts = (price) => async (dispatch)=>{
+export const getfilterProducts = (price) => async (dispatch)=>{
 
     try{
          dispatch(productsRequest())
@@ -22,7 +22,23 @@ export const getProducts = (price) => async (dispatch)=>{
 
      
 }
+export const getProducts = async (dispatch)=>{
 
+    try{
+         dispatch(productsRequest())
+         const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products`);
+         dispatch(productsSuccess(data))
+
+    }
+    catch (error){
+       //handle error
+
+        dispatch(productsFail(error.response.data.message)) 
+
+    }
+
+     
+}
 export const getProduct = id => async (dispatch)=>{
  
     try{
