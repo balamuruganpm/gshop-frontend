@@ -1,13 +1,16 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 import '../../css/style.css'
 import { useSelector,useDispatch } from 'react-redux';
 import {  saveShippingInfo} from '../../slice/cartSlice'
+import { register } from '../../actions/userActions';
 function CheckOut(props) {
 
-  const { users =[] } = useSelector(state=>state.authState);
-
- 
+  const { user =[] } = useSelector(state=>state.authState);
+   const dispatch = useDispatch()
+ useEffect(()=>{
+    dispatch(register)
+ },[dispatch])
     return (
         <div>
   {/* <!-- Breadcrumbs --> */}
@@ -452,7 +455,7 @@ function CheckOut(props) {
                <dt className="complete"> Billing Address <span className="separator">|</span> <a href="#">Change</a> </dt>
                <dd className="complete">
                 <address>
-                    {users && users.map(user =>(
+                    {user && user?.map(user =>(
                         <>
                                  <p>{user.firstname}</p>
                                  <p>{user.lastname}</p>
