@@ -2,11 +2,18 @@ import React,{useEffect, useState} from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 import '../../css/style.css'
 import { useSelector,useDispatch } from 'react-redux';
+import Service from '../../components/home/Service'
 import {  saveShippingInfo} from '../../slice/cartSlice'
 import { register } from '../../actions/userActions';
 function CheckOut(props) {
+   
+   const [billingInfo, setBillingInfo] = useState(false)
+   const [shippingInfo, setShippingInfo] = useState(false)
+   const [shippingMethod, setShippingMethod] = useState(false)
+   const [paymentInfo, setPaymentInfo] = useState(false)
+   const [orderReview, setOrderView] = useState(false)
 
-  const { user} = useSelector(state=>state.authState);
+   const { user} = useSelector(state=>state.authState);
    const dispatch = useDispatch()
  useEffect(()=>{
     dispatch(register)
@@ -69,8 +76,8 @@ function CheckOut(props) {
 
                 </div>
             </div>
-            <h4 className="checkout-sep">2. Billing Infomations</h4>
-            <div className="box-border" style={{display:"none"}}>
+            <h4 className="checkout-sep" onClick={()=>setBillingInfo(!billingInfo)}>2. Billing Infomations</h4>
+            {billingInfo && <div className="box-border">
                 <ul>
                     <li className="row">
                         <div className="col-sm-6">
@@ -100,10 +107,8 @@ function CheckOut(props) {
                     {/* <!--/ .row --> */}
                     <li className="row"> 
                         <div className="col-xs-12">
-
                             <label for="address" className="required">Address</label>
                             <input type="text" className="input form-control" name="" id="address"/>
-
                         </div>
                         {/* <!--/ [col] --> */}
 
@@ -188,9 +193,11 @@ function CheckOut(props) {
                         <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
                     </li>
                 </ul>
-            </div>
-            <h4 className="checkout-sep">3. Shipping Information</h4>
-            <div className="box-border" style={{display:"none"}}>
+                            </div>
+            }
+
+            <h4 className="checkout-sep" onClick={()=>setShippingInfo(!shippingInfo)}>3. Shipping Information</h4>
+            {shippingInfo && <div className="box-border">
                 <ul>
                                     
                     <li className="row">
@@ -337,9 +344,10 @@ function CheckOut(props) {
 
                 </ul>
                 <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
-            </div>
-            <h4 className="checkout-sep">4. Shipping Method</h4>
-            <div className="box-border" style={{display:"none"}}>
+                             </div>
+             } 
+            <h4 className="checkout-sep" onClick={()=>setShippingMethod(!shippingMethod)}>4. Shipping Method</h4>
+            {shippingMethod && <div className="box-border">
                 <ul className="shipping_method">
                     <li>
                         <p className="subcaption bold">Free Shipping</p>
@@ -352,9 +360,11 @@ function CheckOut(props) {
                     </li>
                 </ul>
                 <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
-            </div>
-            <h4 className="checkout-sep">5. Payment Information</h4>
-            <div className="box-border" style={{display:"none"}}>
+                               </div>
+             }
+
+            <h4 className="checkout-sep" onClick={()=>setPaymentInfo(!paymentInfo)}>5. Payment Information</h4>
+            {paymentInfo && <div className="box-border">
                 <ul>
                     <li>
                         <label for="radio_button_5"><input type="radio" checked name="radio_4" id="radio_button_5" /> Check / Money order</label>
@@ -367,9 +377,11 @@ function CheckOut(props) {
 
                 </ul>
                 <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
-            </div>
-            <h4 className="checkout-sep last">6. Order Review</h4>
-            <div className="box-border" style={{display:"none"}}>
+                            </div>
+            }
+
+            <h4 className="checkout-sep last" onClick={()=>setOrderView(!orderReview)}>6. Order Review</h4>
+             {orderReview && <div className="box-border">
             <div className="table-responsive">
                 <table className="table table-bordered cart_summary">
                     <thead>
@@ -442,10 +454,11 @@ function CheckOut(props) {
                     </tfoot>    
                 </table></div>
                 <button className="button pull-right"><span>Place Order</span></button>
-            </div>
+                             </div>
+             }
         </div>
       </div>
-      <aside className="right sidebar col-sm-3 col-xs-12">
+        <aside className="right sidebar col-sm-3 col-xs-12">
         <div className="sidebar-checkout block">
          <div className="sidebar-bar-title">
               <h3>Your Checkout</h3>
@@ -495,40 +508,7 @@ function CheckOut(props) {
   {/* <!-- Main Container End --> */}
   {/* <!-- service section --> */}
   
-  <div className="jtv-service-area">
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-4 col-sm-4 col-xs-12">
-          <div className="jtv-service">
-            <div className="ser-icon"> <i className="fa fa-truck flip-horizontal"></i> </div>
-            <div className="service-content">
-              <h5>FREE SHIPPING WORLDWIDE </h5>
-              <p>free ship-on oder over $299.00</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-sm-4 col-xs-12">
-          <div className="jtv-service">
-            <div className="ser-icon"> <i className="fa fa-mail-forward"></i> </div>
-            <div className="service-content">
-              <h5>MONEY BACK GUARATEE! </h5>
-              <p>30 days money back guarantee!</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-4 col-sm-4 col-xs-12">
-          <div className="jtv-service">
-            <div className="ser-icon"> <i className="fa fa-comments flip-horizontal"></i> </div>
-            <div className="service-content">
-              <h5>24/7 CUSTOMER SERVICE </h5>
-              <p>We support online 24 hours a day</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> 
-
+<Service/>
         </div>
     );
 }
