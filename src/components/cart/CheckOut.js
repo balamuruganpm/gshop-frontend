@@ -470,11 +470,11 @@ function CheckOut(props) {
                 <address>
                    
                       
-                                 <p>{user.firstname}</p>
-                                 <p>{user.lastname}</p>
-                                 <p>{user.street}</p>
-                                 <p>{user.city}</p>
-                                  <p>{user.phone}</p>
+                                 <p>{user?.firstname}</p>
+                                 <p>{user?.lastname}</p>
+                                 <p>{user?.street}</p>
+                                 <p>{user?.city}</p>
+                                  <p>{user?.phone}</p>
                      
                  
         
