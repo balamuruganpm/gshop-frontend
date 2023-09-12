@@ -14,6 +14,13 @@ function CheckOut(props) {
    const [orderReview, setOrderView] = useState(false)
 
    const { user} = useSelector(state=>state.authState);
+   const {items:cartItems } = useSelector(state => state.cartState);
+   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
+   let taxPrice = Number( 0.05 * itemsPrice);
+   const shippingPrice = itemsPrice > 200 ? 0 : 25;
+   taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
+
+   const totalPrice = itemsPrice + taxPrice
    const dispatch = useDispatch()
  useEffect(()=>{
     dispatch(register)
@@ -76,7 +83,7 @@ function CheckOut(props) {
 
                 </div>
             </div>
-            <h4 className="checkout-sep" onClick={()=>setBillingInfo(!billingInfo)}>2. Billing Infomations</h4>
+            <h4 className="checkout-step" onClick={()=>setBillingInfo(!billingInfo)}>2. Billing Infomations</h4>
             {billingInfo && <div className="box-border">
                 <ul>
                     <li className="row">
@@ -196,7 +203,7 @@ function CheckOut(props) {
                             </div>
             }
 
-            <h4 className="checkout-sep" onClick={()=>setShippingInfo(!shippingInfo)}>3. Shipping Information</h4>
+            <h4 className="checkout-step" onClick={()=>setShippingInfo(!shippingInfo)}>3. Shipping Information</h4>
             {shippingInfo && <div className="box-border">
                 <ul>
                                     
@@ -346,7 +353,7 @@ function CheckOut(props) {
                 <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
                              </div>
              } 
-            <h4 className="checkout-sep" onClick={()=>setShippingMethod(!shippingMethod)}>4. Shipping Method</h4>
+            <h4 className="checkout-step" onClick={()=>setShippingMethod(!shippingMethod)}>4. Shipping Method</h4>
             {shippingMethod && <div className="box-border">
                 <ul className="shipping_method">
                     <li>
@@ -363,7 +370,7 @@ function CheckOut(props) {
                                </div>
              }
 
-            <h4 className="checkout-sep" onClick={()=>setPaymentInfo(!paymentInfo)}>5. Payment Information</h4>
+            <h4 className="checkout-step" onClick={()=>setPaymentInfo(!paymentInfo)}>5. Payment Information</h4>
             {paymentInfo && <div className="box-border">
                 <ul>
                     <li>
@@ -380,7 +387,7 @@ function CheckOut(props) {
                             </div>
             }
 
-            <h4 className="checkout-sep last" onClick={()=>setOrderView(!orderReview)}>6. Order Review</h4>
+            <h4 className="checkout-step last" onClick={()=>setOrderView(!orderReview)}>6. Order Review</h4>
              {orderReview && <div className="box-border">
             <div className="table-responsive">
                 <table className="table table-bordered cart_summary">
@@ -396,6 +403,7 @@ function CheckOut(props) {
                         </tr>
                     </thead>
                     <tbody>
+                        {cartItems.map(item =>(
                         <tr>
                             <td className="cart_product">
                                 <a href="#"><img src="" alt="Product"/></a>
@@ -406,50 +414,29 @@ function CheckOut(props) {
                                 <small><a href="#">Size : S</a></small>
                             </td>
                             <td className="cart_avail"><span className="label label-success">In stock</span></td>
-                            <td className="price"><span>$60.99 </span></td>
+                            <td className="price"><span>${item.price} </span></td>
                             <td className="qty">
-                                <input className="form-control input-sm" type="text" value="1"/>
-                              
+                            <span>${item.quantity} </span>
                             </td>
                             <td className="price">
-                                <span>$60.99 </span>
+                                <span>${item.price}</span>
                             </td>
                             <td className="action">
                                 <a href="#"><i className="fa fa-trash-o"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td className="cart_product">
-                                <a href="#"><img src="" alt="Product"/></a>
-                            </td>
-                            <td className="cart_description">
-                                <p className="product-name"><a href="#">Frederique Constant </a></p>
-                                <small><a href="#">Color : Beige</a></small><br/>   
-                                <small><a href="#">Size : S</a></small>
-                            </td>
-                            <td className="cart_avail"><span className="label label-success">In stock</span></td>
-                            <td className="price"><span>$99.19 </span></td>
-                            <td className="qty">
-                                <input className="form-control input-sm" type="text" value="1"/>
-                            
-                            </td>
-                            <td className="price">
-                                <span>$99.19 </span>
-                            </td>
-                            <td className="action">
-                                <a href="#"><i className="fa fa-trash-o"></i></a>
-                            </td>
-                        </tr>
+                      ))}
+
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="2" rowspan="2"></td>
                             <td colspan="3">Total products (tax incl.)</td>
-                            <td colspan="2">$160.88 </td>
+                            <td colspan="2">${totalPrice}</td>
                         </tr>
                         <tr>
                             <td colspan="3"><strong>Total</strong></td>
-                            <td colspan="2"><strong>$160.88 </strong></td>
+                            <td colspan="2"><strong>${totalPrice} </strong></td>
                         </tr>
                     </tfoot>    
                 </table></div>
