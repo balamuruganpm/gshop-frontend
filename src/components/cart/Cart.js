@@ -52,7 +52,7 @@ function Cart(props) {
                         
                       </td>
                       <td className="price"><span>₹{item.price}</span></td>
-                      <td className="qty"><input className="form-control input-sm" type="text" value="1" /></td>
+                      <td className="qty"><input className="form-control input-sm" type="text" value={item.quantity} /></td>
                       <td className="price"><span>₹ {item.price * item.quantity}</span></td>
                       <td className="action" onClick={()=> dispatch(removeItemFromCart(item.product))}><i className="icon-close"></i></td>
                     </tr>

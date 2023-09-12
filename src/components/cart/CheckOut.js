@@ -15,12 +15,12 @@ function CheckOut(props) {
 
    const { user} = useSelector(state=>state.authState);
    const {items:cartItems } = useSelector(state => state.cartState);
-   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
+   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0 );
    let taxPrice = Number( 0.05 * itemsPrice);
    const shippingPrice = itemsPrice > 200 ? 0 : 25;
    taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
 
-   const totalPrice = itemsPrice + taxPrice
+   const totalPrice = Number(itemsPrice + taxPrice).toFixed(2);
    const dispatch = useDispatch()
  useEffect(()=>{
     dispatch(register)
@@ -406,7 +406,7 @@ function CheckOut(props) {
                         {cartItems.map(item =>(
                         <tr>
                             <td className="cart_product">
-                                <a href="#"><img src="" alt="Product"/></a>
+                                <a href="#"><img src={item.image} alt="Product"/></a>
                             </td>
                             <td className="cart_description">
                                 <p className="product-name"><a href="#">Frederique Constant </a></p>
