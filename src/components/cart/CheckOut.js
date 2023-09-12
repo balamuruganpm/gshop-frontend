@@ -269,8 +269,8 @@ useEffect(()=>{
               <dt className="complete"> Shipping Address <span className="separator">|</span> <a href="#">Change</a> </dt>
               <dd className="complete">
                  <address>
-                                 <p>{shippingInfo?.firstname}</p>
-                                 <p>{shippingInfo?.lastname}</p>
+                                 <p>{shippingInfo?.firstName}</p>
+                                 <p>{shippingInfo?.lastName}</p>
                                  <p>{shippingInfo?.address}</p>
                                  <p>{shippingInfo?.city}</p>
                                  <p>{shippingInfo?.state}</p>

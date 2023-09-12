@@ -90,11 +90,11 @@ function ShippingInfo(props) {
                         {/* <!--/ [col] --> */}
 
                         <div className="col-sm-6">
-                            <label className="required" value={state} onChange={(e)=>setState(e.target.value)} name="state"  >State/Province</label>
-                                <select className="input form-control" name="">
-                                    <option value="Alabama">Alabama</option>
-                                    <option value="Illinois">Illinois</option>
-                                    <option value="Kansas">Kansas</option>
+                            <label className="required"  >State/Province</label>
+                                <select className="input form-control" value={state} onChange={(e)=>setState(e.target.value)} name="state" >
+                                    <option value={state}>Alabama</option>
+                                    <option value={state}>Illinois</option>
+                                    <option value={state}>Kansas</option>
                             </select>
                         </div>
                         {/* <!--/ [col] --> */}
