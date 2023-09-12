@@ -15,12 +15,11 @@ function CheckOut(props) {
 
    const { user} = useSelector(state=>state.authState);
    const {items:cartItems } = useSelector(state => state.cartState);
-   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0 );
-   let taxPrice = Number( 0.05 * itemsPrice);
+   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
    const shippingPrice = itemsPrice > 200 ? 0 : 25;
+   let taxPrice = Number( 0.05 * itemsPrice);
+   const totalPrice = Number(itemsPrice  + taxPrice).toFixed(2);
    taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
-
-   const totalPrice = Number(itemsPrice + taxPrice).toFixed(2);
    const dispatch = useDispatch()
  useEffect(()=>{
     dispatch(register)
