@@ -145,7 +145,7 @@ useEffect(()=>{
                </>
             }
 
-            <h4 className="checkout-step" onClick={()=>setShippingDetail(!shippingInfo)}>3. Shipping Information</h4>
+            <h4 className="checkout-step" onClick={()=>setShippingDetail(!shippingDetail)}>3. Shipping Information</h4>
             {shippingDetail && 
                 <>
                 <ShippingInfo/>
