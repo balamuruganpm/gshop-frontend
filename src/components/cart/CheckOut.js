@@ -5,6 +5,8 @@ import { useSelector,useDispatch } from 'react-redux';
 import Service from '../../components/home/Service'
 import {  saveShippingInfo} from '../../slice/cartSlice'
 import { register } from '../../actions/userActions';
+import {toast} from 'react-toastify'
+import{clearAuthError, login} from '../../actions/userActions';
 function CheckOut(props) {
    
    const [billingInfo, setBillingInfo] = useState(false)
@@ -21,9 +23,59 @@ function CheckOut(props) {
    const totalPrice = Number(itemsPrice  + taxPrice).toFixed(2);
    taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
    const dispatch = useDispatch()
+
+
+const [email,setEmail] = useState("");
+const [password,setPassword] = useState("")
+
+
+const navigate = useNavigate()
+
+const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
+
+const submitHandler= (e)=>{
+    e.preventDefault();
+    dispatch(login(email,password))
+
+
+    if(isAuthenticated){
+      toast('successfully LogIn',{
+        type:"success",
+        position:toast.POSITION.TOP_RIGHT,
+      
+      })
+    }
+
+ 
+
+    // if(!isAuthenticated){
+    //     toast('Please Register',{
+    //         position:toast.POSITION.TOP_RIGHT,
+          
+    //       })
+    // }
+
+ 
+
+}
+
+
+useEffect(()=>{
+  if(error){
+     toast(error, {
+       position:toast.POSITION.TOP_CENTER,
+       type:'error',
+       onOpen:()=>{dispatch(clearAuthError)}
+     })
+      return
+  }
+},[error, isAuthenticated,dispatch])
+
  useEffect(()=>{
     dispatch(register)
  },[dispatch])
+
+
     return (
         <div>
   {/* <!-- Breadcrumbs --> */}
@@ -73,11 +125,11 @@ function CheckOut(props) {
                         <h5>Login</h5>
                         <p>Already registered? Please log in below:</p>
                         <label>Email address</label>
-                        <input type="text" className="form-control input"/>
+                        <input type="text" onChange={e=>setEmail(e.target.value)} value={email}  name="email" className="form-control input"/>
                         <label>Password</label>
-                        <input type="password" className="form-control input"/>
+                        <input type="password" value={password} name='password' onChange={e=>setPassword(e.target.value)}  className="form-control input"/>
                         <p><a href="#">Forgot your password?</a></p>
-                        <button className="button"><i className="icon-login"></i>&nbsp; <span>Login</span></button>
+                        <button className="button" onClick={()=>submitHandler}><i className="icon-login"></i>&nbsp; <span>Login</span></button>
                     </div>
 
                 </div>
