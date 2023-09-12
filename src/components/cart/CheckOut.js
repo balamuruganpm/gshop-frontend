@@ -122,6 +122,7 @@ useEffect(()=>{
                         <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
                     </div>
                     <div className="col-sm-6">
+                        <form onSubmit={submitHandler}>
                         <h5>Login</h5>
                         <p>Already registered? Please log in below:</p>
                         <label>Email address</label>
@@ -129,7 +130,8 @@ useEffect(()=>{
                         <label>Password</label>
                         <input type="password" value={password} name='password' onChange={e=>setPassword(e.target.value)}  className="form-control input"/>
                         <p><a href="#">Forgot your password?</a></p>
-                        <button className="button" onClick={()=>submitHandler}><i className="icon-login"></i>&nbsp; <span>Login</span></button>
+                        <button className="button" type ="submit"><i className="icon-login"></i>&nbsp; <span>Login</span></button>
+                        </form>
                     </div>
 
                 </div>
