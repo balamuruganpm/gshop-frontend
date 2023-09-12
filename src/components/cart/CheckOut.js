@@ -3,20 +3,22 @@ import {Link,useNavigate} from 'react-router-dom';
 import '../../css/style.css'
 import { useSelector,useDispatch } from 'react-redux';
 import Service from '../../components/home/Service'
-import {  saveShippingInfo} from '../../slice/cartSlice'
+
+import ShippingInfo from '../order/ShippingInfo';
+import BillingInfo from '../order/BillingInfo';
 import { register } from '../../actions/userActions';
 import {toast} from 'react-toastify'
 import{clearAuthError, login} from '../../actions/userActions';
 function CheckOut(props) {
    
    const [billingInfo, setBillingInfo] = useState(false)
-   const [shippingInfo, setShippingInfo] = useState(false)
+   const [shippingDetail, setShippingDetail] = useState(false)
    const [shippingMethod, setShippingMethod] = useState(false)
    const [paymentInfo, setPaymentInfo] = useState(false)
    const [orderReview, setOrderView] = useState(false)
 
    const { user} = useSelector(state=>state.authState);
-   const {items:cartItems } = useSelector(state => state.cartState);
+   const {shippingInfo, items:cartItems } = useSelector(state => state.cartState);
    const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
    const shippingPrice = itemsPrice > 200 ? 0 : 25;
    let taxPrice = Number( 0.05 * itemsPrice);
@@ -137,274 +139,17 @@ useEffect(()=>{
                 </div>
             </div>
             <h4 className="checkout-step" onClick={()=>setBillingInfo(!billingInfo)}>2. Billing Infomations</h4>
-            {billingInfo && <div className="box-border">
-                <ul>
-                    <li className="row">
-                        <div className="col-sm-6">
-                            <label for="first_name" className="required">First Name</label>
-                            <input type="text" className="input form-control" name="" id="first_name"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-                        <div className="col-sm-6">
-                            <label for="last_name" className="required">Last Name</label>
-                            <input type="text" name="" className="input form-control" id="last_name"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-                    </li>
-                    {/* <!--/ .row --> */}
-                    <li className="row">
-                        <div className="col-sm-6">
-                            <label for="company_name">Company Name</label>
-                            <input type="text" name="" className="input form-control" id="company_name"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-                        <div className="col-sm-6">
-                            <label for="email_address" className="required">Email Address</label>
-                            <input type="text" className="input form-control" name="" id="email_address" />
-                        </div>
-                        {/* <!--/ [col] --> */}
-                    </li>
-                    {/* <!--/ .row --> */}
-                    <li className="row"> 
-                        <div className="col-xs-12">
-                            <label for="address" className="required">Address</label>
-                            <input type="text" className="input form-control" name="" id="address"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!-- / .row --> */}
-
-                    <li className="row">
-
-                        <div className="col-sm-6">
-                            
-                            <label for="city" className="required">City</label>
-                            <input className="input form-control" type="text" name="" id="city" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-                            <label className="required">State/Province</label>
-                                <select className="input form-control" name="">
-                                    <option value="Alabama">Alabama</option>
-                                    <option value="Illinois">Illinois</option>
-                                    <option value="Kansas">Kansas</option>
-                            </select>
-                        </div>
-                        {/* <!--/ [col] --> */}
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-
-                        <div className="col-sm-6">
-
-                            <label for="postal_code" className="required">Zip/Postal Code</label>
-                            <input className="input form-control" type="text" name="" id="postal_code"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div  className="col-sm-6">
-                            <label className="required">Country</label>
-                            <select className="input form-control" name="">
-                                <option value="USA">USA</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Austria">Austria</option>
-                                <option value="Argentina">Argentina</option>
-                                <option value="Canada">Canada</option>
-                            </select>
-                        </div>
-                        {/* <!--/ [col] --> */}
-                    </li>
-                    {/* <!--/ .row --> */}
-                    <li className="row">
-                        <div className="col-sm-6">
-                            <label for="telephone" className="required">Telephone</label>
-                            <input className="input form-control" type="text" name="" id="telephone"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-                            <label for="fax">Fax</label>
-                            <input className="input form-control" type="text" name="" id="fax"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-                        <div className="col-sm-6">
-                            <label for="password" className="required">Password</label>
-                            <input className="input form-control" type="password" name="" id="password" />
-                        </div>
-                            {/* !--/ [col] --> */}
-
-                        <div className="col-sm-6">
-                            <label for="confirm" className="required">Confirm Password</label>
-                            <input className="input form-control" type="password" name="" id="confirm"/>
-                        </div>
-                        {/* <!--/ [col] --> */}
-                    </li>
-                    {/* <!--/ .row --> */}
-                    <li>
-                        <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
-                    </li>
-                </ul>
-                            </div>
+            {billingInfo && 
+               <>
+                <BillingInfo/>
+               </>
             }
 
-            <h4 className="checkout-step" onClick={()=>setShippingInfo(!shippingInfo)}>3. Shipping Information</h4>
-            {shippingInfo && <div className="box-border">
-                <ul>
-                                    
-                    <li className="row">
-                        
-                        <div className="col-sm-6">
-                            
-                            <label for="first_name_1" className="required">First Name</label>
-                            <input className="input form-control" type="text" name="" id="first_name_1" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-                            
-                            <label for="last_name_1" className="required">Last Name</label>
-                            <input className="input form-control" type="text" name="" id="last_name_1" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-                        
-                        <div className="col-sm-6">
-                            
-                            <label for="company_name_1">Company Name</label>
-                            <input className="input form-control" type="text" name="" id="company_name_1" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-                            
-                            <label for="email_address_1" className="required">Email Address</label>
-                            <input className="input form-control" type="text" name="" id="email_address_1" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-
-                        <div className="col-xs-12">
-
-                            <label for="address_1" className="required">Address</label>
-                            <input className="input form-control" type="text" name="" id="address_1"/>
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-
-                        <div className="col-sm-6">
-                            
-                            <label for="city_1" className="required">City</label>
-                            <input className="input form-control" type="text" name="" id="city_1" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-
-                            <label className="required">State/Province</label>
-
-                            <div className="custom_select">
-
-                                <select className="input form-control" name="">
-
-                                    <option value="Alabama">Alabama</option>
-                                    <option value="Illinois">Illinois</option>
-                                    <option value="Kansas">Kansas</option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-
-                        <div className="col-sm-6">
-
-                            <label for="postal_code_1" className="required">Zip/Postal Code</label>
-                            <input className="input form-control" type="text" name="" id="postal_code_1"/>
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-
-                            <label className="required">Country</label>
-
-                            <div className="custom_select">
-
-                                <select className="input form-control" name="">
-                                    
-                                    <option value="USA">USA</option>
-                                    <option value="Australia">Australia</option>
-                                    <option value="Austria">Austria</option>
-                                    <option value="Argentina">Argentina</option>
-                                    <option value="Canada">Canada</option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>
-                    {/* <!--/ .row --> */}
-
-                    <li className="row">
-
-                        <div className="col-sm-6">
-
-                            <label for="telephone_1" className="required">Telephone</label>
-                            <input className="input form-control" type="text" name="" id="telephone_1"/>
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                        <div className="col-sm-6">
-
-                            <label for="fax_1">Fax</label>
-                            <input className="input form-control" type="text" name="" id="fax_1" />
-
-                        </div>
-                        {/* <!--/ [col] --> */}
-
-                    </li>  
-                    {/* <!--/ .row --> */}
-
-                </ul>
-                <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
-                             </div>
+            <h4 className="checkout-step" onClick={()=>setShippingDetail(!shippingInfo)}>3. Shipping Information</h4>
+            {shippingDetail && 
+                <>
+                <ShippingInfo/>
+                </>
              } 
             <h4 className="checkout-step" onClick={()=>setShippingMethod(!shippingMethod)}>4. Shipping Method</h4>
             {shippingMethod && <div className="box-border">
@@ -524,14 +269,15 @@ useEffect(()=>{
               <dt className="complete"> Shipping Address <span className="separator">|</span> <a href="#">Change</a> </dt>
               <dd className="complete">
                  <address>
-                Deo Jone<br/>
-                Company Name<br/>
-                7064 Lorem <br/>
-                Ipsum <br/>
-                Vestibulum 0 666/13<br/>
-                United States<br/>
-                T: 12345678 <br/>
-                F: 987654
+                                 <p>{shippingInfo?.firstname}</p>
+                                 <p>{shippingInfo?.lastname}</p>
+                                 <p>{shippingInfo?.address}</p>
+                                 <p>{shippingInfo?.city}</p>
+                                 <p>{shippingInfo?.state}</p>
+                                 <p>{shippingInfo?.country}</p>
+                                 <p>{shippingInfo?.postalCode}</p>
+                                 <p>{shippingInfo?.companyName}</p>
+                                 <p>{shippingInfo?.phoneNo}</p>
                 </address>
               </dd>
               <dt className="complete"> Shipping Method <span className="separator">|</span> <a href="#">Change</a> </dt>
