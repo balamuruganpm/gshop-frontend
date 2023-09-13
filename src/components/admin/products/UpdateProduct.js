@@ -63,9 +63,9 @@ function UpdateProduct(props) {
 
     const formData = new FormData();
     formData.append('name', productName)
-     categories.forEach(category=>{
-        formData.append('category', category.category)
-    })
+    
+    formData.append('category',categoryname)
+
     formData.append('price', price)
     formData.append('mrpPrice', mrpPrice)
     formData.append('deliveryCharge', deliveryCharge)
