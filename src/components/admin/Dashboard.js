@@ -20,7 +20,7 @@ function Dashboard(props) {
 
 
     const {products = []} = useSelector(state => state.productsState)
-    const {categories = []} = useSelector(state => state.categorysState)
+    const {categories = []} = useSelector(state => state.categoryState)
     const {adminOrders = []} = useSelector(state => state.orderState)
     const {users = []} = useSelector(state => state.userState)
     const dispatch = useDispatch();
