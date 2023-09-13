@@ -46,9 +46,9 @@ function AddProduct(props) {
     }
 
     const onHoverImagesChange = (e)=>{
-      const files = Array.from(e.target.files);
+      const hoverfiles = Array.from(e.target.files);
   
-      files.forEach(file=>{
+      hoverfiles.forEach(file=>{
   
           const reader = new FileReader()
           reader.onload = () => {
@@ -83,17 +83,14 @@ function AddProduct(props) {
     images.forEach(image =>{
      formData.append('images', image)
     })
-    hoverimages.forEach(image =>{
-      formData.append('hoverimages', image)
+    hoverimages.forEach(hoverimage =>{
+      formData.append('hoverimages', hoverimage)
      })
   dispatch(createNewProduct(formData))
  
 
 }
-useEffect(()=>{
-  dispatch(getAdminCategories);
 
-},[dispatch])
 
   useEffect(()=>{
     if(isProductCreated){

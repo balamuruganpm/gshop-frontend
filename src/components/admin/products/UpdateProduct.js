@@ -73,10 +73,8 @@ function UpdateProduct(props) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('name', productName)
-    
+    formData.append('name', productName)  
     formData.append('category',categoryname)
-
     formData.append('price', price)
     formData.append('mrpPrice', mrpPrice)
     formData.append('deliveryCharge', deliveryCharge)
@@ -85,6 +83,7 @@ function UpdateProduct(props) {
     images.forEach(image =>{
      formData.append('images', image)
     })
+    
     hoverimages.forEach(hoverimages =>{
       formData.append('hoverimages', hoverimages)
      })
@@ -99,14 +98,12 @@ function UpdateProduct(props) {
 const clearImagesHandler = ()=>{
     setImages([]);
     setImagesPreview([]);
-
     setImagesCleared(true)
   }
    
 const clearHoverImagesHandler = ()=>{
   setHoverImages([]);
   setHoverImagesPreview([]);
-
   setHoverImagesCleared(true)
 }
 
