@@ -183,7 +183,7 @@ const clearImagesHandler = ()=>{
 
              </select>
                       */}
-             <input type="text" placeholder='Place category code'  onChange = {e=>setCategoryIds(e.target.value)} value={categoryIds} className='form-control'/>
+                  <input type="text" placeholder='Place category code'  onChange = {e=>setCategoryName(e.target.value)} value={categoryname} className='form-control'/>
                   </div>
               
                 </div>
