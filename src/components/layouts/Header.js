@@ -161,7 +161,7 @@ const logoutHandler = () => {
                           <li className="item odd"> <a href="shopping_cart.html" title="Ipsums Dolors Untra" className="product-image"><img src={item.image} alt={item.name} width="65"/></a>
                             <div className="product-details"> <a href="#" title="Remove This Item" className="remove-cart"><i className="icon-close"  onClick={()=> dispatch(removeItemFromCart(item.product))}></i></a>
                               <p className="product-name"><a href="shopping_cart.html">{item.name}</a> </p>
-                              <strong>1</strong> x <span className="price">${item.price}</span> </div>
+                              <strong>{item.quantity}</strong> x <span className="price">${item.price}</span> </div>
                           </li>
                           </div>
                         ))}
