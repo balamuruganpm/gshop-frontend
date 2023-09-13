@@ -83,8 +83,8 @@ function AddProduct(props) {
     images.forEach(image =>{
      formData.append('images', image)
     })
-    hoverimages.forEach(hoverimages =>{
-      formData.append('hoverimages', hoverimages)
+    hoverimages.forEach(image =>{
+      formData.append('hoverimages', image)
      })
   dispatch(createNewProduct(formData))
  
