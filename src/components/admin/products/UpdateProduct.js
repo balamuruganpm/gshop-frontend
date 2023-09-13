@@ -140,7 +140,7 @@ const clearImagesHandler = ()=>{
     if(product._id) {
         setProductName(product.name);
         setProductCode(product.productcode);
-        setCategoryIds(product.category);
+        setCategoryName(product.category);
         setMrpPrice(product.mrpPrice);
         setPrice(product.price);
         setDeliveryCharge(product.deliveryCharge);
