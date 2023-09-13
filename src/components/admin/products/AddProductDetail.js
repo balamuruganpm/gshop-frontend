@@ -136,15 +136,15 @@ if (indexFound === -1) {
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Category</label>
                   <div class="col-sm-10">
-               
+                  <input type="text" class="form-control" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}   />
 
-                  <select  name='category' onChange={handleCategory} value={categoryIds} className='form-control'>
+                  {/* <select  name='category' onChange={handleCategory} value={categoryIds} className='form-control'>
                   <option value="Select" disabled >Select</option>
                     {
                   categories && categories.map((cat)=>(
                     <option value={cat._id}  onClick={categoryIds.includes(cat._id)} key={cat._id}>{cat.category}</option>
                     ))}
-                  </select>
+                  </select> */}
                      
              
                   </div>
