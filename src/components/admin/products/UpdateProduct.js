@@ -151,9 +151,9 @@ const clearHoverImagesHandler = ()=>{
         });
 
         let hoverimages = []
-        product.hoverimages.forEach(image => {
+        product.hoverimages.forEach(hoverimage => {
 
-          hoverimages.push(image.image)
+          hoverimages.push(hoverimage.image)
 
         });
         setHoverImagesPreview(hoverimages)
@@ -247,7 +247,7 @@ const clearHoverImagesHandler = ()=>{
                   </div>
                 </div>
 
-             <div className='images-container' style={{marginTop:"-6rem"}}>
+             <div className='images-container' style={{marginTop:"-10rem"}}>
                     <div className='img-preview'>
                     {imagesPreview.map(image=>(
                         <img
@@ -260,7 +260,7 @@ const clearHoverImagesHandler = ()=>{
                      {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
                      </div>
 
-                     <div className='img-preview'>
+                     <div className='img-preview' style={{marginTop:"3rem"}}>
                     {hoverimagesPreview.map(image=>(
                         <img
                         src={image} 
