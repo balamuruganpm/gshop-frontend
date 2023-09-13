@@ -11,28 +11,20 @@ import {getAdminCategories} from '../../../actions/categoryAction'
 
 function UpdateProduct(props) {
     const[images,setImages]=useState([]);
+    const[hoverimages,setHoverImages]=useState([]);
     const[imagesPreview, setImagesPreview]=useState([]);
+    const[hoverimagesPreview, setHoverImagesPreview]=useState([]);
     const[imagesCleared,setImagesCleared]=useState(false);
+    const[hoverimagesCleared,setHoverImagesCleared]=useState(false);
     const{loading, isProductUpdated, error, product=[] } = useSelector(state => state.productState)
-    const{categories=[]}=useSelector(state => state.categoryState)
     const [categoryname,setCategoryName] = useState("");
     const[productName, setProductName]=useState("");
     const[productCode, setProductCode]= useState("");
     const[price,setPrice]=useState("");
     const[mrpPrice, setMrpPrice]=useState("");
     const[deliveryCharge, setDeliveryCharge]=useState("")
-    const[categoryIds, setCategoryIds] = useState([]);
     const { id:productId } = useParams();
    
-    const categoriesList = [
-        'Gift',
-        'Indoor Plants',
-        'Numismatist',
-        'His & Her Essentials',
-        'Utility products'
-      
-    ]
-
 
  
     const onImagesChange = (e)=>{
@@ -53,6 +45,25 @@ function UpdateProduct(props) {
         })
     
     }
+
+    const onHoverImagesChange = (e)=>{
+      const files = Array.from(e.target.files);
+  
+      files.forEach(file=>{
+  
+          const reader = new FileReader()
+          reader.onload = () => {
+             if(reader.readyState === 2)
+              {
+                  setHoverImagesPreview(oldArray => [...oldArray, reader.result])
+                  setHoverImages(oldArray => [...oldArray, file])
+              }   
+           }
+          reader.readAsDataURL(file)
+  
+      })
+  
+  }
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -74,44 +85,30 @@ function UpdateProduct(props) {
     images.forEach(image =>{
      formData.append('images', image)
     })
+    hoverimages.forEach(hoverimages =>{
+      formData.append('hoverimages', hoverimages)
+     })
   dispatch(updateProduct(productId,formData))
  
 
 }
-useEffect(()=>{
-  dispatch(getAdminCategories);
-
-},[dispatch])
-
-const handleCategory = e=>{
-  
-  const currentCategoryClicked = e.target.value;
-  const allCatgeoriesClicked = [...categoryIds];
-
-  const indexFound = allCatgeoriesClicked.indexOf(currentCategoryClicked)
-
-
-let updatedCategoryIds;
-if (indexFound === -1) {
-  // add
-  updatedCategoryIds = [...categoryIds, currentCategoryClicked];
-  setCategoryIds(updatedCategoryIds);
-} else {
-  // remove
-  updatedCategoryIds = [...categoryIds];
-  updatedCategoryIds.splice(indexFound, 1);
-  setCategoryIds(updatedCategoryIds);
-}
 
 
 
-}
  
 const clearImagesHandler = ()=>{
     setImages([]);
     setImagesPreview([]);
+
     setImagesCleared(true)
   }
+   
+const clearHoverImagesHandler = ()=>{
+  setHoverImages([]);
+  setHoverImagesPreview([]);
+
+  setHoverImagesCleared(true)
+}
 
 
   useEffect(()=>{
@@ -152,6 +149,14 @@ const clearImagesHandler = ()=>{
           images.push(image.image)
 
         });
+
+        let hoverimages = []
+        product.hoverimages.forEach(image => {
+
+          hoverimages.push(image.image)
+
+        });
+        setHoverImagesPreview(hoverimages)
         setImagesPreview(images)
     }
 },[product])
@@ -230,6 +235,12 @@ const clearImagesHandler = ()=>{
                   </div>
                 </div>
                 <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Hoverimages</label>
+                  <div class="col-sm-2">
+                  <input type="file" class="form-control" multiple onChange={onHoverImagesChange}/>
+                  </div>
+                </div>
+                <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Files</label>
                   <div class="col-sm-2">
                   <input type="file" class="form-control" id="inputPassword"/>
@@ -247,6 +258,18 @@ const clearImagesHandler = ()=>{
             
                       ))}
                      {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
+                     </div>
+
+                     <div className='img-preview'>
+                    {hoverimagesPreview.map(image=>(
+                        <img
+                        src={image} 
+                        key={image}
+                        alt=""
+                       className='pre-img' />
+            
+                      ))}
+                     {hoverimagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearHoverImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
                      </div>
                    
                  </div>  <button type="submit" disabled = {loading} className='add_product' >Update Product</button>
