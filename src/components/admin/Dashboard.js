@@ -10,6 +10,7 @@ import {getAdminProducts} from '../../actions/productActions'
 import {getUsers} from '../../actions/userActions'
 import {adminOrders as adminOrdersAction} from '../../actions/orderAction'
 import Adminpanel from './Adminpanel';
+import {getAdminCategories} from '../../actions/categoryAction'
 
 
 
@@ -28,7 +29,8 @@ function Dashboard(props) {
     useEffect( () => {
       dispatch(getAdminProducts);
       dispatch(getUsers);
-      dispatch(adminOrdersAction)
+      dispatch(adminOrdersAction);
+      dispatch(getAdminCategories)
     }, [dispatch])
 
     return (
