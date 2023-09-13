@@ -35,6 +35,11 @@ const Products = () => {
                     sort: 'asc'
                 },
                 {
+                    label: 'HoverImage',
+                    field: 'hoverimage',
+                    sort: 'asc'
+                },
+                {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc'
@@ -70,6 +75,8 @@ const Products = () => {
               
                 serialno:<p>{index+1}</p>,
                 image:product.images.map(image=>(<img src={image.image} alt="" style={{width:"50px", height:"40px"}}/>)),
+                hoverimage:product.hoverimages.map(image=>(<img src={image.image} alt="" style={{width:"50px", height:"40px"}}/>)),
+             
                 price : `$${product.price}`,
                 mrpprice : `$${product.mrpPrice}`,
                 name: product.name,
