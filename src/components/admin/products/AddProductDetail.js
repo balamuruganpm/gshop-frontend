@@ -52,7 +52,7 @@ function AddProduct(props) {
 
     const formData = new FormData();
     formData.append('name', productName)
-    formData.append('categories', categoryname)
+    formData.append('category', categoryname)
     formData.append('price', price)
     formData.append('mrpPrice', mrpPrice)
     formData.append('deliveryCharge', deliveryCharge)
