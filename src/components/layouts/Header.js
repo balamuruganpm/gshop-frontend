@@ -22,11 +22,6 @@ const logoutHandler = () => {
   dispatch(logout);
 }
 
-const showDashboard = ()=>{
-  navigate('/dashboard');
-
-  setDropdown(!dropdown)
-}
 
     return (
   <div className="cms-index-index cms-home-page">
@@ -84,7 +79,7 @@ const showDashboard = ()=>{
                 <div className="myaccount" onClick={()=> setDropdown(!dropdown)}><i className="fa fa-user" style={{color:"#FFFFFF", marginRight:"5px"}}></i><span className="hidden-xs"  style={{color:"#FFFFFF"}}>{user.name}</span></div>
               
               {dropdown &&  <div className='res_homedropDown'>
-                {user.role === 'admin' && <div className='res_homelist'  onClick={showDashboard()}><p><i class="fa-regular fa-address-card" style={{marginRight:"0.5rem"}}></i> DashBoard</p></div>}
+                {user.role === 'admin' && <div className='res_homelist'  onClick={()=>{ navigate('/dashboard')}} onChange={()=>setDropdown(!dropdown)}><p><i class="fa-regular fa-address-card" style={{marginRight:"0.5rem"}}></i> DashBoard</p></div>}
                 <div className='res_homelist' onClick={()=> setDropdown(!dropdown)}> <p><i class="fa-regular fa-address-card" style={{marginRight:"1rem"}} onClick={()=>{navigate('/profile')}}></i>Profile</p> </div>
 
                 <div className='res_homelist' onChange={()=>setDropdown(!dropdown)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
