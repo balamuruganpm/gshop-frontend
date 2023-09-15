@@ -307,7 +307,7 @@ function SingleProduct(props) {
                     </div>
 
                 
-                  <div class="tab-pane fade"  className={showTab=== 3  ? "tab-pane  active" : "tab-pane fade"}  id="product_tags">
+                  <div class="tab-pane fade"  className={showTab=== 3  ? "tab-pane  active" : "tab-pane fade"}  id="description">
                       <div class="box-collateral box-tags">
                         <div class="tags">
                           <form id="addTagForm" action="#" method="get">

@@ -6539,7 +6539,11 @@ button.button.pro-add-to-cart span i {
 }
 #productTabContent{
 	width:100%;
+	min-height:500px;
     display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	position:relative;
 
 }
 .featured_banner{
@@ -6581,21 +6585,16 @@ button.button.pro-add-to-cart span i {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	visibility: visible !important;
-	height:auto;
 
 }
 #description{
 	overflow: hidden;
-    min-height:300px;
-	background-color: red;
+    position:absolute;
+    width:100%;
 }
 #custom_tabs{
 	overflow: hidden;
-    min-height:300px;
-	margin-left:0;
-
-
-
+    position:absolute;
 }
 @media (max-width:480px) {
 .tab-content {
