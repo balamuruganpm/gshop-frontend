@@ -6539,7 +6539,7 @@ button.button.pro-add-to-cart span i {
 }
 #productTabContent{
 	width:100%;
-	min-height:500px;
+    height:auto;
     display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
@@ -6569,11 +6569,11 @@ button.button.pro-add-to-cart span i {
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
 	background: #fe5800;
 	border: 2px solid #fe5800;
-	color: #fff
+	color: #fff;
 }
 .nav-tabs>li>a:hover {
 	background: #333333;
-	color: #fff;
+	color: white;
 	border: 2px solid #333333
 }
 
@@ -6612,7 +6612,7 @@ button.button.pro-add-to-cart span i {
 	padding: 6px 10px 8px;
 	width: 35%;
 	position:absolute;
-	background: green;
+
 
 }
 @media (max-width:480px) {
