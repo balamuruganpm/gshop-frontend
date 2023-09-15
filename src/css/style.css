@@ -6465,6 +6465,7 @@ button.button.pro-add-to-cart span i {
 	justify-content: center;
 
 
+
 }
 .product-tabs li{
 	
@@ -6502,7 +6503,7 @@ button.button.pro-add-to-cart span i {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-
+    margin-top:-3rem;
 
 }
 
@@ -6540,9 +6541,10 @@ button.button.pro-add-to-cart span i {
 }
 #productTabContent{
 	width:100%;
-
 	margin-top:-2rem;
     display: flex;
+	height:400px;
+	background-color: red;
 
 }
 .featured_banner{
@@ -6606,8 +6608,11 @@ button.button.pro-add-to-cart span i {
 	border: 2px solid #ddd;
 	margin-top: 0;
 	padding: 6px 10px 8px;
-	width: 35%;
-	background: #fff;
+	width: 80%;
+	height:400px;
+    left:0;
+	background: green;
+
 }
 @media (max-width:480px) {
 .form-add-tags input.input-text, select, textarea {
