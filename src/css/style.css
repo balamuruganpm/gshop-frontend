@@ -1934,8 +1934,8 @@ height:55vh;
 	animation-name: flip;
 }
 .product-item .item-inner:hover:hover .animate2 {
-	-webkit-animation-name: fade-in;
-	animation-name: fade-in;
+	-webkit-animation-name: ease-in;
+	animation-name: ease-in;
 }
 .product-item .item-inner:hover:hover .animate3 {
 	-webkit-animation-name: rubberBand;

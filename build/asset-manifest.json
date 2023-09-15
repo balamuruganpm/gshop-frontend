@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.ec8bd0a6.css",
-    "main.js": "/static/js/main.270b9179.js",
+    "main.css": "/static/css/main.91e66365.css",
+    "main.js": "/static/js/main.5487f375.js",
     "static/media/daily-deal-bg.jpg": "/static/media/daily-deal-bg.071aff9e4077ab9c5029.jpg",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/newsletter.jpg": "/static/media/newsletter.4976fbc38ee9d26954f6.jpg",
@@ -29,11 +29,11 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/arrow_left.svg": "/static/media/arrow_left.db6e2d88c7c35a775ce4.svg",
     "static/media/arrow_right.svg": "/static/media/arrow_right.f7c6ac6d310d3b82f0a0.svg",
-    "main.ec8bd0a6.css.map": "/static/css/main.ec8bd0a6.css.map",
-    "main.270b9179.js.map": "/static/js/main.270b9179.js.map"
+    "main.91e66365.css.map": "/static/css/main.91e66365.css.map",
+    "main.5487f375.js.map": "/static/js/main.5487f375.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec8bd0a6.css",
-    "static/js/main.270b9179.js"
+    "static/css/main.91e66365.css",
+    "static/js/main.5487f375.js"
   ]
 }
