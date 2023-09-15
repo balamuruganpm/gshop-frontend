@@ -6464,7 +6464,7 @@ button.button.pro-add-to-cart span i {
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	margin-top:-3rem;
+	margin-top:-5rem;
 
 }
 .product-tabs li{
@@ -6541,7 +6541,8 @@ button.button.pro-add-to-cart span i {
 }
 #productTabContent{
 	width:100%;
-
+	position: absolute;
+	margin-top:-2rem;
     display: flex;
 
 }

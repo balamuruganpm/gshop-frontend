@@ -309,7 +309,7 @@ function SingleProduct(props) {
              
 
                 
-                  <div  id="product_tags" style={{marginTop:"-34rem"}} className={showTab===3 ? "tab-pane fade show  active" : "tab-pane fade"} >
+                  <div  id="product_tags" className={showTab===3 ? "tab-pane fade show  active" : "tab-pane fade"} >
                       <div className="box-collateral box-tags">
                                       <div className="tags">
                                         <form id="addTagForm" action="#" method="get">
@@ -330,7 +330,7 @@ function SingleProduct(props) {
             
 
                 
-                    <div  id="custom_tabs" style={{marginTop:"-34rem"}}  className={showTab===4 ? "tab-pane fade show active" : "tab-pane fade"} >
+                    <div  id="custom_tabs" className={showTab===4 ? "tab-pane fade show active" : "tab-pane fade"} >
                     <div className="product-tabs-content-inner clearfix">
                       <p><strong>Lorem Ipsum</strong><span>&nbsp;is
                         simply dummy text of the printing and typesetting industry. Lorem Ipsum
