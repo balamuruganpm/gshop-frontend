@@ -41,9 +41,9 @@ function RelatedProduct(props) {
                                 <div className="info-inner" >
                             
                                 <div className="item-content item-details">
-                                <div className="item-title">
-                                    <h4><a title="Ipsums Dolors Untra" href="single_product.html"></a>Ipsums Dolors Untra </h4>
-                                </div>
+                                  <div className="item-title">
+                                  <h4><a title="Ipsums Dolors Untra" href="single_product.html">Lorem Ipsum</a></h4>
+                                 </div>
                                 <div className='ratings mt-auto'>
                                     <div className='rating-outer'>
                                     <div className='rating-inner'></div>

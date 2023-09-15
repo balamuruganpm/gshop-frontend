@@ -1875,7 +1875,7 @@ height:55vh;
 	justify-content: center;
 	width: 100%;
 	height:50px;
-	left:-1rem;
+	
 	top:12rem;
 	
 
@@ -1934,8 +1934,8 @@ height:55vh;
 	animation-name: flip;
 }
 .product-item .item-inner:hover:hover .animate2 {
-	-webkit-animation-name: bounce;
-	animation-name: bounce;
+	-webkit-animation-name: fade-in;
+	animation-name: fade-in;
 }
 .product-item .item-inner:hover:hover .animate3 {
 	-webkit-animation-name: rubberBand;
