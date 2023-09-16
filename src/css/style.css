@@ -6551,6 +6551,7 @@ button.button.pro-add-to-cart span i {
 }
 .line{
 	border-bottom: 3px double #ddd;
+	width:100%;
 }
 @media (max-width:479px) {
 .product-color-size-area .color-area {
@@ -6584,6 +6585,7 @@ button.button.pro-add-to-cart span i {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	visibility: visible !important;
+	height:auto;
 
 }
 #description{
