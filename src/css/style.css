@@ -6531,7 +6531,6 @@ button.button.pro-add-to-cart span i {
 	width:90%;
     grid-template-columns:repeat(4, 1fr);
     margin-top:-1.5rem;
-
 	position: relative;
 	margin-left:1rem;
 	
@@ -6595,6 +6594,14 @@ button.button.pro-add-to-cart span i {
 #custom_tabs{
 	overflow: hidden;
     position:absolute;
+}
+#product-tag{
+	position:absolute;
+	width:100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 @media (max-width:480px) {
 .tab-content {
