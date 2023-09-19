@@ -12,6 +12,7 @@ import FeaturedProduct from '../products/FeaturedProduct';
 import BestSale from '../products/BestSale';
 import LatestNews from '../products/LatestNews';
 import CategoryWiseProduct from '../products/CategoryWiseProduct';
+import MetaData from '../layouts/MetaData';
 
 function Home2(props) {
   const settings = {
@@ -54,7 +55,7 @@ function Home2(props) {
       };
 return (
         <div>
-        
+              <MetaData title={'Buy Best Products'}/>
             <Slider {...settings}>
    
                <div  style={{height:"100%",zIndex:"-1"}} >

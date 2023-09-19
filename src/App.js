@@ -32,7 +32,7 @@ import UpdateProduct from './components/admin/products/UpdateProduct';
 import "react-bootstrap/dist/react-bootstrap.min.js";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
 
@@ -40,6 +40,7 @@ function App() {
 
   
     <div className="App">  
+      <HelmetProvider>
     <Header/>
       <ToastContainer theme="dark"/>
 
@@ -80,6 +81,7 @@ function App() {
       </Routes>
 
       <Footer/> 
+      </HelmetProvider>
       </div>
 
 

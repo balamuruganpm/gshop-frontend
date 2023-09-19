@@ -150,10 +150,10 @@ function SingleProduct(props) {
 
                   </div>
                   <ul id="product-detail-tab" className="nav nav-tabs product-tabs">
-                    <li className={showTab===1 ? "active" : ""} onClick={()=> handleClick(1)}> <a> Description </a> </li>
-                    <li className={showTab===2 ? "active" : ""} onClick={()=> handleClick(2)}> <a>Reviews</a> </li>
-                    <li className={showTab===3 ? "active" : ""} onClick={()=> handleClick(3)}><a>Tags</a></li>
-                    <li className={showTab===4 ? "active" : ""} onClick={()=> handleClick(4)}> <a>Custom Tab</a> </li>
+                    <li className={showTab===1 ? "active" : ""} onClick={()=> handleClick(1)}> <h3 id="tab-active"> Description </h3> </li>
+                    <li className={showTab===2 ? "active" : ""} onClick={()=> handleClick(2)}> <h3 id="tab-active">Reviews</h3> </li>
+                    <li className={showTab===3 ? "active" : ""} onClick={()=> handleClick(3)}><h3 id="tab-active">Tags</h3></li>
+                    <li className={showTab===4 ? "active" : ""} onClick={()=> handleClick(4)}> <h3 id="tab-active">Custom Tab</h3> </li>
                   </ul>
                   <div id="show_contents">
 
@@ -174,7 +174,8 @@ function SingleProduct(props) {
                       </div>
                     </div>
                 
-                    <div id="reviews"  className={showTab===2 ? "active" : "tab-pane fade"} class="tab-pane fade">
+                    <div   className={showTab===2 ? "active" : "tab-pane fade"} class="tab-pane fade">
+                      <div id="reviews">
                       <div class="col-sm-5 col-lg-5 col-md-5">
                         <div class="reviews-content-left">
                           <h2>Customer Reviews</h2>
@@ -293,39 +294,42 @@ function SingleProduct(props) {
                                 <label>Summary of Your Review <em>*</em></label>
                                 <input type="text" />
                               </div>
-                              <div class="form-element">
+                              <div class="form-element" id="text_review">
                                 <label>Review <em>*</em></label>
                                 <textarea></textarea>
                               </div>
-                              <div class="buttons-set">
+                              <br/>
+                              <div class="buttons-set" id="review_btn">
                                 <button class="button submit" title="Submit Review" type="submit"><span><i class="fa fa-thumbs-up"></i> &nbsp;Review</span></button>
                               </div>
                             </div>
                           </form>
                         </div>
                       </div>
-                    </div>
-
-                
-                  <div class="tab-pane fade"  className={showTab=== 3  ? "tab-pane  active" : "tab-pane fade"}  id="product-tag">
-                      <div class="box-collateral box-tags">
-                        <div class="tags">
-                          <form id="addTagForm" action="#" method="get">
-                            <div class="form-add-tags">
-                              <div class="input-box">
-                                <label for="productTagName">Add Your Tags:</label>
-                                <input class="input-text" name="productTagName" id="productTagName" type="text" />
-                                <button type="button" title="Add Tags" class="button add-tags"><i class="fa fa-plus"></i> &nbsp;<span>Add Tags</span> </button>
-                              </div>
-                              {/* <!--input-box-->  */}
-                            </div>
-                          </form>
-                        </div>
-                        {/* <!--tags--> */}
-                        <p class="note">Use spaces to separate tags. Use single quotes (') for phrases.</p>
                       </div>
                     </div>
 
+                
+                    <div className={showTab=== 3 ? "active" : "tab-pane fade"}>
+                    <div>
+                    <div class="tags">
+                        <form id="addTagForm" action="#" method="get">
+                            <div class="form-add-tags">
+                              <div class="input-box" id="products_tag">
+                                <label for="productTagName">Add Your Tags:</label>
+                                <input class="input-text" name="productTagName" id="productTagName" type="text" />
+                                <button type="button" title="Add Tags" class="button add-tags"><i class="fa fa-plus"></i> &nbsp;<span>Add Tags</span> </button>
+                               
+                              </div>
+                             {/* <!--input-box-->  */}
+                             <p style={{marginTop:"10px"}}>Use spaces to separate tags. Use single quotes (') for phrases.</p>
+                            </div>
+                           
+                          </form>
+                        </div>
+                        {/* <!--tags--> */}
+                                       </div>
+                    </div>
                 
                     <div class="tab-pane fade"  className={showTab=== 4  ? "tab-pane  active" : "tab-pane fade"}  id="custom_tabs">
                       <div class="product-tabs-content-inner clearfix">

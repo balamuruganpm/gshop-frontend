@@ -96,7 +96,7 @@ const submitRegister=(e)=>{
                 <div className="col-sm-6">
                   <label>Email:</label>
                   <div className="input-text">
-                    <input type="text" name="email" required onChange={onChange} className="form-control"/>
+                    <input type="text" value={props.regemail} name="email" required onChange={onChange} className="form-control"/>
                   </div>
                 </div>
                 <div className="col-sm-6">

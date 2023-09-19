@@ -12,7 +12,7 @@ function Header1(props) {
   const{items }= useSelector(state=>state.cartState);
   const dispatch = useDispatch();
   const[dropdown,setDropdown]=useState(false)
-
+  const [showLog, setShowLog] = useState(false)
   const {user} = useSelector(state=>state.authState);
   const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
 
@@ -88,12 +88,17 @@ const logoutHandler = () => {
                 </div>
                 <Link to='/wishlist'> <div className="wishlist"><a title="My Wishlist" href="wishlist.html"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>
                  <Link to='/blog'> <div className="blog"><a title="Blog" href="blog.html"><i className="fa fa-rss" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Blog</span></a></div></Link>
-                 <Link to='/my_account'> <div className="login"><a href="account_page.html"><i className="fa fa-unlock-alt" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Log In</span></a></div></Link>
+               <div className="login"><a>  <Link to='/profile'> <span className="hidden-xs">Profile</span> </Link> <i class="fas fa-sort-down" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div>
+                  {showLog&&<div className='res_logdropDown' >
+                 <div className='res_homelist' id="log_out" onChange={()=>setShowLog(!showLog)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
+                </div>
+                 }
                </>
             )
           
           :
-          <Link to='/my_account'> <div className="login"><a href="account_page.html"><i className="fa fa-unlock-alt" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Log In</span></a></div></Link>
+          <Link to='/my_account'> <div className="login"><a href="account_page.html"><i className="fa fa-unlock-alt" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Log In</span></a></div></Link> 
+     
           }
               </div> 
             </div>
@@ -150,7 +155,7 @@ const logoutHandler = () => {
                   <div className="mini-cart">
                     <div  className="basket dropdown-toggle"> <a href="#">
                       <div className="cart-icon"><i className="fa fa-shopping-cart"></i></div>
-                      <div className="shoppingcart-inner hidden-xs hidden-sm"><span className="cart-title">Shopping Cart</span> <span className="cart-total">{cartItems && cartItems.length} Item(s): ${items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
+                      <div className="shoppingcart-inner hidden-xs hidden-sm"><span className="cart-title">Shopping Cart</span> <h2 className="cart-total">{cartItems && cartItems.length} Item(s): <span>&#x20b9;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</h2></div>
                       </a></div>
                     <div className='show_mini_cart'>
                       <div className="top-cart-content">
@@ -161,12 +166,12 @@ const logoutHandler = () => {
                           <li className="item odd"> <a href="shopping_cart.html" title="Ipsums Dolors Untra" className="product-image"><img src={item.image} alt={item.name} width="65"/></a>
                             <div className="product-details"> <a href="#" title="Remove This Item" className="remove-cart"><i className="icon-close"  onClick={()=> dispatch(removeItemFromCart(item.product))}></i></a>
                               <p className="product-name"><a href="shopping_cart.html">{item.name}</a> </p>
-                              <strong>{item.quantity}</strong> x <span className="price">${item.price}</span> </div>
+                              <strong>{item.quantity}</strong> x <span className="price"><span>&#8377;</span> {item.price}</span> </div>
                           </li>
                           </div>
                         ))}
                         </ul>
-                        <div className="top-subtotal">Subtotal: <span className="price">${items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
+                        <div className="top-subtotal">Subtotal: <h2 className="price"> <span>&#8377;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</h2></div>
                         <div className="actions">
                          <Link to='/check_out'><button className="btn-checkout" type="button"><i className="fa fa-check"></i><span>Checkout</span></button></Link>
                          <Link to='/cart'> <button className="view-cart" type="button"><i className="fa fa-shopping-cart"></i> <span>View Cart</span></button></Link>

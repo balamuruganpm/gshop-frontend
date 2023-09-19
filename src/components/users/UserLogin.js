@@ -5,13 +5,14 @@ import { useState,useEffect } from 'react';
 import {useDispatch,useSelector} from 'react-redux'
 import{clearAuthError, login} from '../../actions/userActions';
 import {toast} from 'react-toastify'
+import{register} from '../../actions/userActions';
 import Service from '../home/Service'
 
 
 
 function MyAccount(props) {
 
-  
+const [regemail, setRegemail] = useState("")
 const [email,setEmail] = useState("");
 const [password,setPassword] = useState("")
 const[showContainer,setContainer]=useState(true);
@@ -59,6 +60,13 @@ useEffect(()=>{
   }
 },[error, isAuthenticated,dispatch])
 
+
+
+
+
+
+
+
     return (
         <div>
    <div className="breadcrumbs">
@@ -103,8 +111,8 @@ useEffect(()=>{
               </div>
               <div className="box-authentication">
                 <h4>Register</h4><p>Create your very own account</p> 											
-                <label for="emmail_register">Email address<span className="required">*</span></label>
-                <input id="emmail_register" type="text" className="form-control"/>
+                <label for="email_register">Email address<span className="required">*</span></label>
+                <input id="email_register" value={regemail} onChange={(e)=>setRegemail(e.target.value)} type="text" className="form-control"/>
                 <Link to='/register'><button className="button"><i className="fa fa-user"></i>&nbsp; <span>Register</span></button></Link>
                 
                 <div className="register-benefits">
