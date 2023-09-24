@@ -76,7 +76,7 @@ const logoutHandler = () => {
                <>
               <div>
                 
-                <div className="myaccount" onClick={()=> setDropdown(!dropdown)}><i className="fa fa-user" style={{color:"#FFFFFF", marginRight:"5px"}}></i><span className="hidden-xs"  style={{color:"#FFFFFF"}}>{user.name}</span></div>
+                <div className="myaccount" onClick={()=> setDropdown(!dropdown)}><i className="fa fa-user" style={{color:"#FFFFFF", marginRight:"5px"}}></i><span className="hidden-xs"  style={{color:"#FFFFFF"}}>{user.firstname}</span></div>
               
               {dropdown &&  <div className='res_homedropDown'>
                 {user.role === 'admin' && <div className='res_homelist'  onClick={()=>{ navigate('/dashboard')}} onChange={()=>setDropdown(!dropdown)}><p><i class="fa-regular fa-address-card" style={{marginRight:"0.5rem"}}></i> DashBoard</p></div>}

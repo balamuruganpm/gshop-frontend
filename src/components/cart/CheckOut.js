@@ -3,12 +3,14 @@ import {Link,useNavigate} from 'react-router-dom';
 import '../../css/style.css'
 import { useSelector,useDispatch } from 'react-redux';
 import Service from '../../components/home/Service'
-
 import ShippingInfo from '../order/ShippingInfo';
 import BillingInfo from '../order/BillingInfo';
 import { register } from '../../actions/userActions';
 import {toast} from 'react-toastify'
 import{clearAuthError, login} from '../../actions/userActions';
+import { orderCompleted } from '../../slice/cartSlice';
+import {createOrder} from '../../actions/orderAction'
+import {shippingInfo} from '../../slice/cartSlice'
 function CheckOut(props) {
    
    const [billingInfo, setBillingInfo] = useState(false)
@@ -16,9 +18,26 @@ function CheckOut(props) {
    const [shippingMethod, setShippingMethod] = useState(false)
    const [paymentInfo, setPaymentInfo] = useState(false)
    const [orderReview, setOrderView] = useState(false)
+ 
 
+   const{shippingInfo, items:cartItems =[]}= useSelector(state=>state.cartState);
+
+
+  
+ 
+ 
+ 
+   const processPayment = ()=>{
+     const data = {
+         itemsPrice,
+         shippingInfo,
+         taxPrice,
+         totalPrice
+     }
+     sessionStorage.setItem('orderInfo', JSON.stringify(data)) 
+ }
+   
    const { user} = useSelector(state=>state.authState);
-   const {shippingInfo, items:cartItems } = useSelector(state => state.cartState);
    const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
    const shippingPrice = itemsPrice > 200 ? 0 : 25;
    let taxPrice = Number( 0.05 * itemsPrice);
@@ -32,7 +51,6 @@ const [password,setPassword] = useState("")
 
 
 const navigate = useNavigate()
-
 const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
 
 const submitHandler= (e)=>{
@@ -48,9 +66,7 @@ const submitHandler= (e)=>{
       })
     }
 
- 
-
-    // if(!isAuthenticated){
+  // if(!isAuthenticated){
     //     toast('Please Register',{
     //         position:toast.POSITION.TOP_RIGHT,
           
@@ -60,6 +76,12 @@ const submitHandler= (e)=>{
  
 
 }
+ 
+const orderhandler = (e)=>{
+  e.preventDefault();
+    dispatch(createOrder())
+  }
+    
 
 
 useEffect(()=>{
@@ -106,15 +128,17 @@ useEffect(()=>{
         <div className="page-content checkout-page"><div className="page-title">
           <h2>Checkout</h2>
         </div>
-            <h4 className="checkout-sep">1. Checkout Method</h4>
+            <h4 className="checkout-sep"> Checkout Method</h4>
+            <br/>
+            {!isAuthenticated ?
             <div className="box-border">
                 <div className="row">
                     <div className="col-sm-6">
-                        <h5>Checkout as a Guest or Register</h5>
+                        <h5>Checkout for Register</h5>
                         <p>Register with us for future convenience:</p>
                         <ul>
-                            <li><label><input type="radio" name="radio1"/>Checkout as Guest</label></li>
-                            <li><label><input type="radio" name="radio1"/>Register</label></li>
+                            {/* <li><label><input type="radio" name="radio1"/>Checkout as Guest</label></li> */}
+                           <Link to="/register" className='reg-link'> <li><label><input type="radio"  name="radio1"/>Register</label></li></Link>
                         </ul>
                         <br/>
                         <h4>Register and save time!</h4>
@@ -123,6 +147,7 @@ useEffect(()=>{
                         <p><i className="fa fa-check-circle text-primary"></i> Easy access to your order history and status</p>
                         <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
                     </div>
+                   
                     <div className="col-sm-6">
                         <form onSubmit={submitHandler}>
                         <h5>Login</h5>
@@ -135,23 +160,26 @@ useEffect(()=>{
                         <button className="button" type ="submit"><i className="icon-login"></i>&nbsp; <span>Login</span></button>
                         </form>
                     </div>
+                   
 
                 </div>
             </div>
-            <h4 className="checkout-step" onClick={()=>setBillingInfo(!billingInfo)}>2. Billing Infomations</h4>
+             :''}
+            
+            {/* <h4 className="checkout-step" onClick={()=>setBillingInfo(!billingInfo)}>2. Billing Infomations</h4>
             {billingInfo && 
                <>
                 <BillingInfo/>
                </>
-            }
+            } */}
 
-            <h4 className="checkout-step" onClick={()=>setShippingDetail(!shippingDetail)}>3. Shipping Information</h4>
+            <h4 className="checkout-step">1. Shipping Information</h4>
             {shippingDetail && 
                 <>
                 <ShippingInfo/>
                 </>
              } 
-            <h4 className="checkout-step" onClick={()=>setShippingMethod(!shippingMethod)}>4. Shipping Method</h4>
+            <h4 className="checkout-step">2. Shipping Method</h4>
             {shippingMethod && <div className="box-border">
                 <ul className="shipping_method">
                     <li>
@@ -168,7 +196,7 @@ useEffect(()=>{
                                </div>
              }
 
-            <h4 className="checkout-step" onClick={()=>setPaymentInfo(!paymentInfo)}>5. Payment Information</h4>
+            <h4 className="checkout-step" onClick={()=>setPaymentInfo(!paymentInfo)}>3. Payment Information</h4>
             {paymentInfo && <div className="box-border">
                 <ul>
                     <li>
@@ -185,7 +213,7 @@ useEffect(()=>{
                             </div>
             }
 
-            <h4 className="checkout-step last" onClick={()=>setOrderView(!orderReview)}>6. Order Review</h4>
+            <h4 className="checkout-step last" onClick={()=>setOrderView(!orderReview)}>4. Order Review</h4>
              {orderReview && <div className="box-border">
             <div className="table-responsive">
                 <table className="table table-bordered cart_summary">
@@ -238,9 +266,12 @@ useEffect(()=>{
                         </tr>
                     </tfoot>    
                 </table></div>
-                <button className="button pull-right"><span>Place Order</span></button>
-                             </div>
+               <button className="button pull-right"  onClick={processPayment}><span>continue</span></button>
+               <button className="button pull-right"  onClick={orderhandler}><span>Place Order</span></button>
+                 
+              </div>
              }
+            
         </div>
       </div>
         <aside className="right sidebar col-sm-3 col-xs-12">
@@ -266,7 +297,7 @@ useEffect(()=>{
               
                 </address>
               </dd>
-              <dt className="complete"> Shipping Address <span className="separator">|</span> <a href="#">Change</a> </dt>
+              <dt className="complete"> Shipping Address <span className="separator">|</span> <a onClick={()=>setShippingDetail(!shippingDetail)}>Change</a> </dt>
               <dd className="complete">
                  <address>
                                  <p>{shippingInfo?.firstName}</p>
@@ -280,7 +311,7 @@ useEffect(()=>{
                                  <p>{shippingInfo?.phoneNo}</p>
                 </address>
               </dd>
-              <dt className="complete"> Shipping Method <span className="separator">|</span> <a href="#">Change</a> </dt>
+              <dt className="complete"> Shipping Method <span className="separator">|</span> <a onClick={()=>setShippingMethod(!shippingMethod)}>Change</a> </dt>
               <dd className="complete"> Flat Rate - Fixed <br/>
                 <span className="price">$15.00</span> </dd>
               <dt> Payment Method </dt>

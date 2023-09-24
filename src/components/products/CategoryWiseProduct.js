@@ -60,18 +60,18 @@ function CategoryWiseProduct(props) {
 
               <div  className='category_area'>
 
-              <div id="check_category"> <img src={categories[0]?.images[0]?.image}    alt=""/><h3 className='categoryname'>{categories[0]?.category}</h3><input type="checkbox" value={categories[0]?._id}   checked={categoryIds.includes(categories[0]?._id)} onChange={handleCategory}/></div>
+             <Link to ="/gift"> <div id="check_category"> <img src={categories[0]?.images[0]?.image}    alt=""/><h3 className='categoryname'>{categories[0]?.category}</h3><input type="checkbox" value={categories[0]?._id}   checked={categoryIds.includes(categories[0]?._id)} onChange={handleCategory}/></div></Link>
 
               </div>
               <div className='category_area'>
 
-              <Link to='/indoor_plants'><div id="check_category"> <img src={categories[1]?.images[0]?.image}    alt=""/><h3 className='categoryname'>{categories[1]?.category}</h3><input type="checkbox" value={categories[1]?._id} checked={categoryIds.includes(categories[1]?._id)}  onChange={handleCategory}/></div></Link> 
+              <Link to='/numismatist '><div id="check_category"> <img src={categories[1]?.images[0]?.image}    alt=""/><h3 className='categoryname'>{categories[1]?.category}</h3><input type="checkbox" value={categories[1]?._id} checked={categoryIds.includes(categories[1]?._id)}  onChange={handleCategory}/></div></Link> 
                    
               </div>
 
               <div className='category_area'>
 
-              <Link to='/numismatist'><div id="check_category"> <img src={categories[2]?.images[0]?.image}    alt=""/><h3 className='categoryname'>{categories[2]?.category}</h3><input type="checkbox" value={categories[2]?._id} defa={categoryIds.includes(categories[2]?._id)} onChange={handleCategory}/></div></Link> 
+              <Link to='/indoor_plants'><div id="check_category"> <img src={categories[2]?.images[0]?.image}    alt=""/><h3 className='categoryname'>{categories[2]?.category}</h3><input type="checkbox" value={categories[2]?._id} defa={categoryIds.includes(categories[2]?._id)} onChange={handleCategory}/></div></Link> 
 
               </div>
 

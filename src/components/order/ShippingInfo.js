@@ -25,7 +25,7 @@ function ShippingInfo(props) {
     const submitHandler=(e)=>{
         e.preventDefault();
         dispatch(saveShippingInfo({firstName, lastName, address,city,phoneNo,postalCode,country,state,email,companyName}))
-        navigate('/payment')
+        // navigate('/payment')
         // if(isAuthenticated){
         //   navigate('/payment')
        
@@ -41,7 +41,7 @@ function ShippingInfo(props) {
     return (
         <div>
               <div className="box-border">
-                <form onSubmit={submitHandler}>
+                <form>
                    <ul>
                     <li className="row">
                         <div className="col-sm-6">
@@ -152,7 +152,7 @@ function ShippingInfo(props) {
                     </li>
                     {/* <!--/ .row --> */}
                     <li>
-                        <button className="button" type="submit"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
+                        <button className="button" onClick={submitHandler}><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
                     </li>
                    </ul>
                 </form>

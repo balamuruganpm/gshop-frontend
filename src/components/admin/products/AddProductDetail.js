@@ -10,14 +10,15 @@ import {getAdminCategories} from '../../../actions/categoryAction'
 
 function AddProduct(props) {
 
-
+     const{categories } = useSelector(state => state.categoryState)
     const{loading, isProductCreated, error } = useSelector(state => state.productState)
     const[categoryname,setCategoryName] = useState("");
     const[productName, setProductName]=useState("");
     const[productCode, setProductCode]= useState("");
     const[price,setPrice]=useState("");
     const[mrpPrice, setMrpPrice]=useState("");
-    const[deliveryCharge, setDeliveryCharge]=useState("")
+    const[deliveryCharge, setDeliveryCharge]=useState("");
+    const[active, setActive]=useState(true)
     const[images,setImages]=useState([]);
     const[hoverimages,setHoverImages]=useState([])
     const[imagesPreview, setImagesPreview]=useState([]);
@@ -66,7 +67,10 @@ function AddProduct(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-
+   
+    useEffect(()=>{
+       dispatch(getAdminCategories)
+    },[dispatch])
 
   const submitHandler = (e)=>{
     e.preventDefault();
@@ -148,15 +152,15 @@ const clearHoverImagesHandler = ()=>{
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Category</label>
                   <div class="col-sm-10">
-                  <input type="text" class="form-control" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}   />
+                  {/* <input type="text" class="form-control" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}   /> */}
 
-                  {/* <select  name='category' onChange={handleCategory} value={categoryIds} className='form-control'>
-                  <option value="Select" disabled >Select</option>
+                  <select  name='category'  onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}  className='form-control'>
+                  <option value="Select">Select</option>
                     {
                   categories && categories.map((cat)=>(
-                    <option value={cat._id}  onClick={categoryIds.includes(cat._id)} key={cat._id}>{cat.category}</option>
+                    <option value={cat._id}  key={cat._id}>{cat.category}</option>
                     ))}
-                  </select> */}
+                  </select>
                      
              
                   </div>
@@ -190,6 +194,12 @@ const clearHoverImagesHandler = ()=>{
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Delivery Charge</label>
                   <div class="col-sm-10">
                   <input type="text" class="form-control" onChange = {e=>setDeliveryCharge(e.target.value)}  value={deliveryCharge}/>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Active</label>
+                  <div class="col-sm-10">
+                  <input type="checkbox" class="form-control" checked onChange = {e=>setActive(!active)}  value={active}/>
                   </div>
                 </div>
                 <div class="form-group row">
