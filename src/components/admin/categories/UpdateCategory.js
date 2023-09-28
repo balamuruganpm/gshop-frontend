@@ -6,15 +6,16 @@ import {toast} from 'react-toastify';
 import {clearCategoryUpdated,clearError } from '../../../slice/categorySlice';
 import {getCategory, updateCategory } from '../../../actions/categoryAction';
 import Adminpanel from '../Adminpanel';
+import { getAdminCategories } from '../../../actions/categoryAction';
 function UpdateCategory(props) {
     const[images,setImages]=useState([]);
     const [categoryname,setCategoryName] = useState("");
-    const[subCategory,setSubCategory]=useState("");
+    const[updateCate,setUpdateCate]=useState("");
     const[imagesPreview, setImagesPreview]=useState([]);
     const[imagesCleared,setImagesCleared]=useState(false);
     const{loading, isCategoryUpdated, error,  category=[] } = useSelector(state => state.categoryState)
     const { id:categoryId } = useParams();
-
+    const{categories } = useSelector(state => state.categoryState)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -52,9 +53,7 @@ function UpdateCategory(props) {
 
     const formData = new FormData();
    
-      formData.append('category', categoryname)
-
-    formData.append('subcategory', subCategory)
+      formData.append('category', updateCate)
 
     images.forEach(image =>{
      formData.append('images', image)
@@ -64,6 +63,9 @@ function UpdateCategory(props) {
 
 }
 
+useEffect(()=>{
+  dispatch(getAdminCategories)
+},[dispatch])
 
   useEffect(()=>{
     if(isCategoryUpdated){
@@ -92,7 +94,7 @@ function UpdateCategory(props) {
 
         if(category._id) {
             setCategoryName(category.category);
-            setSubCategory(category.subcategory);
+           
          
             
             let images = []
@@ -116,43 +118,61 @@ function UpdateCategory(props) {
           <Adminpanel/>
              <div className='add_title admin-container'>
                <h2>Update Category </h2>
-               <NavLink to='/category'><button className='view_cate'>  View Category</button></NavLink>
-             </div>
-             <div className='pt-3 admin-container me-0 form_element' style={{marginTop:"7rem",marginLeft:"3rem", display:"block", width:"75%"}}>
-               <form onSubmit={submitHandler}>
-                <div className='cate_form_detail'>
-                  <div className='input_label'>
-                  <label className='cate__name'>Category Name *  </label>
-                  <label className='cate__name'>Image(optional) *  </label>
-                  <label className='cate__name'>Active </label>
-                  <label className='cate__name'>Description</label>
-                 
-                  </div>
-                <div className='cate_inputfield'>
-                <input type="text" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}  className='cate_input' />
-                <div className='cate_input select_img'><input type="file" className='hide_input' onChange={onImagesChange} multiple/></div>
-                <input type="checkbox" classname="cate_input check" />
-                <textarea cols="50" rows="10" className='cate_input description' ></textarea>
-                </div>
-                </div>
-
-                <div className='images-container'>
-                    <div className='img-preview'>
-                    {imagesPreview.map(image=>(
-                        <img
-                        src={image} 
-                        key={image}
-                        alt=""
-                       className='pre-img' />
+               <NavLink to='/category'><button className='view_cate'>View Category</button></NavLink>
+        
+         </div>
+             <div className='pt-3 admin-container me-0 form_element'>
+               <form onSubmit={submitHandler} className='cate_form_detail'>
             
-                      ))}
-                     {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
-                     </div>
-                   
-                 </div>
-                 <button type="submit" disabled = {loading} className='add_category' >Update Category</button>
+                  <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label cate__name">Category Name  </label>
+                    <div class="col-sm-6">
+                      <input type="text" className='form-control cate_input' id="browser" list="browser" name="browser" onChange={(e)=>setCategoryName(e.target.value)} value={categoryname} />
+                      <datalist id="browser"  onChange={e=>setUpdateCate(e.target.value)} value={updateCate}>
+                                    {
+                                  categories && categories?.map((cat)=>(
+                                    <option value={cat._id}  key={cat._id}>{cat.category}</option>
+                                    ))}
+                      </datalist>
+                </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label cate__name">Image(optional) </label>
+                    <div class="col-sm-6">
+                      <div class="form-control cate_input" >
+                      <input type="file" class="form-control cate_input" onClick={onImagesChange} id="hide_input"multiple />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label cate__name">Active </label>
+                    <div class="col-sm-1">
+                      <input type="checkbox"  id="check"/>
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label cate__name">Description </label>
+                    <div class="col-sm-6">
+                      <textarea type="text"  rows="5"  class="form-control cate_input" id="inputPassword"/>
+                    </div>
+                  </div>
+                  <div className='images-container'>
+                        <div className='img-preview'>
+                        {imagesPreview.map(image=>(
+                            <img
+                            src={image} 
+                            key={image}
+                            alt=""
+                          className='pre-img' />
+                
+                          ))}
+                        {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
+                        </div>
+                      
+                  </div>
+                  <button type="submit" disabled = {loading} className='add_category' >Update Category</button>
 
-                  </form>
+              </form>
             </div>
 
             

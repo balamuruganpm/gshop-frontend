@@ -5,7 +5,7 @@ import { getProducts } from '../../actions/productActions';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import { addCartItem } from "../../actions/cartAction";
-
+import { getAdminProducts } from '../../actions/productActions';
 
 function Products(props) {
     const {products =[], loading, error} = useSelector((state) => state.productsState);
@@ -22,7 +22,7 @@ function Products(props) {
       }
   
 
-    dispatch(getProducts) 
+    dispatch(getAdminProducts) 
    }, [error, dispatch])
 
 
@@ -47,8 +47,12 @@ function Products(props) {
                 <div className="item-inner" style={{width:"250px",height:"330px",marginLeft:"1rem"}}>
                   <div className="product-thumb has-hover-img"  > 
             
-                  <Link to={`/product/${product._id}`}>  <figure style={{border: "1px #eee solid"}}>{product.images.length > 0 && <> <img src={product.images[0]?.image} alt="" /> <img className="hover-img" src={product.hoverimages[0]?.image} alt="" /> </> }</figure></Link>
-                
+                  <Link to={`/product/${product._id}`}>{product.images.length > 0 &&
+                              <>
+                             <img id="bag-image" src={product.images[0].image} alt="" /> 
+                                              </>
+                            }
+                             </Link>    
                 <div className="pr-info-area animated animate2"><a href="quick_view.html" className="quick-view"><i className="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" className="wishlist"><i className="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" className="compare"><i className="fa fa-exchange"><span>Compare</span></i></a> </div>
                   </div>
                   <div className="item-info" >

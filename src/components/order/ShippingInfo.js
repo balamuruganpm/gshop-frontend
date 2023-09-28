@@ -19,7 +19,7 @@ function ShippingInfo(props) {
     const [email,setEmail] =useState( shippingInfo.email);
     const [companyName,setCompanyname] =useState( shippingInfo.companyName);
     const countryList = Object.values(countries);
-    
+    const[showContainer, setShowcontainer] = useState(true)
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const submitHandler=(e)=>{
@@ -40,6 +40,7 @@ function ShippingInfo(props) {
 
     return (
         <div>
+            {showContainer && 
               <div className="box-border">
                 <form>
                    <ul>
@@ -151,12 +152,13 @@ function ShippingInfo(props) {
                         {/* <!--/ [col] --> */}
                     </li>
                     {/* <!--/ .row --> */}
-                    <li>
+                    <li  onClick={()=>setShowcontainer(!showContainer)}>
                         <button className="button" onClick={submitHandler}><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
                     </li>
                    </ul>
                 </form>
-           </div>
+              </div>
+            }
         </div>
     );
 }

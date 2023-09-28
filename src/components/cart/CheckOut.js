@@ -11,17 +11,45 @@ import{clearAuthError, login} from '../../actions/userActions';
 import { orderCompleted } from '../../slice/cartSlice';
 import {createOrder} from '../../actions/orderAction'
 import {shippingInfo} from '../../slice/cartSlice'
-function CheckOut(props) {
+import {clearError as clearOrderError} from "../../slice/orderSlice"
+
+export const validateShipping = (shippingInfo, navigate) => {
    
+  if(
+      !shippingInfo.address||
+      !shippingInfo.city||
+      !shippingInfo.state|| 
+      !shippingInfo.country||
+      !shippingInfo.phoneNo||
+      !shippingInfo.postalCode
+      ) {
+          // toast.error('Please fill the shipping information',{position: toast.POSITION.BOTTOM_CENTER})
+         
+  }
+} 
+
+function CheckOut(props) {
+  const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
+  const{shippingInfo = {}, items:cartItems =[]}= useSelector(state=>state.cartState);
+  const { error:orderError } = useSelector(state => state.orderState)
+
    const [billingInfo, setBillingInfo] = useState(false)
    const [shippingDetail, setShippingDetail] = useState(false)
    const [shippingMethod, setShippingMethod] = useState(false)
    const [paymentInfo, setPaymentInfo] = useState(false)
    const [orderReview, setOrderView] = useState(false)
- 
-
-   const{shippingInfo, items:cartItems =[]}= useSelector(state=>state.cartState);
-
+   const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
+   const { user} = useSelector(state=>state.authState);
+   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
+   const shippingPrice = itemsPrice > 200 ? 0 : 25;
+   let taxPrice = Number( 0.05 * itemsPrice);
+   const totalPrice = Number(itemsPrice  + taxPrice).toFixed(2);
+   taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
+   const dispatch = useDispatch()
+   const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("")
+  const navigate = useNavigate()
+  
 
   
  
@@ -34,25 +62,27 @@ function CheckOut(props) {
          taxPrice,
          totalPrice
      }
-     sessionStorage.setItem('orderInfo', JSON.stringify(data)) 
+     sessionStorage.setItem('orderInfo', JSON.stringify(data))
+     dispatch(createOrder(order)) 
  }
+
+ const paymentData = {
+  amount : Math.round( orderInfo?.totalPrice * 100),
+  shipping :{
+      name: user?.name,
+      address:{
+          city: shippingInfo.city,
+          postal_code : shippingInfo.postalCode,
+          country: shippingInfo.country,
+          state: shippingInfo.state,
+          line1 : shippingInfo.address
+      },
+      phone: shippingInfo.phoneNo
+  }
+}
+
    
-   const { user} = useSelector(state=>state.authState);
-   const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
-   const shippingPrice = itemsPrice > 200 ? 0 : 25;
-   let taxPrice = Number( 0.05 * itemsPrice);
-   const totalPrice = Number(itemsPrice  + taxPrice).toFixed(2);
-   taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
-   const dispatch = useDispatch()
-
-
-const [email,setEmail] = useState("");
-const [password,setPassword] = useState("")
-
-
-const navigate = useNavigate()
-const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
-
+  
 const submitHandler= (e)=>{
     e.preventDefault();
     dispatch(login(email,password))
@@ -77,12 +107,39 @@ const submitHandler= (e)=>{
 
 }
  
-const orderhandler = (e)=>{
-  e.preventDefault();
-    dispatch(createOrder())
-  }
+
     
 
+const order = {
+  orderItems: cartItems,
+  shippingInfo
+}
+
+if(orderInfo) {
+  order.itemsPrice = orderInfo.itemsPrice
+  order.shippingPrice = orderInfo.shippingPrice
+  order.taxPrice = orderInfo.taxPrice
+  order.totalPrice = orderInfo.totalPrice
+  
+}
+
+useEffect(() => {
+  validateShipping(shippingInfo, navigate)
+  if(orderError) {
+      toast(orderError, {
+          position: toast.POSITION.BOTTOM_CENTER,
+          type: 'error',
+          onOpen: ()=> { dispatch(clearOrderError()) }
+      })
+      return
+  }
+
+},[dispatch,navigate,orderError,shippingInfo])
+
+const orderFinished=()=>{
+  dispatch(orderCompleted())
+   navigate('/')
+}
 
 useEffect(()=>{
   if(error){
@@ -173,13 +230,13 @@ useEffect(()=>{
                </>
             } */}
 
-            <h4 className="checkout-step">1. Shipping Information</h4>
+            <h4 className="checkout-step" onClick={()=>setShippingDetail(!shippingDetail)}>1. Shipping Information</h4>
             {shippingDetail && 
                 <>
                 <ShippingInfo/>
                 </>
              } 
-            <h4 className="checkout-step">2. Shipping Method</h4>
+            <h4 className="checkout-step" onClick={()=>setShippingMethod(!shippingMethod)}>2. Shipping Method</h4>
             {shippingMethod && <div className="box-border">
                 <ul className="shipping_method">
                     <li>
@@ -266,8 +323,8 @@ useEffect(()=>{
                         </tr>
                     </tfoot>    
                 </table></div>
-               <button className="button pull-right"  onClick={processPayment}><span>continue</span></button>
-               <button className="button pull-right"  onClick={orderhandler}><span>Place Order</span></button>
+               <button className="button pull-right"  onClick={orderFinished}><span>continue</span></button>
+               <button className="button pull-right"  onClick={processPayment}><span>Place Order</span></button>
                  
               </div>
              }
