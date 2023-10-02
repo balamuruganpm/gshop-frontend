@@ -18,7 +18,7 @@ function AddProduct(props) {
     const[price,setPrice]=useState("");
     const[mrpPrice, setMrpPrice]=useState("");
     const[deliveryCharge, setDeliveryCharge]=useState("");
-    const[active, setActive]=useState(true)
+    const[active, setActive]=useState(false)
     const[images,setImages]=useState([]);
     const[hoverimages,setHoverImages]=useState([])
     const[imagesPreview, setImagesPreview]=useState([]);
@@ -82,6 +82,7 @@ function AddProduct(props) {
     formData.append('mrpPrice', mrpPrice)
     formData.append('deliveryCharge', deliveryCharge)
     formData.append('productcode', productCode)
+    formData.append('isActive', active)
   
 
     images.forEach(image =>{
@@ -198,8 +199,8 @@ const clearHoverImagesHandler = ()=>{
                 </div>
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Active</label>
-                  <div class="col-sm-10">
-                  <input type="checkbox" class="form-control" checked onChange = {e=>setActive(!active)}  value={active}/>
+                  <div class="col-sm-1">
+                  <input type="checkbox" onChange = {()=>setActive(!active)}  value={active}/>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -241,10 +242,10 @@ const clearHoverImagesHandler = ()=>{
                      </div>
 
                      <div className='img-preview'>
-                    {hoverimagesPreview.map(image=>(
+                    {hoverimagesPreview.map(hoverimage=>(
                         <img
-                        src={image} 
-                        key={image}
+                        src={hoverimage} 
+                        key={hoverimage}
                         alt=""
                        className='pre-img' />
             

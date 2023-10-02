@@ -6,16 +6,17 @@ import {toast} from 'react-toastify';
 import {clearCategoryUpdated,clearError } from '../../../slice/categorySlice';
 import {getCategory, updateCategory } from '../../../actions/categoryAction';
 import Adminpanel from '../Adminpanel';
-import { getAdminCategories } from '../../../actions/categoryAction';
+
+
 function UpdateCategory(props) {
     const[images,setImages]=useState([]);
     const [categoryname,setCategoryName] = useState("");
-    const[updateCate,setUpdateCate]=useState("");
+    const [active,setActive] = useState(true);
     const[imagesPreview, setImagesPreview]=useState([]);
     const[imagesCleared,setImagesCleared]=useState(false);
     const{loading, isCategoryUpdated, error,  category=[] } = useSelector(state => state.categoryState)
     const { id:categoryId } = useParams();
-    const{categories } = useSelector(state => state.categoryState)
+
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -53,7 +54,8 @@ function UpdateCategory(props) {
 
     const formData = new FormData();
    
-      formData.append('category', updateCate)
+      formData.append('category', categoryname)
+      formData.append('isActive', active)
 
     images.forEach(image =>{
      formData.append('images', image)
@@ -63,38 +65,36 @@ function UpdateCategory(props) {
 
 }
 
-useEffect(()=>{
-  dispatch(getAdminCategories)
-},[dispatch])
 
-  useEffect(()=>{
-    if(isCategoryUpdated){
-        toast('Category Updated Succesfully!',{
-            type: 'success',
-            position: toast.POSITION.BOTTOM_CENTER,
-            onOpen: () => dispatch(clearCategoryUpdated())
-        })
-        
-        navigate('/category')
-        return;
-    }
-    if(error)  {
-        toast(error, {
-            position: toast.POSITION.BOTTOM_CENTER,
-            type: 'error',
-            onOpen: ()=> { dispatch(clearError()) }
-        })
-        return
-    }
-    dispatch(getCategory(categoryId))
-  },[isCategoryUpdated,error,dispatch,navigate, categoryId])
+  
 
-    
+ useEffect(()=>{
+  if(isCategoryUpdated){
+      toast('Category Updated Succesfully!',{
+          type: 'success',
+          position: toast.POSITION.BOTTOM_CENTER,
+          onOpen: () => dispatch(clearCategoryUpdated())
+      })
+      setImages([])
+      return;
+  }
+  if(error)  {
+      toast(error, {
+          position: toast.POSITION.BOTTOM_CENTER,
+          type: 'error',
+          onOpen: ()=> { dispatch(clearError()) }
+      })
+      return
+  }
+  dispatch(getCategory(categoryId))
+
+},[isCategoryUpdated,error,dispatch,navigate,categoryId])
+
   useEffect(() => {
 
         if(category._id) {
             setCategoryName(category.category);
-           
+            setActive(category.isActive);
          
             
             let images = []
@@ -105,10 +105,10 @@ useEffect(()=>{
             });
             setImagesPreview(images)
         }
-    
+       
 
 },[category])
-   
+ 
 
 
 
@@ -126,14 +126,11 @@ useEffect(()=>{
             
                   <div class="mb-3 row">
                     <label for="staticEmail" class="col-sm-2 col-form-label cate__name">Category Name  </label>
+                  
                     <div class="col-sm-6">
-                      <input type="text" className='form-control cate_input' id="browser" list="browser" name="browser" onChange={(e)=>setCategoryName(e.target.value)} value={categoryname} />
-                      <datalist id="browser"  onChange={e=>setUpdateCate(e.target.value)} value={updateCate}>
-                                    {
-                                  categories && categories?.map((cat)=>(
-                                    <option value={cat._id}  key={cat._id}>{cat.category}</option>
-                                    ))}
-                      </datalist>
+                    <input for="staticEmail" class="form-control cate_input" onClick={()=>setCategoryName}  value={categoryname}  />  
+                
+                    
                 </div>
                   </div>
                   <div class="mb-3 row">
@@ -147,7 +144,8 @@ useEffect(()=>{
                   <div class="mb-3 row">
                     <label for="inputPassword" class="col-sm-2 col-form-label cate__name">Active </label>
                     <div class="col-sm-1">
-                      <input type="checkbox"  id="check"/>
+                    {category.isActive ?   <input type="checkbox"   checked  id="check"/> : 
+                      <input type="checkbox" onChange = {()=>setActive(!active)}  value={active}  id="check"/>}
                     </div>
                   </div>
                   <div class="mb-3 row">

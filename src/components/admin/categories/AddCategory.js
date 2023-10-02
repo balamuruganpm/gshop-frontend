@@ -11,6 +11,7 @@ function AddCategory(props) {
     const[images,setImages]=useState([]);
     const[imagesPreview, setImagesPreview]=useState([]);
     const [categoryname,setCategoryName] = useState("");
+    const [active,setActive] = useState(false);
     const{loading, isCategoryCreated, error, categories=[] } = useSelector(state => state.categoryState)
 
    
@@ -49,7 +50,7 @@ function AddCategory(props) {
 
     const formData = new FormData();
     formData.append('categories', categoryname)
- 
+    formData.append('isActive', active)
 
     images.forEach(image =>{
      formData.append('images', image)
@@ -119,7 +120,7 @@ function AddCategory(props) {
                     <div class="mb-3 row">
                       <label for="inputPassword" class="col-sm-2 col-form-label cate__name">Active </label>
                       <div class="col-sm-1">
-                        <input type="checkbox"  id="check"/>
+                        <input type="checkbox" onChange = {()=>setActive(active)}  value={active}  id="check"/>
                       </div>
                     </div>
                     <div class="mb-3 row">

@@ -39,6 +39,24 @@ export const getProducts = async (dispatch)=>{
 
      
 }
+export const getActiveProducts = async (dispatch)=>{
+
+    try{
+         dispatch(productsRequest())
+         const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products/active`);
+         dispatch(productsSuccess(data))
+
+    }
+    catch (error){
+       //handle error
+
+        dispatch(productsFail(error.response.data.message)) 
+
+    }
+
+     
+}
+
 export const getProduct = id => async (dispatch)=>{
  
     try{
@@ -68,6 +86,7 @@ export const getAdminProducts =  async(dispatch)=>{
         dispatch(adminProductsFail(error.response.data.message))
     }
 }
+
 export const createNewProduct = productData => async(dispatch)=>{
     try{
         dispatch(newProductRequest())

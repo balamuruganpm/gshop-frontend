@@ -71,7 +71,7 @@ const Products = () => {
                 image:<PhotoLibraryIcon className='c-image' style={{fontSize:"24px"}}/>,
                 category : category.category,
                 stock:(products[0]?.category, console.log(products[0]?.category) ),
-                status:<p style={{color:"blue"}}>Active</p>,
+                status: category.isActive ? <p style={{color:"blue"}}>Active</p> : <p style={{color:"red"}}>Active</p>,
                 actions: (
                     <Fragment>
                         <Link to={`/admin/category/updatecategory/${category._id}`} className="btn btn-primary  py-1  res_btn ml-1"> <i className="fa fa-pencil"></i></Link>

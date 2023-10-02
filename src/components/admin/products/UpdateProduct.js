@@ -20,6 +20,7 @@ function UpdateProduct(props) {
     const [categoryname,setCategoryName] = useState("");
     const[productName, setProductName]=useState("");
     const[productCode, setProductCode]= useState("");
+    const[active, setActive]= useState(true);
     const[price,setPrice]=useState("");
     const[mrpPrice, setMrpPrice]=useState("");
     const[deliveryCharge, setDeliveryCharge]=useState("")
@@ -30,7 +31,7 @@ function UpdateProduct(props) {
     const onImagesChange = (e)=>{
         const files = Array.from(e.target.files);
     
-        files.forEach(file=>{
+        files?.forEach(file=>{
     
             const reader = new FileReader()
             reader.onload = () => {
@@ -49,7 +50,7 @@ function UpdateProduct(props) {
     const onHoverImagesChange = (e)=>{
       const files = Array.from(e.target.files);
   
-      files.forEach(file=>{
+      files?.forEach(file=>{
   
           const reader = new FileReader()
           reader.onload = () => {
@@ -79,13 +80,13 @@ function UpdateProduct(props) {
     formData.append('mrpPrice', mrpPrice)
     formData.append('deliveryCharge', deliveryCharge)
     formData.append('productcode', productCode)
-
-    images.forEach(image =>{
+    formData.append('isActive', active)
+    images?.forEach(image =>{
      formData.append('images', image)
     })
     
-    hoverimages.forEach(hoverimages =>{
-      formData.append('hoverimages', hoverimages)
+    hoverimages?.forEach(hoverimage =>{
+      formData.append('hoverimages', hoverimage)
      })
   dispatch(updateProduct(productId,formData))
  
@@ -137,20 +138,21 @@ const clearHoverImagesHandler = ()=>{
         setCategoryName(product.category);
         setMrpPrice(product.mrpPrice);
         setPrice(product.price);
+        setActive(product.isActive);
         setDeliveryCharge(product.deliveryCharge);
      
         
         let images = []
-        product.images.forEach(image => {
+        product.images?.forEach(image => {
 
           images.push(image.image)
 
         });
 
         let hoverimages = []
-        product.hoverimages.forEach(hoverimage => {
+        product.hoverimages?.forEach(hoverimage => {
 
-          hoverimages.push(hoverimage.image)
+          hoverimages.push(hoverimage.hoverimage)
 
         });
         setHoverImagesPreview(hoverimages)
@@ -220,6 +222,13 @@ const clearHoverImagesHandler = ()=>{
                   </div>
                 </div>
                 <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Active</label>
+                  <div class="col-sm-1">
+                {product.isActive ? <input type="checkbox" checked  /> : 
+                 <input type="checkbox"  onChange = {()=>setActive(!active)}  value={active}/>} 
+                  </div>
+                </div>
+                <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">vedio</label>
                   <div class="col-sm-10">
                   <input type="password" class="form-control" id="inputPassword"/>
@@ -244,7 +253,7 @@ const clearHoverImagesHandler = ()=>{
                   </div>
                 </div>
 
-             <div className='images-container' style={{marginTop:"-10rem"}}>
+             <div className='images-container' style={{ marginTop:"-7rem",marginLeft:"25rem"}}>
                     <div className='img-preview'>
                     {imagesPreview.map(image=>(
                         <img
@@ -257,7 +266,7 @@ const clearHoverImagesHandler = ()=>{
                      {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
                      </div>
 
-                     <div className='img-preview' style={{marginTop:"3rem"}}>
+                     <div className='img-preview' style={{marginTop:"6rem"}}>
                     {hoverimagesPreview.map(image=>(
                         <img
                         src={image} 

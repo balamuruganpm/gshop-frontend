@@ -28,6 +28,28 @@ const productsSlice = createSlice({
                 error: action.payload
             }
         },
+
+        activeProductsRequest(state, action){
+            return {
+                loading:true,
+            }
+        },
+        activeProductsSuccess(state,action){
+           
+            return {
+                loading:false,
+                products:action.payload.products
+            }
+        },
+
+        activeProductsFail(state, action)
+        {
+            return{
+                loading: false,
+                error: action.payload
+            }
+        },
+
         adminProductsRequest(state, action){
             return {
                 loading: true

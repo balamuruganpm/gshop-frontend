@@ -22,7 +22,7 @@ function Products(props) {
       }
   
 
-    dispatch(getAdminProducts) 
+    dispatch(getProducts) 
    }, [error, dispatch])
 
 
@@ -47,7 +47,7 @@ function Products(props) {
                 <div className="item-inner" style={{width:"250px",height:"330px",marginLeft:"1rem"}}>
                   <div className="product-thumb has-hover-img"  > 
             
-                  <Link to={`/product/${product._id}`}>{product.images.length > 0 &&
+                  <Link to={`/product/${product._id}`}>{product.images?.length > 0 &&
                               <>
                              <img id="bag-image" src={product.images[0].image} alt="" /> 
                                               </>
