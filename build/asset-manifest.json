@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.eca91367.css",
+    "main.css": "/static/css/main.635d09c9.css",
     "main.js": "/static/js/main.29052c45.js",
     "static/media/daily-deal-bg.jpg": "/static/media/daily-deal-bg.071aff9e4077ab9c5029.jpg",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
@@ -29,11 +29,11 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/arrow_left.svg": "/static/media/arrow_left.db6e2d88c7c35a775ce4.svg",
     "static/media/arrow_right.svg": "/static/media/arrow_right.f7c6ac6d310d3b82f0a0.svg",
-    "main.eca91367.css.map": "/static/css/main.eca91367.css.map",
+    "main.635d09c9.css.map": "/static/css/main.635d09c9.css.map",
     "main.29052c45.js.map": "/static/js/main.29052c45.js.map"
   },
   "entrypoints": [
-    "static/css/main.eca91367.css",
+    "static/css/main.635d09c9.css",
     "static/js/main.29052c45.js"
   ]
 }
