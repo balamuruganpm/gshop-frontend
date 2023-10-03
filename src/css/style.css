@@ -1810,6 +1810,7 @@ a.link {
 	width:75%;
     grid-template-columns:repeat(4, 1fr);
 	column-gap: 1.5rem;
+	grid-row-gap: 1rem;
 	height:105vh;
 	position: relative;
 
