@@ -201,7 +201,7 @@ const clearImagesHandler = ()=>{
                   </div>
                 </div>
           
-             <div className='images-container' style={{ marginTop:"-7rem",marginLeft:"25rem"}}>
+             <div className='images-container' style={{ marginTop:"-3rem",marginLeft:"25rem"}}>
                     <div className='img-preview'>
                     {imagesPreview.map(image=>(
                         <img

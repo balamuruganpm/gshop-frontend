@@ -43,7 +43,6 @@ function UpdateCategory(props) {
   const clearImagesHandler = ()=>{
     setImages([]);
     setImagesPreview([]);
-    setImagesPreview([]);
     setImagesCleared(true)
 
   }
@@ -60,7 +59,7 @@ function UpdateCategory(props) {
     images.forEach(image =>{
      formData.append('images', image)
     })
-    formData.append('imagesCleared' , imagesCleared);
+ 
     dispatch(updateCategory(categoryId, formData))
 
 }
@@ -137,7 +136,7 @@ function UpdateCategory(props) {
                     <label for="inputPassword" class="col-sm-2 col-form-label cate__name">Image(optional) </label>
                     <div class="col-sm-6">
                       <div class="form-control cate_input" >
-                      <input type="file" class="form-control cate_input" onClick={onImagesChange} id="hide_input"multiple />
+                      <input type="file" class="form-control cate_input" onClick={onImagesChange} id="hide_input" multiple />
                       </div>
                     </div>
                   </div>
