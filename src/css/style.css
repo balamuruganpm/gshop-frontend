@@ -1829,15 +1829,13 @@ a.link {
 	width:210px;
 	height:200px;
     position: relative;
-
 	padding:7px 7px;
 	border-radius: 3px;
 
 }
 .category_area:hover{
 	box-shadow: 4px 7px 7px 0px #00000042;
-	transition: 400ms;
-  
+	transition: 400ms;  
 	transform: scale(1.03);
 }
 #check_category {
@@ -1887,13 +1885,13 @@ a.link {
 #check_category > input:hover{
 	cursor: pointer;
 }
-.product-item {
+/* .product-item {
 display: flex;
 align-items:flex-start;
 justify-content: center;
 width:80%;
 height:55vh;	
-}
+} */
 .product-item .product-thumb {
 	position: relative;
 	width:240px;
