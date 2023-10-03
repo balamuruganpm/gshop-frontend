@@ -11,11 +11,8 @@ import {getAdminCategories} from '../../../actions/categoryAction'
 
 function UpdateProduct(props) {
     const[images,setImages]=useState([]);
-    const[hoverimages,setHoverImages]=useState([]);
     const[imagesPreview, setImagesPreview]=useState([]);
-    const[hoverimagesPreview, setHoverImagesPreview]=useState([]);
-    const[imagesCleared,setImagesCleared]=useState(false);
-    const[hoverimagesCleared,setHoverImagesCleared]=useState(false);
+    const[imagesCleared,setImagesCleared]=useState(false);   
     const{loading, isProductUpdated, error, product=[] } = useSelector(state => state.productState)
     const [categoryname,setCategoryName] = useState("");
     const[productName, setProductName]=useState("");
@@ -47,24 +44,8 @@ function UpdateProduct(props) {
     
     }
 
-    const onHoverImagesChange = (e)=>{
-      const files = Array.from(e.target.files);
+
   
-      files?.forEach(file=>{
-  
-          const reader = new FileReader()
-          reader.onload = () => {
-             if(reader.readyState === 2)
-              {
-                  setHoverImagesPreview(oldArray => [...oldArray, reader.result])
-                  setHoverImages(oldArray => [...oldArray, file])
-              }   
-           }
-          reader.readAsDataURL(file)
-  
-      })
-  
-  }
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -85,9 +66,7 @@ function UpdateProduct(props) {
      formData.append('images', image)
     })
     
-    hoverimages?.forEach(hoverimage =>{
-      formData.append('hoverimages', hoverimage)
-     })
+  
   dispatch(updateProduct(productId,formData))
  
 
@@ -102,11 +81,6 @@ const clearImagesHandler = ()=>{
     setImagesCleared(true)
   }
    
-const clearHoverImagesHandler = ()=>{
-  setHoverImages([]);
-  setHoverImagesPreview([]);
-  setHoverImagesCleared(true)
-}
 
 
   useEffect(()=>{
@@ -149,13 +123,7 @@ const clearHoverImagesHandler = ()=>{
 
         });
 
-        let hoverimages = []
-        product.hoverimages?.forEach(hoverimage => {
-
-          hoverimages.push(hoverimage.hoverimage)
-
-        });
-        setHoverImagesPreview(hoverimages)
+ 
         setImagesPreview(images)
     }
 },[product])
@@ -179,14 +147,6 @@ const clearHoverImagesHandler = ()=>{
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Category</label>
                   <div class="col-sm-10">
-                  {/* <select value={categoryname} className='slct-category' onChange={e => setCategoryName(e.target.value)} >
-                <option id="options" vlaue="">Select Category</option>
-                {categoriesList.map(category =>(
-                    <option key={category} value={category}>{category}</option>
-                ))}
-
-             </select>
-                      */}
                   <input type="text" placeholder='Place category code'  onChange = {e=>setCategoryName(e.target.value)} value={categoryname} className='form-control'/>
                   </div>
               
@@ -240,19 +200,7 @@ const clearHoverImagesHandler = ()=>{
                   <input type="file" class="form-control" multiple onChange={onImagesChange}/>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Hoverimages</label>
-                  <div class="col-sm-2">
-                  <input type="file" class="form-control" multiple onChange={onHoverImagesChange}/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Files</label>
-                  <div class="col-sm-2">
-                  <input type="file" class="form-control" id="inputPassword"/>
-                  </div>
-                </div>
-
+          
              <div className='images-container' style={{ marginTop:"-7rem",marginLeft:"25rem"}}>
                     <div className='img-preview'>
                     {imagesPreview.map(image=>(
@@ -266,19 +214,9 @@ const clearHoverImagesHandler = ()=>{
                      {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
                      </div>
 
-                     <div className='img-preview' style={{marginTop:"6rem"}}>
-                    {hoverimagesPreview.map(image=>(
-                        <img
-                        src={image} 
-                        key={image}
-                        alt=""
-                       className='pre-img' />
-            
-                      ))}
-                     {hoverimagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearHoverImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
-                     </div>
                    
-                 </div>  <button type="submit" disabled = {loading} className='add_product' >Update Product</button>
+                 </div>  
+                 <button type="submit" disabled = {loading} className='add_product' >Update Product</button>
 
                   </form>
             </div>

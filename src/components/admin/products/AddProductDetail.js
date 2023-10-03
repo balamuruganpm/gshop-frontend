@@ -20,11 +20,9 @@ function AddProduct(props) {
     const[deliveryCharge, setDeliveryCharge]=useState("");
     const[active, setActive]=useState(false)
     const[images,setImages]=useState([]);
-    const[hoverimages,setHoverImages]=useState([])
     const[imagesPreview, setImagesPreview]=useState([]);
     const[imagesCleared,setImagesCleared]=useState(false);
-    const[hoverimagesCleared,setHoverImagesCleared]=useState(false);
-    const[hoverimagesPreview, setHoverImagesPreview]=useState([]);
+   
 
  
     const onImagesChange = (e)=>{
@@ -46,24 +44,7 @@ function AddProduct(props) {
     
     }
 
-    const onHoverImagesChange = (e)=>{
-      const hoverfiles = Array.from(e.target.files);
   
-      hoverfiles.forEach(file=>{
-  
-          const reader = new FileReader()
-          reader.onload = () => {
-             if(reader.readyState === 2)
-              {
-                  setHoverImagesPreview(oldArray => [...oldArray, reader.result])
-                  setHoverImages(oldArray => [...oldArray, file])
-              }   
-           }
-          reader.readAsDataURL(file)
-  
-      })
-  
-  }
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -88,9 +69,7 @@ function AddProduct(props) {
     images.forEach(image =>{
      formData.append('images', image)
     })
-    hoverimages.forEach(hoverimage =>{
-      formData.append('hoverimages', hoverimage)
-     })
+  
   dispatch(createNewProduct(formData))
  
 
@@ -128,12 +107,7 @@ function AddProduct(props) {
     setImagesCleared(true)
   }
    
-const clearHoverImagesHandler = ()=>{
-  setHoverImages([]);
-  setHoverImagesPreview([]);
 
-  setHoverImagesCleared(true)
-}
 
 
 
@@ -215,18 +189,8 @@ const clearHoverImagesHandler = ()=>{
                   <input type="file" class="form-control" multiple onChange={onImagesChange}/>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Hoverimages</label>
-                  <div class="col-sm-2">
-                  <input type="file" class="form-control" multiple onChange={onHoverImagesChange}/>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="staticEmail" class="col-sm-2 col-form-label product__name">Files</label>
-                  <div class="col-sm-2">
-                  <input type="file" class="form-control" id="inputPassword"/>
-                  </div>
-                </div>
+              
+              
 
                 <div className='images-container' style={{marginTop:"", position:"absolute", display:"flex",flexDirection:"row"}}>
                     <div className='img-preview'>
@@ -241,17 +205,7 @@ const clearHoverImagesHandler = ()=>{
                      {imagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
                      </div>
 
-                     <div className='img-preview'>
-                    {hoverimagesPreview.map(hoverimage=>(
-                        <img
-                        src={hoverimage} 
-                        key={hoverimage}
-                        alt=""
-                       className='pre-img' />
-            
-                      ))}
-                     {hoverimagesPreview.length >  0 && <button id="delete-btn" className='add_category' onClick={clearHoverImagesHandler} style={{cursor:"pointer"}} ><i className='fa fa-trash' style={{marginLeft:"-1rem",marginRight:"1rem"}}></i>Delete</button> }
-                     </div>
+                   
                    
                  </div> 
              

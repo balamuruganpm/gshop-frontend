@@ -40,21 +40,20 @@ function Products(props) {
           <div id="special-products-slider" className="product-flexslider hidden-buttons">
             <div className="product-grid">
               { products && products.map(product =>(
-
-
-
                <div className="product-item" key={product._id}>
-                <div className="item-inner" style={{width:"250px",height:"330px",marginLeft:"1rem"}}>
-                  <div className="product-thumb has-hover-img"  > 
-            
-                  <Link to={`/product/${product._id}`}>{product.images?.length > 0 &&
-                              <>
-                             <img id="bag-image" src={product.images[0].image} alt="" /> 
-                                              </>
-                            }
-                             </Link>    
-                <div className="pr-info-area animated animate2"><a href="quick_view.html" className="quick-view"><i className="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" className="wishlist"><i className="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" className="compare"><i className="fa fa-exchange"><span>Compare</span></i></a> </div>
+                <div class="item-inner">
+                  <div class="product-thumb has-hover-img"> <Link to={`/product/${product._id}`}>
+                    {product.images?.length > 0 && 
+                    <> 
+                    <img src={product.images[0]?.image}  alt="" /> 
+                    <img class="hover-img" src={product.images[1]?.image}  alt="" />
+                      </>
+                    }
+                    </Link>
+                    <div class="pr-info-area animated animate2"><a href="quick_view.html" class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" class="wishlist"><i class="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" class="compare"><i class="fa fa-exchange"><span>Compare</span></i></a> </div>
                   </div>
+            
+
                   <div className="item-info" >
                     <div className="info-inner" >
                   
@@ -90,6 +89,7 @@ function Products(props) {
                ))}
             
             </div>
+
           </div>
         </div>
       </div>
