@@ -1418,7 +1418,6 @@ ul #cart-sidebar {
 ******************************************/
 
 .home-product-tabs {
-	line-height: normal;
 	margin: 0;
 	outline: none;
 	padding: 0;
@@ -1427,8 +1426,6 @@ ul #cart-sidebar {
 	height: 32px;
 	text-align: left;
 	width: 100%;
-
-
 }
 .home-product-tabs li a {
 	border-bottom: none;
@@ -6559,6 +6556,7 @@ button.button.pro-add-to-cart span i {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	background-color: red;
 
 	
 }
@@ -6850,6 +6848,19 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+#featured-pro{
+	width:63%;
+
+}
+#featured_inner{
+	display: flex;
+	flex-direction: column;
+	width:260px;
+    height:380px;
+	align-items:center;
+	
+}
+
 .related-product-area .page-header h2 {
 	font-size: 18px;
 	text-transform: uppercase;
@@ -8619,7 +8630,7 @@ to {
 	min-height: 248px;
 	position: relative;
 	text-transform: uppercase;
-	margin: 20px 0px 0px;
+	margin: 50px 0px 0px;
 }
 .block-static2-inner .img {
 	float: right;
