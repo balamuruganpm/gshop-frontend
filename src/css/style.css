@@ -6554,7 +6554,7 @@ button.button.pro-add-to-cart span i {
 #featured_products_area{
 	width:102%;
 	height:73vh;
-   
+   margin-top:-3rem;
 	position: relative;
 	display: flex;
 	align-items: center;
