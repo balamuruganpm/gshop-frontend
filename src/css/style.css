@@ -1905,7 +1905,6 @@ height:55vh;
 	justify-content: center;
 	width: 100%;
 	height:50px;
-	
 	top:12rem;
 	
 
@@ -2032,6 +2031,7 @@ height:55vh;
 	justify-content: flex-start;
 	z-index: 100;
 	margin-top:-3rem;
+	
 
 
 }
@@ -8631,7 +8631,7 @@ to {
 	position: relative;
 	text-transform: uppercase;
 	margin: 20px 0px 0px;
-	margin-top:4rem;
+	margin-top:8rem;
 }
 .block-static2-inner .img {
 	float: right;
