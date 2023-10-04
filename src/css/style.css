@@ -6849,7 +6849,7 @@ align-items: center;
 justify-content: center;
 }
 #featured-pro{
-	width:63%;
+	width:65%;
 
 }
 #featured_inner{
@@ -8630,7 +8630,8 @@ to {
 	min-height: 248px;
 	position: relative;
 	text-transform: uppercase;
-	margin: 50px 0px 0px;
+	margin: 20px 0px 0px;
+	margin-top:4rem;
 }
 .block-static2-inner .img {
 	float: right;
