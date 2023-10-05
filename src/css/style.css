@@ -5731,11 +5731,7 @@ button.button.button-clear {
 	display: grid; 
 	width:70%;
     grid-template-columns:repeat(3, 1fr);
-    
 	height:180vh;
-	margin-bottom:1.5rem;
-
-
 }
 #blogs{
 	display: grid; 
