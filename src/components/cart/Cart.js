@@ -47,9 +47,8 @@ function Cart(props) {
                         <small><a href="#">Color : Red</a></small><br/>
                         <small><a href="#">Size : M</a></small></td>
                       <td className="availability in-stock">
-                       {item?.stock >0 ? <span className="label" style={{backgroundColor: item?.stock > 0  ? 'green' : 'red'}}>Instock</span> : 
-                       <span className="label" style={{backgroundColor: item.stock = 0  ? 'red' : 'green'}}>Nostock</span>}
-                        
+                       {/* {item?.stock >0 ? <span className="label" style={{backgroundColor: item?.stock > 0  ? 'green' : 'red'}}>In stock</span> : 
+                       <span className="label" style={{backgroundColor: item.stock = 0  ? 'red' : 'green'}}>No stock</span>}   */}
                       </td>
                       <td className="price"><span>₹{item.price}</span></td>
                       <td className="qty"><input className="form-control input-sm" type="text" value={item.quantity} /></td>
