@@ -241,12 +241,12 @@ useEffect(()=>{
                 <ul className="shipping_method">
                     <li>
                         <p className="subcaption bold">Free Shipping</p>
-                        <label for="radio_button_3"><input type="radio" checked name="radio_3" id="radio_button_3"/>Free $0</label>
+                        <label for="radio_button_3"><input type="radio" checked name="radio_3" id="radio_button_3"/>Free <span>&#8377;</span>0</label>
                     </li>
 
                     <li>
                         <p className="subcaption bold">Free Shipping</p>
-                        <label for="radio_button_4"><input type="radio" name="radio_3" id="radio_button_4" /> Standard Shipping $5.00</label>
+                        <label for="radio_button_4"><input type="radio" name="radio_3" id="radio_button_4" /> Standard Shipping <span>&#8377;</span>5.00</label>
                     </li>
                 </ul>
                 <button className="button"><i className="fa fa-angle-double-right"></i>&nbsp; <span>Continue</span></button>
@@ -297,12 +297,12 @@ useEffect(()=>{
                                 <small><a href="#">Size : S</a></small>
                             </td>
                             <td className="cart_avail"><span className="label label-success">In stock</span></td>
-                            <td className="price"><span>${item.price} </span></td>
+                            <td className="price"><span><span>&#8377;</span>{item.price} </span></td>
                             <td className="qty">
-                            <span>${item.quantity} </span>
+                            <span><span>&#8377;</span>{item.quantity} </span>
                             </td>
                             <td className="price">
-                                <span>${item.price}</span>
+                                <span><span>&#8377;</span>{item.price}</span>
                             </td>
                             <td className="action">
                                 <a href="#"><i className="fa fa-trash-o"></i></a>
@@ -315,11 +315,11 @@ useEffect(()=>{
                         <tr>
                             <td colspan="2" rowspan="2"></td>
                             <td colspan="3">Total products (tax incl.)</td>
-                            <td colspan="2">${totalPrice}</td>
+                            <td colspan="2"><span>&#8377;</span>{totalPrice}</td>
                         </tr>
                         <tr>
                             <td colspan="3"><strong>Total</strong></td>
-                            <td colspan="2"><strong>${totalPrice} </strong></td>
+                            <td colspan="2"><strong><span>&#8377;</span>{totalPrice} </strong></td>
                         </tr>
                     </tfoot>    
                 </table></div>
@@ -370,7 +370,7 @@ useEffect(()=>{
               </dd>
               <dt className="complete"> Shipping Method <span className="separator">|</span> <a onClick={()=>setShippingMethod(!shippingMethod)}>Change</a> </dt>
               <dd className="complete"> Flat Rate - Fixed <br/>
-                <span className="price">$15.00</span> </dd>
+                <span className="price"><span>&#8377;</span>15.00</span> </dd>
               <dt> Payment Method </dt>
             </dl>
           </div>
