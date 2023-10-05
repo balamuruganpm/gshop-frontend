@@ -126,14 +126,14 @@ function AddProduct(props) {
               <form onSubmit={submitHandler}>
                 <div class="form-group row">
                   <label for="staticEmail" class="col-sm-2 col-form-label product__name">Category</label>
-                  <div class="col-sm-10">
+                  <div class="col-sm-8">
                   {/* <input type="text" class="form-control" onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}   /> */}
 
                   <select  name='category'  onChange = {e=>setCategoryName(e.target.value)}  value={categoryname}  className='form-control'>
                   <option value="Select">Select</option>
                     {
                   categories && categories.map((cat)=>(
-                    <option value={cat._id}  key={cat._id}>{cat.category}</option>
+                    <option className='form-control' value={cat._id}  key={cat._id}>{cat.category}</option>
                     ))}
                   </select>
                      
