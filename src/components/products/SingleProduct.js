@@ -71,7 +71,14 @@ function SingleProduct(props) {
           <div className="product-view-area">
             <div className="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
               <div className="icon-sale-label sale-left">Sale</div>
-             <Zoom><div className="large-image"> <a href="#" className="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20">{product.images && product.images.map(image => <img className="zoom-img" src={image.image} alt={product.name} /> )}</a> </div></Zoom> 
+             <Zoom><div className="large-image"> <a href="#" className="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20">
+             {product.images?.length > 0 && 
+                    <> 
+                    <img src={product.images[0]?.image}  alt="" /> 
+                    {/* <img class="hover-img" src={product.images[1]?.image}  alt="" /> */}
+                      </>
+                    }    </a>
+               </div></Zoom> 
               
              
              
