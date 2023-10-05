@@ -38,7 +38,7 @@ function Cart(props) {
                       <th className="action"><i className="fa fa-trash-o"></i></th>
                     </tr>
                   </thead>
-                  {items.map(item=>(
+                  {items?.map(item=>(
                     <>
                   <tbody>
                     <tr>
@@ -47,7 +47,7 @@ function Cart(props) {
                         <small><a href="#">Color : Red</a></small><br/>
                         <small><a href="#">Size : M</a></small></td>
                       <td className="availability in-stock">
-                       {item.stock >0 ? <span className="label" style={{backgroundColor: item.stock > 0  ? 'green' : 'red'}}>Instock</span> : 
+                       {item?.stock >0 ? <span className="label" style={{backgroundColor: item?.stock > 0  ? 'green' : 'red'}}>Instock</span> : 
                        <span className="label" style={{backgroundColor: item.stock = 0  ? 'red' : 'green'}}>Nostock</span>}
                         
                       </td>
