@@ -17,7 +17,7 @@ function Gift(props) {
 <div className="container" style={{width:"120%"}}>
     <div className="special-products">
       <div className="page-header">
-        <h2>special products</h2>
+        <h2>Gift</h2>
       </div>
       <div className="special-products-pro" >
         <div className="slider-items-products">
