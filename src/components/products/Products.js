@@ -51,7 +51,7 @@ function Products(props) {
                       </>
                     }
                     </Link>
-                    <div class="pr-info-area animated animate2"><a href="quick_view.html" class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" class="wishlist"><i class="fa fa-heart" 
+                    <div class="pr-info-area animated animate2"><a class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a  class="wishlist"><i class="fa fa-heart" 
                         onClick={()=>
                         { dispatch(addWishlistItem(product._id,quantity))
                           
