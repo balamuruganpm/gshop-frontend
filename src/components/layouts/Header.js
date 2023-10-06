@@ -40,12 +40,7 @@ const showDashboard = ()=>{
       </div>
     </form>
   </div>
-   {/* <ul>
-     <li><a href="index.html" className="home1">Home</a></li>
-     <li><a href="about_us.html">About us</a></li>
-     <li><a href="shop_grid.html">Shop</a></li>
-     <li><a href="contact_us.html">Contact us</a></li>
-  </ul> */}
+
 
 </div>
 {/* <!-- end mobile menu --> */}
@@ -66,15 +61,7 @@ const showDashboard = ()=>{
           
             <div className="headerlinkmenu col-lg-8 col-md-7 col-sm-8 col-xs-12">
               <div className="links">
-              {/* {isAuthenticated ?
-              <>
-              (         
-   
-              )
-                : 
-
-                 </>
-                 } */}
+         
 
 { isAuthenticated ? 
             (
@@ -91,12 +78,12 @@ const showDashboard = ()=>{
                 </div>
                  }
                 </div>
-                <Link to='/wishlist'> <div className="wishlist"><a title="My Wishlist" href="wishlist.html"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>
+                 <Link to='/wishlist'> <div className="wishlist"><a title="My Wishlist" href="wishlist.html"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>
                  <Link to='/blog'> <div className="blog"><a title="Blog" href="blog.html"><i className="fa fa-rss" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Blog</span></a></div></Link>
-                 <div className="login"> <a><Link to='/profile'> <span className="hidden-xs">Profile</span> </Link> <i class="fas fa-sort-down" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div>
+                 <div className="login"><a>  <Link to='/profile'> <span className="hidden-xs">Profile</span> </Link> <i class="fas fa-sort-down" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div>
                   {showLog&&<div className='res_logdropDown' >
-                   <div className='res_homelist' id="log_out" onChange={()=>setShowLog(!showLog)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
-                   </div>
+                 <div className='res_homelist' id="log_out" onChange={()=>setShowLog(!showLog)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
+                 </div>
                  }
                </>
             )
@@ -146,7 +133,13 @@ const showDashboard = ()=>{
                   <div className="mt-root-item"><a href="contact_us.html">
                     <Link to='/contact_us'><div className="title title_font"><span className="title-text">Contact Us</span> </div></Link>
                     </a></div>
-                </li>               
+                </li>
+                
+
+                
+                
+                
+               
               </ul>
               {/* <!-- top cart --> */}
 

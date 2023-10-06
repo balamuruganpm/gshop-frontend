@@ -748,15 +748,78 @@ input:focus {
 	
 	
 }
+.res_homedropDown{
+	width:150px;
+	min-height:110px;
+	background-color: #fff;
+	right:29rem;
+	top:2rem;
+	z-index:100;
+	padding-top:0.5rem;
+	box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+	position:fixed;
+}
+
+	.res_logdropDown{
+		width:150px;
+		min-height:50px;
+		background-color: #fff;
+		right:12rem;
+		top:2rem;
+		z-index:100;
+		text-align: center;
+		box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+		position:fixed;
+	  
+
+	
+	}
+	#log_out{
+      margin-left:-1.2rem;
+	}
+
+.res_homelist{
+    padding:7px 7px;
+    position:relative;
+	display: flex;
+	align-items:flex-start;
+	justify-content: flex-start;
+	left:0;
+	width:130px;
+	height:35px;
+	margin:0.5rem;
+
+	font-weight:400;
+
+}
+.res_homelist p{
+	text-align: left;
+}
+.res_homelist:hover{
+	background: #fe5800;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+	cursor: pointer;
+	transform: scale(1.03);
+	color:#fff;
+
+}
+
+.res_homedropDown:hover{
+	cursor: pointer;
+}
+
+
+
 .headerlinkmenu .links {
 	display: inline-block;
 	border-right: 1px solid #ddd;
 	margin-top: 8px;
+	margin-right:0;
 }
 .headerlinkmenu .links div {
 	display: inline-block;
 	text-align: right;
-
+	margin-left:1rem;
 }
 .headerlinkmenu .links div:hover {
 cursor: pointer;
@@ -820,7 +883,7 @@ cursor: pointer;
 #search .input-group {
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
-	display: inline-block;
+	display: flex;
 	overflow: hidden;
 	width: 100%;
 	background: #fff;
@@ -971,10 +1034,13 @@ header .logo a img {
 	background: #fff;
 }
 /*4.6 Top Cart */
+
+
 .top-cart-contain .top-cart-content {
 	opacity: 0;
-	right:15rem;
-	top:8rem;
+	position:fixed;
+	right:13rem;
+	top:7rem;
 	transform-origin: 0 0 0;
 	transition: all 0.5s ease 0s;
 	-ms-transform: scaleY(0);
@@ -982,11 +1048,9 @@ header .logo a img {
 	-moz-transform: scaleY(0);
 	-o-transform: scaleY(0);
 	transform: scaleY(0);
-	position: fixed;
 }
 .top-cart-contain .mini-cart:hover .top-cart-content {
 	opacity: 1;
-
 	-ms-transform: scaleY(1);
 	-webkit-transform: scaleY(1);
 	-moz-transform: scaleY(1);
@@ -1330,7 +1394,6 @@ ul#cart-sidebar {
 ******************************************/
 
 .home-product-tabs {
-	line-height: normal;
 	margin: 0;
 	outline: none;
 	padding: 0;
