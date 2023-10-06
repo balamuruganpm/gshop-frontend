@@ -91,12 +91,12 @@ const showDashboard = ()=>{
                 </div>
                  }
                 </div>
-               {isAuthenticated && <Link to='/wishlist'> <div className="wishlist"><a title="My Wishlist" href="wishlist.html"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>}
+                <Link to='/wishlist'> <div className="wishlist"><a title="My Wishlist" href="wishlist.html"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>
                  <Link to='/blog'> <div className="blog"><a title="Blog" href="blog.html"><i className="fa fa-rss" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Blog</span></a></div></Link>
-               <div className="login"><a>  <Link to='/profile'> <span className="hidden-xs">Profile</span> </Link> <i class="fas fa-sort-down" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div>
+                 <div className="login"> <a><Link to='/profile'> <span className="hidden-xs">Profile</span> </Link> <i class="fas fa-sort-down" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div>
                   {showLog&&<div className='res_logdropDown' >
-                 <div className='res_homelist' id="log_out" onChange={()=>setShowLog(!showLog)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
-                </div>
+                   <div className='res_homelist' id="log_out" onChange={()=>setShowLog(!showLog)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
+                   </div>
                  }
                </>
             )
