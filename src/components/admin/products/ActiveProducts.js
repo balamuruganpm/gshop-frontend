@@ -77,8 +77,8 @@ const Products = () => {
                 image:<img src={product.images[0]?.image} alt="" style={{width:"50px", height:"40px"}}/>,
                 hoverimage:<img src={product.images[1]?.image} alt="" style={{width:"50px", height:"40px"}}/>,
              
-                price : `<span>&#8377;</span>${product.price}`,
-                mrpprice : `<span>&#8377;</span>${product.mrpPrice}`,
+                price : <><span>&#8377;</span> {product.price}</>,
+                mrpprice :<><span>&#8377;</span>{product.mrpPrice}</>,
                 name: product.name,
                 productcode: product.productcode,
                
