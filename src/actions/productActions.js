@@ -1,5 +1,5 @@
 import axios from "axios";
-import { adminProductsFail, adminProductsRequest,adminProductsSuccess, productsFail, productsRequest, productsSuccess } from "../slice/productsSlice";
+import { adminProductsFail, adminProductsRequest,adminProductsSuccess, productsFail, productsRequest, productsSuccess, activeProductsFail,activeProductsRequest,activeProductsSuccess,inactiveProductsFail,inactiveProductsRequest,inactiveProductsSuccess } from "../slice/productsSlice";
 import { deleteProductFail, deleteProductRequest, deleteProductSuccess, newProductFail, newProductRequest, newProductSuccess, productFail, productRequest, productSuccess, updateProductFail, updateProductRequest, updateProductSuccess } from "../slice/productSlice";
 
 
@@ -42,15 +42,32 @@ export const getProducts = async (dispatch)=>{
 export const getActiveProducts = async (dispatch)=>{
 
     try{
-         dispatch(productsRequest())
+         dispatch(activeProductsRequest())
          const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products/active`);
-         dispatch(productsSuccess(data))
+         dispatch(activeProductsSuccess(data))
 
     }
     catch (error){
        //handle error
 
-        dispatch(productsFail(error.response.data.message)) 
+        dispatch(activeProductsFail(error.response.data.message)) 
+
+    }
+
+     
+}
+export const getInActiveProducts = async (dispatch)=>{
+
+    try{
+         dispatch(inactiveProductsRequest())
+         const {data} =  await axios.get(`${process.env.REACT_APP_URL}/api/v1/products/inactive`);
+         dispatch(inactiveProductsSuccess(data))
+
+    }
+    catch (error){
+       //handle error
+
+        dispatch(inactiveProductsFail(error.response.data.message)) 
 
     }
 

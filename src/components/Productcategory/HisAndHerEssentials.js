@@ -4,6 +4,7 @@ import { getProductByFilter } from '../../actions/filterAction';
 import { Link } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import { addCartItem } from "../../actions/cartAction";
+import { addWishlistItem } from "../../actions/cartAction";
 function HisAndHerEssential(props) {
 
     const{filter = []}=useSelector((state)=>state.filterState)
@@ -34,7 +35,15 @@ function HisAndHerEssential(props) {
                       </>
                     }
                     </Link>
-                    <div class="pr-info-area animated animate2"><a href="quick_view.html" class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" class="wishlist"><i class="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" class="compare"><i class="fa fa-exchange"><span>Compare</span></i></a> </div>
+                    <div class="pr-info-area animated animate2"><a href="quick_view.html" class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a onClick={()=>
+                        { dispatch(addWishlistItem(product._id,quantity))
+                          
+                            toast('Item Added in Wishlist',{
+                              type:'success',
+                              position:toast.POSITION.TOP_RIGHT
+                            })
+        
+                        }} class="wishlist"><i class="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" class="compare"><i class="fa fa-exchange"><span>Compare</span></i></a> </div>
                   </div>
             
 

@@ -14,7 +14,8 @@ import Shop from './components/home/Shop'
 import Register from './components/users/Register';
 import Profile from './components/users/Profile';
 import CheckOut from './components/cart/CheckOut';
-import Products from './components/admin/products/Products'
+import ActiveProducts from './components/admin/products/ActiveProducts'
+import InActiveProducts from './components/admin/products/InActiveProducts'
 import AddProduct from './components/admin/products/AddProductDetail'
 import Dashboard from './components/admin/Dashboard';
 import Customers from './components/admin/customers/Customers';
@@ -70,7 +71,8 @@ function App() {
      <Routes>
    
       <Route path="/dashboard" element={<Dashboard/>}/>
-      <Route path="/products" element={<Products/>}/>
+      <Route path="/activeproducts" element={<ActiveProducts/>}/>
+      <Route path="/inactiveproducts" element={<InActiveProducts/>}/>
       <Route path="/addproduct" element={<AddProduct/>}/>
       <Route path="/customers" element={<Customers/>}/>
       <Route path="/orders" element={<Order/>}/>

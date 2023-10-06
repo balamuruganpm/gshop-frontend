@@ -12,8 +12,7 @@ function Products(props) {
     const {products =[], loading, error} = useSelector((state) => state.productsState);
     const dispatch = useDispatch();
     const [quantity,setQuantity] = useState(1);
-    const [wishlistquantity,setWishlistQuantity] = useState(1);
-   
+
  
     useEffect(()=>{
       if(error){

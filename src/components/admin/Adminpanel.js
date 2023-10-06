@@ -18,43 +18,7 @@ function Adminpanel(props) {
     const showDropdown = ()=> setDropdown(!dropdown)
     return (
         <div>
-         {/* nav bar */}
-          {/* <nav className="navbar navbar-expand-lg admin_bg">
-            <div className="container-fluid">
-                <img src="/images/a11.png" alt="" className="navbar-brand  logo_image text-light fw-bold text-uppercase" width="150px" style={{marginLeft:"3rem"}} />
-                <i class="fa-solid fa-bars" id='admin_bars' onClick={toggle}></i>
-             
-                <img src="/images/testimonials-img1.jpg" alt=""  className='acc-img'/>
-                <span className='down_angle'><i class="fa-solid fa-caret-down" onClick={showDropdown}></i></span>
-             
- {dropdown &&
-     <>
-     <div className='res_dropDown'>
-     <div className='res_list'><i class="fa-regular fa-address-card" style={{marginRight:"1rem"}}></i>Profile</div>
-     <div className='res_list' ><i class="fa-solid fa-gears" style={{marginRight:"1rem"}}></i>Setting</div>
-     <div className='res_list'><i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</div>
-     </div>
-     </>
- }
-    <Dropdown className='admin-drop-down-container'>
-      <Dropdown.Toggle variant=" primary" id="dropdown-basic" className="admin-drop-menu">
-      My Account
-      </Dropdown.Toggle>
-    
-      <Dropdown.Menu>
-        <Dropdown.Item className='admin-list-drop'><i class="fa-regular fa-address-card" style={{marginRight:"1rem"}}></i>Profile</Dropdown.Item>
-        <Dropdown.Item className='admin-list-drop' ><i class="fa-solid fa-gears" style={{marginRight:"1rem"}}></i>Setting</Dropdown.Item>
-        <Dropdown.Item className='admin-list-drop'><i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</Dropdown.Item>
-      </Dropdown.Menu>
-      
-    </Dropdown>
         
-            </div>
-
-          </nav> */}
-         {/* navbar end */}
-
-         {/* offCanvas */}
         {isOpen &&  
         <div className='container-fluid' id="sidebar">
             <div className='row'> 
@@ -88,13 +52,7 @@ function Adminpanel(props) {
                             </h3>
                            </li>
                         </NavLink>
-                        {/* <NavLink to='/addcategory' style={{textDecoration:"none", color:"#333"}}  activeclassName="admin_active">
-                            <li className='admin-sideContent'>
-                            <h3 className='nav-link px-2 ms-1 admin-nested-content'>
-                             <p className='ms-1  d-sm-inline  title'>Add Categories</p>
-                            </h3>
-                           </li>
-                        </NavLink> */}
+         
                         </div>
                         </>
                    
@@ -106,16 +64,18 @@ function Adminpanel(props) {
                         {showProducts &&
                         <>
                         <div className='admin-nestedContent'>
-                         <NavLink to='/products'  activeclassName="admin_active" style={{textDecoration:"none", color:"#333"}}>
+                         <NavLink to='/activeproducts'  activeclassName="admin_active" style={{textDecoration:"none", color:"#333"}}>
                             <li className='admin-sideContent'>
                             <h3 className='nav-link px-2 admin-nested-content'>
                             <p className='ms-1  d-sm-inline  title' style={{fontSize:"13px"}}>Products</p></h3>
                            </li>
                         </NavLink>
+                        <NavLink to='/inactiveproducts'  activeclassName="admin_active" style={{textDecoration:"none", color:"#333"}}>
                         <li className='admin-sideContent'>
                             <h3 className='nav-link px-2 admin-nested-content'  >
                             <p className='ms-1 d-sm-inline  title' style={{fontSize:"13px"}}>Inactive Products</p></h3>
                         </li>
+                        </NavLink>
                         </div>
                         </>
                          }

@@ -42,7 +42,7 @@ function Dashboard(props) {
         <div className='widget-grid'>
          <div className='widget-container'>  
          <div className='dash_widget'>
-         <Link to='/products'> 
+         <Link to='/activeproducts'> 
          <div className="card text-center mb-3 widget0">
           <div className="card-body">
             <SettingsApplicationsIcon />

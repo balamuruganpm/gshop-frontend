@@ -49,6 +49,27 @@ const productsSlice = createSlice({
                 error: action.payload
             }
         },
+        inactiveProductsRequest(state, action){
+            return {
+                loading:true,
+            }
+        },
+        inactiveProductsSuccess(state,action){
+           
+            return {
+                loading:false,
+                products:action.payload.products
+            }
+        },
+
+        inactiveProductsFail(state, action)
+        {
+            return{
+                loading: false,
+                error: action.payload
+            }
+        },
+
 
         adminProductsRequest(state, action){
             return {
@@ -87,6 +108,12 @@ export const{
     adminProductsFail,
     adminProductsRequest,
     adminProductsSuccess,
+    activeProductsFail,
+    activeProductsSuccess,
+    activeProductsRequest,
+    inactiveProductsFail,
+    inactiveProductsRequest,
+    inactiveProductsSuccess,
     clearError
 } = actions;
 
