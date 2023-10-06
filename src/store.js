@@ -4,6 +4,7 @@ import productsReducer from "./slice/productsSlice"
 import productReducer from "./slice/productSlice";
 import authReducer from './slice/authSlice'
 import cartReducer from './slice/cartSlice'
+import wishlistReducer from './slice/wishlistSlice';
 import orderReducer  from './slice/orderSlice';
 import userReducer from './slice/userSlice'
 import categoryReducer from './slice/categorySlice'
@@ -13,6 +14,7 @@ const reducer = combineReducers({
     productState:productReducer,
     authState:authReducer,
     cartState:cartReducer,
+    wishlistState:wishlistReducer,
     orderState:orderReducer,
     userState:userReducer,
     categoryState:categoryReducer,

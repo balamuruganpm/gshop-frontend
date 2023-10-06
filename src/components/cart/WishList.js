@@ -1,6 +1,12 @@
 import React from 'react';
 import '../../css/style.css'
+ import {removeItemFromWishlist} from '../../slice/wishlistSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Service from '../../components/home/Service'
 function WishList(props) {
+  const{items}= useSelector(state=>state.wishlistState);
+  const dispatch = useDispatch()
     return (
         <div>
     <div class="breadcrumbs">
@@ -36,36 +42,17 @@ function WishList(props) {
                     <th class="th-total th-add-to-cart">Add to Cart </th>
                   </tr>
                 </thead>
+                {items?.map(item=>(
                 <tbody>
                   <tr>
-                    <td class="th-delate"><a href="#">X</a></td>
-                    <td class="th-product"><a href="#"><img src="/images/a1.jpg" alt="cart" /></a></td>
-                    <td class="th-details"><h2><a href="#">Lorem Ipsum is simply</a></h2></td>
-                    <td class="th-price">$125.00</td>
-                    <th class="td-add-to-cart"><a href="#"> Add to Cart</a></th>
-                  </tr>
-                  <tr>
-                    <td class="th-delate"><a href="#">X</a></td>
-                    <td class="th-product"><a href="#"><img src="/images/a2.jpg" alt="cart" /></a></td>
-                    <td class="th-details"><h2><a href="#">Leo quis molestie</a></h2></td>
-                    <td class="th-price">$99.00</td>
-                    <th class="td-add-to-cart"><a href="#"> Add to Cart</a></th>
-                  </tr>
-                  <tr>
-                    <td class="th-delate"><a href="#">X</a></td>
-                    <td class="th-product"><a href="#"><img src="/images/a3.jpg" alt="cart"/></a></td>
-                    <td class="th-details"><h2><a href="#">Lorem Ipsum is simply</a></h2></td>
-                    <td class="th-price">$179.89</td>
-                    <th class="td-add-to-cart"><a href="#"> Add to Cart</a></th>
-                  </tr>
-                  <tr>
-                    <td class="th-delate"><a href="#">X</a></td>
-                    <td class="th-product"><a href="#"><img src="/images/a4.jpg" alt="cart"/></a></td>
-                    <td class="th-details"><h2><a href="#">Leo quis molestie</a></h2></td>
-                    <td class="th-price">$199.00</td>
+                    <td class="th-delate"><a onClick={()=> dispatch(removeItemFromWishlist(item.product))}>X</a></td>
+                    <td class="th-product"><a><Link to={`/product/${item.product}`}><img src={item.image} alt="Product" /></Link></a></td>
+                    <td class="th-details"><h2><Link to={`/product/${item.product}`}><a>{item.name}</a></Link></h2></td>
+                    <td class="th-price"><span>₹{item.price}</span></td>
                     <th class="td-add-to-cart"><a href="#"> Add to Cart</a></th>
                   </tr>
                 </tbody>
+                ))}
               </table>
               <a href="checkout.html" class="all-cart">Add all to cart</a> </div>
           </div>
@@ -75,40 +62,8 @@ function WishList(props) {
     </div>
   </section>
   {/* <!-- service section --> */}
-  
-  <div class="jtv-service-area">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-sm-4 col-xs-12">
-          <div class="jtv-service">
-            <div class="ser-icon"> <i class="fa fa-truck flip-horizontal"></i> </div>
-            <div class="service-content">
-              <h5>FREE SHIPPING WORLDWIDE </h5>
-              <p>free ship-on oder over $299.00</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-4 col-xs-12">
-          <div class="jtv-service">
-            <div class="ser-icon"> <i class="fa fa-mail-forward"></i> </div>
-            <div class="service-content">
-              <h5>MONEY BACK GUARATEE! </h5>
-              <p>30 days money back guarantee!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-4 col-xs-12">
-          <div class="jtv-service">
-            <div class="ser-icon"> <i class="fa fa-comments flip-horizontal"></i> </div>
-            <div class="service-content">
-              <h5>24/7 CUSTOMER SERVICE </h5>
-              <p>We support online 24 hours a day</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Service/>
+ 
         </div>
     );
 }

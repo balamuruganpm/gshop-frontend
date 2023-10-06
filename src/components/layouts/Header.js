@@ -146,46 +146,46 @@ const showDashboard = ()=>{
                   <div className="mt-root-item"><a href="contact_us.html">
                     <Link to='/contact_us'><div className="title title_font"><span className="title-text">Contact Us</span> </div></Link>
                     </a></div>
-                </li>
-                
-
-                
-                
-                
-               
+                </li>               
               </ul>
               {/* <!-- top cart --> */}
-              <div className="col-md-3 col-xs-9 col-sm-2 top-cart ">
-                <div className="top-cart-contain">
-                  <div className="mini-cart">
-                    <div  className="basket dropdown-toggle"> <a href="#">
-                      <div className="cart-icon"><i className="fa fa-shopping-cart"></i></div>
-                      <div className="shoppingcart-inner hidden-xs hidden-sm"><span className="cart-title">Shopping Cart</span> <h2 className="cart-total">{cartItems && cartItems.length} Item(s): <span>&#x20b9;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</h2></div>
+
+              <div class="col-md-3 col-xs-9 col-sm-2 top-cart">
+                <div class="top-cart-contain">
+                  <div class="mini-cart">
+                    <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="#">
+                      <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
+                      <div class="shoppingcart-inner hidden-xs hidden-sm"><span class="cart-title">Shopping Cart</span> <span class="cart-total">{cartItems && cartItems.length} Item(s): <span>&#x20b9;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
                       </a></div>
-                    <div className='show_mini_cart'>
-                      <div className="top-cart-content">
-                        <div className="block-subtitle hidden-xs">Recently added item(s)</div>
-                        <ul id="cart-sidebar" className="mini-products-list">
-                        {items.map (item=>(
-                          <div className='cart_pruduct_detail'>
-                          <li className="item odd"> <a href="shopping_cart.html" title="Ipsums Dolors Untra" className="product-image"><img src={item.image} alt={item.name} width="65"/></a>
-                            <div className="product-details"> <a href="#" title="Remove This Item" className="remove-cart"><i className="icon-close"  onClick={()=> dispatch(removeItemFromCart(item.product))}></i></a>
-                              <p className="product-name"><a href="shopping_cart.html">{item.name}</a> </p>
-                              <strong>{item.quantity}</strong> x <span className="price"><span>&#8377;</span> {item.price}</span> </div>
+                    <div>
+                      <div class="top-cart-content">
+                        <div class="block-subtitle hidden-xs">Recently added item(s)</div>
+                        <ul id="cart-sidebar" class="mini-products-list">
+                        {items?.map (item=>(
+                          <li class="item odd"> <a href="shopping_cart.html" title="Ipsums Dolors Untra" class="product-image"><img  src={item.image} alt={item.name}  width="65"/></a>
+                            <div class="product-details"> <a href="#" title="Remove This Item" class="remove-cart" onClick={()=> dispatch(removeItemFromCart(item.product))}><i class="icon-close"></i></a>
+                              <p class="product-name"><a href="shopping_cart.html">{item.name}</a> </p>
+                              <strong>{item.quantity}</strong> x <span class="price"><span>&#8377;</span> {item.price}</span> </div>
                           </li>
-                          </div>
                         ))}
+                       
                         </ul>
-                        <div className="top-subtotal">Subtotal: <h2 className="price"> <span>&#8377;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</h2></div>
-                        <div className="actions">
-                         <Link to='/check_out'><button className="btn-checkout" type="button"><i className="fa fa-check"></i><span>Checkout</span></button></Link>
-                         <Link to='/cart'> <button className="view-cart" type="button"><i className="fa fa-shopping-cart"></i> <span>View Cart</span></button></Link>
+                        <div class="top-subtotal">Subtotal: <span class="price"><span>&#8377;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
+                        <div class="actions">
+                        <Link to='/check_out'><button class="btn-checkout" type="button"><i class="fa fa-check"></i><span>Checkout</span></button> </Link>
+                        <Link to='/check_out'><button class="view-cart" type="button"><i class="fa fa-shopping-cart"></i> <span>View Cart</span></button></Link>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+
+
+
+
+
             </div>
           </div>
         </div>

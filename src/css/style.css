@@ -748,78 +748,15 @@ input:focus {
 	
 	
 }
-.res_homedropDown{
-	width:150px;
-	min-height:110px;
-	background-color: #fff;
-	right:29rem;
-	top:2rem;
-	z-index:100;
-	padding-top:0.5rem;
-	box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
-	position:fixed;
-}
-
-	.res_logdropDown{
-		width:150px;
-		min-height:50px;
-		background-color: #fff;
-		right:12rem;
-		top:2rem;
-		z-index:100;
-		text-align: center;
-		box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
-		position:fixed;
-	  
-
-	
-	}
-	#log_out{
-      margin-left:-1.2rem;
-	}
-
-.res_homelist{
-    padding:7px 7px;
-    position:relative;
-	display: flex;
-	align-items:flex-start;
-	justify-content: flex-start;
-	left:0;
-	width:130px;
-	height:35px;
-	margin:0.5rem;
-
-	font-weight:400;
-
-}
-.res_homelist p{
-	text-align: left;
-}
-.res_homelist:hover{
-	background: #fe5800;/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-	box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
-	cursor: pointer;
-	transform: scale(1.03);
-	color:#fff;
-
-}
-
-.res_homedropDown:hover{
-	cursor: pointer;
-}
-
-
-
 .headerlinkmenu .links {
 	display: inline-block;
 	border-right: 1px solid #ddd;
 	margin-top: 8px;
-	margin-right:0;
 }
 .headerlinkmenu .links div {
 	display: inline-block;
 	text-align: right;
-	margin-left:1rem;
+
 }
 .headerlinkmenu .links div:hover {
 cursor: pointer;
@@ -879,15 +816,11 @@ cursor: pointer;
 	-o-transition: all .4s cubic-bezier(.25, .46, .45, .94) 0s;
 	transition: all .4s cubic-bezier(.25, .46, .45, .94) 0s
 }
-#search_category{
 
-
-	
-}
 #search .input-group {
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
-	display: flex;
+	display: inline-block;
 	overflow: hidden;
 	width: 100%;
 	background: #fff;
@@ -1038,23 +971,10 @@ header .logo a img {
 	background: #fff;
 }
 /*4.6 Top Cart */
-
-
-.top-cart-content {
-	width: 320px;
-    position: fixed;
-	top:8rem;
- 	right: 9rem;
-	padding: 0;
-	text-align: right;
-	box-shadow: 0 0 5px -5px rgba(0,0,0,0.2);
-	border: 1px solid #f5f5f5;
-	background-color: #fff;
-    z-index:0;
- 
-}
 .top-cart-contain .top-cart-content {
-	opacity: 1;
+	opacity: 0;
+	right:15rem;
+	top:8rem;
 	transform-origin: 0 0 0;
 	transition: all 0.5s ease 0s;
 	-ms-transform: scaleY(0);
@@ -1062,41 +982,33 @@ header .logo a img {
 	-moz-transform: scaleY(0);
 	-o-transform: scaleY(0);
 	transform: scaleY(0);
-	z-index:1000;
-
+	position: fixed;
 }
 .top-cart-contain .mini-cart:hover .top-cart-content {
 	opacity: 1;
+
 	-ms-transform: scaleY(1);
 	-webkit-transform: scaleY(1);
 	-moz-transform: scaleY(1);
 	-o-transform: scaleY(1);
 	transform: scaleY(1);
-
-
-
 }
-
 .top-cart {
 	padding-left: 0px;
 	float: right;
 }
-
 .mini-products-list .product-image {
 	float: left;
 	padding: 0;
 	width: 68px;
 	padding: 0px;
-	border: 1px #eee solid;
-
+	border: 1px #eee solid
 }
 .top-cart-content .product-name {
 	margin: 0;
 	width: 178px;
 	line-height: 1.3em;
-	padding: 0 0 3px;
-
-
+	padding: 0 0 3px
 }
 .top-cart-content .product-name a {
 	font-size: 13px;
@@ -1104,7 +1016,6 @@ header .logo a img {
 	font-family: 'Nunito Sans';
 	font-weight:800;
 	font-weight: 400;
-	color:#333;
 }
 .top-cart-content .product-name a:hover {
 	color: #fe5800
@@ -1121,7 +1032,7 @@ header .logo a img {
 	color: #000;
 	font-weight: 600;
 	text-transform: uppercase;
-	padding-left: 1rem;
+	padding-left: 10px;
 	float: right
 }
 .top-cart-contain .product-details .price {
@@ -1134,7 +1045,7 @@ header .logo a img {
 }
 .mini-cart {
 	text-align: center;
-	cursor: pointer;
+	cursor: pointer
 }
 .mini-cart .basket a {
 	color: #fff;
@@ -1142,7 +1053,6 @@ header .logo a img {
 	line-height: 55px;
 	font-weight: bold;
 	padding: 11px 0px 10px 0px;
-
 }
 .mini-cart .basket a .cart-title {
 	color: #333;
@@ -1153,7 +1063,6 @@ header .logo a img {
 	margin-top: 8px;
 	font-family: 'Nunito Sans';
 	text-transform: uppercase;
-	
 }
 .mini-cart .basket a .cart-total {
 	display: block;
@@ -1183,15 +1092,13 @@ header .logo a img {
 }
 .mini-cart .dropdown-toggle {
 	padding: 0;
-	text-transform: none;
-
+	text-transform: none
 }
 .top-cart-contain {
 	padding: 0;
 	color: #fff;
 	margin-top: 5px;
-	float: right;
-	position: absolute;
+	float: right
 }
 .top-cart-title p {
 	margin: 0
@@ -1199,7 +1106,18 @@ header .logo a img {
 .top-cart-content .empty {
 	padding: 10px
 }
-
+.top-cart-content {
+	width: 320px;
+	position: absolute;
+	top: 60px;
+	right: 0px;
+	background: #fff;
+	padding: 0;
+	text-align: right;
+	box-shadow: 0 0 5px -5px rgba(0,0,0,0.2);
+	border: 1px solid #f5f5f5;
+	z-index: 50
+}
 .top-cart-content p {
 	color: #333333;
 	margin: 0;
@@ -1240,16 +1158,13 @@ header .logo a img {
 	padding: 15px;
 	text-align: left;
 	font-size: 13px;
-	background: #f8f8f8;
-
-
-
+	background: #f8f8f8
 }
-ul #cart-sidebar {
+ul#cart-sidebar {
 	padding: 3px 15px 6px;
 	margin: auto;
-    z-index:100;
-
+	max-height: 195px;
+	overflow: auto;
 }
 .top-cart-title .cart_arrow {
 	position: absolute;
@@ -1267,8 +1182,7 @@ ul #cart-sidebar {
 	width: 272px;
 	margin: 5px 0px;
 	border-bottom: 1px #eee solid;
-	min-height: 67px;
-
+	min-height: 67px
 }
 .top-cart-content li.item.last {
 	margin: 0;
@@ -1278,8 +1192,7 @@ ul #cart-sidebar {
 .top-cart-content .product-details {
 	color: #333333;
 	position: relative;
-	text-align: left;
-
+	text-align: left
 }
 .mini-products-list .product-details {
 	margin-left: 80px;
@@ -1305,7 +1218,7 @@ ul #cart-sidebar {
 	width: 20px;
 	height: 24px;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: middle
 }
 .top-cart-title span {
 	font-weight: normal;
@@ -1410,14 +1323,14 @@ ul #cart-sidebar {
 	height: 13px;
 	position: absolute;
 	right: 0;
-	top: 0;
-	color:#333;
+	top: 0
 }
 /******************************************
 5. Home tabs
 ******************************************/
 
 .home-product-tabs {
+	line-height: normal;
 	margin: 0;
 	outline: none;
 	padding: 0;

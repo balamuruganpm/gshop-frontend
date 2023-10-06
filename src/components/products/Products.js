@@ -5,13 +5,14 @@ import { getProducts } from '../../actions/productActions';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import { addCartItem } from "../../actions/cartAction";
-import { getAdminProducts } from '../../actions/productActions';
+import { addWishlistItem } from "../../actions/cartAction";
+
 
 function Products(props) {
     const {products =[], loading, error} = useSelector((state) => state.productsState);
     const dispatch = useDispatch();
     const [quantity,setQuantity] = useState(1);
-
+    const [wishlistquantity,setWishlistQuantity] = useState(1);
    
  
     useEffect(()=>{
@@ -50,7 +51,17 @@ function Products(props) {
                       </>
                     }
                     </Link>
-                    <div class="pr-info-area animated animate2"><a href="quick_view.html" class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" class="wishlist"><i class="fa fa-heart"><span>Wishlist</span></i></a> <a href="compare.html" class="compare"><i class="fa fa-exchange"><span>Compare</span></i></a> </div>
+                    <div class="pr-info-area animated animate2"><a href="quick_view.html" class="quick-view"><i class="fa fa-search"><span>Quick view</span></i></a> <a href="wishlist.html" class="wishlist"><i class="fa fa-heart" 
+                        onClick={()=>
+                        { dispatch(addWishlistItem(product._id,quantity))
+                          
+                            toast('Item Added in Wishlist',{
+                              type:'success',
+                              position:toast.POSITION.TOP_RIGHT
+                            })
+        
+                        }}><span>Wishlist</span></i>
+                        </a> <a href="compare.html" class="compare"><i class="fa fa-exchange"><span>Compare</span></i></a> </div>
                   </div>
             
 
