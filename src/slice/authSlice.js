@@ -5,7 +5,8 @@ const authSlice = createSlice({
     name: 'auth',
     initialState: {
         loading: true,
-        isAuthenticated: false
+        isAuthenticated: false,
+        // token:null
     },
     reducers: {
         loginRequest(state, action){
@@ -18,7 +19,8 @@ const authSlice = createSlice({
             return {
                 loading: false,
                 isAuthenticated: true,
-                user: action.payload.user
+                user: action.payload.user,
+                // token:action.payload.token
             }
         },
         loginFail(state, action){
@@ -37,14 +39,15 @@ const authSlice = createSlice({
         registerRequest(state, action){
             return {
                 ...state,
-                loading: true,
+                loading: true
             }
         },
         registerSuccess(state, action){
             return {
                 loading: false,
                 isAuthenticated: true,
-                user: action.payload.user
+                user: action.payload.user,
+                // token:action.payload.token
             }
         },
         registerFail(state, action){

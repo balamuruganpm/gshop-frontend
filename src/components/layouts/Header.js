@@ -15,7 +15,7 @@ function Header1(props) {
   const [showLog, setShowLog] = useState(false)
   const {user} = useSelector(state=>state.authState);
   const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
-
+  const[showNavbar,setShowNavbar] = useState(false)
   const navigate = useNavigate()
 
 const logoutHandler = () => {
@@ -49,12 +49,47 @@ const showDashboard = ()=>{
   {/* <!-- Header --> */}
   <header>
     <div className="header-container">
+      { showNavbar && 
+     <div className='hambarger_nav animate1'>
+      <i class="fa-solid fa-circle-xmark" id="close_navbar" onClick={()=>setShowNavbar(showNavbar===false)}></i>
+         <ul className="hidden-xs" id="side_header">    
+               <li className="mt-root demo_custom_link_cms" onClick={()=>setShowNavbar(showNavbar===false)}>
+               <div className="mt-root-item"><a href="index.html">
+               <Link to='/'> <div className="title title_font"><span className="title-text">Home</span></div>    </Link>
+                 </a></div>
+             </li>
+             <li className="mt-root" onClick={()=>setShowNavbar(showNavbar===false)}>
+               <div className="mt-root-item"><a href="about_us.html">
+               <Link to='/about_us'><div className="title title_font"><span className="title-text">about us</span></div></Link>
+                 </a></div>
+             </li>
+             
+                <li className="mt-root" onClick={()=>setShowNavbar(showNavbar===false)}>
+               <div className="mt-root-item"><a href="shop_grid.html">
+                 <Link to='/shop'><div className="title title_font"><span className="title-text">Shop</span> </div></Link>
+                 </a></div>
+             </li>
+             
+                <li className="mt-root" onClick={()=>setShowNavbar(showNavbar===false)}>
+               <div className="mt-root-item"><a href="contact_us.html">
+                 <Link to='/contact_us'><div className="title title_font"><span className="title-text">Contact Us</span> </div></Link>
+                 </a></div>
+             </li>
+             
+
+             
+             
+             
+            
+      </ul>
+      </div>
+       }
       <div className="header-top">
         <div className="container">
           <div className="row">
             <div className="col-lg-4 col-sm-4 hidden-xs"> 
               {/* <!-- Default Welcome Message --> */}
-              <div className="welcome-msg ">Welcome to G Shop</div>
+              <div className="welcome-msg">Welcome to G Shop</div>
             </div>
             
             {/* <!-- top links --> */}
@@ -66,10 +101,10 @@ const showDashboard = ()=>{
 { isAuthenticated ? 
             (
                <>
-              <div>
+     
                 
-                <div className="myaccount" onClick={()=> setDropdown(!dropdown)}><i className="fa fa-user" style={{color:"#FFFFFF", marginRight:"5px"}}></i><span className="hidden-xs"  style={{color:"#FFFFFF"}}>{user.firstname}</span></div>
-              
+                 <div className="wishlist" id="myaccount" onClick={()=> setDropdown(!dropdown)}><a title="My Wishlist"><i className="fa fa-user" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">{user.name}</span></a></div>
+                
               {dropdown &&  <div className='res_homedropDown'>
                 {user.role === 'admin' && <div className='res_homelist'  onClick={showDashboard}><p><i class="fa-regular fa-address-card" style={{marginRight:"0.5rem"}}></i> DashBoard</p></div>}
                 <div className='res_homelist' onClick={()=> setDropdown(!dropdown)}> <p><i class="fa-regular fa-address-card" style={{marginRight:"1rem"}} onClick={()=>{navigate('/profile')}}></i>Profile</p> </div>
@@ -77,10 +112,10 @@ const showDashboard = ()=>{
                 <div className='res_homelist' onChange={()=>setDropdown(!dropdown)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
                 </div>
                  }
-                </div>
-                 <Link to='/wishlist'> <div className="wishlist"><a title="My Wishlist" href="wishlist.html"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>
-                 <Link to='/blog'> <div className="blog"><a title="Blog" href="blog.html"><i className="fa fa-rss" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Blog</span></a></div></Link>
-                 <div className="login"><a>  <Link to='/profile'> <span className="hidden-xs">Profile</span> </Link> <i class="fas fa-sort-down" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div>
+            
+                 <Link to='/wishlist'> <div className="wishlist" id="wishlist"><a title="My Wishlist"><i className="fa fa-heart" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Wishlist</span></a></div></Link>
+                 <Link to='/blog'> <div className="blog" id="blog"><a title="Blog"><i className="fa fa-rss" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Blog</span></a></div></Link>
+                 <Link to='/profile'> <div className="profile"><a> <span className="hidden-xs">Profile</span> <i class="fas fa-sort-down" id="down_sort" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i><i class="fa-regular fa-address-card" id="add-card" onClick={()=> setShowLog(!showLog)}style={{color:"#fff"}}></i></a></div> </Link>
                   {showLog&&<div className='res_logdropDown' >
                  <div className='res_homelist' id="log_out" onChange={()=>setShowLog(!showLog)} onClick={logoutHandler}><p> <i class="fa-solid fa-arrow-right-from-bracket" style={{marginRight:"1rem"}}></i>Logout</p></div>
                  </div>
@@ -89,7 +124,7 @@ const showDashboard = ()=>{
             )
           
           :
-          <Link to='/my_account'> <div className="login"><a href="account_page.html"><i className="fa fa-unlock-alt" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Log In</span></a></div></Link> 
+          <Link to='/my_account'> <div className="login"><a><i className="fa fa-unlock-alt" style={{color:"#FFFFFF"}}></i><span className="hidden-xs">Log In</span></a></div></Link> 
      
           }
               </div> 
@@ -99,7 +134,7 @@ const showDashboard = ()=>{
         </div>
       </div>
       <div className="container">
-        <div className="row" style={{background:"transparent",zIndex:"1000"}}>
+        <div className="row">
           <div className="col-sm-4 col-md-3 col-xs-8"> 
             {/* <!-- Header Logo --> */}
             <Link to='/'><div className="logo"><a title="e-commerce" href="index.html"><img alt="e-commerce" src="/images/g.png"/></a> </div></Link>
@@ -107,6 +142,7 @@ const showDashboard = ()=>{
           </div>
           <div className="col-md-9 col-sm-8 col-xs-4">
             <div className="mtmegamenu">
+
               <ul className="hidden-xs">
                
                   <li className="mt-root demo_custom_link_cms">
@@ -141,32 +177,33 @@ const showDashboard = ()=>{
                 
                
               </ul>
-              {/* <!-- top cart --> */}
 
-              <div class="col-md-3 col-xs-9 col-sm-2 top-cart">
-                <div class="top-cart-contain">
-                  <div class="mini-cart">
-                    <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="#">
-                      <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
-                      <div class="shoppingcart-inner hidden-xs hidden-sm"><span class="cart-title">Shopping Cart</span> <span class="cart-total">{cartItems && cartItems.length} Item(s): <span>&#x20b9;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
+
+              {/* <!-- top cart --> */}
+              <div className="col-md-3 col-xs-9 col-sm-2 top-cart">
+                <div className="top-cart-contain">
+                  <div className="mini-cart">
+                    <div data-toggle="dropdown" data-hover="dropdown" className="basket dropdown-toggle"> <a href="#">
+                      <div className="cart-icon"><i className="fa fa-shopping-cart"></i></div>
+                      <div className="shoppingcart-inner hidden-xs hidden-sm"><span className="cart-title">Shopping Cart</span> <span className="cart-total">{cartItems && cartItems.length} Item(s): <span>&#x20b9;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
                       </a></div>
                     <div>
-                      <div class="top-cart-content">
-                        <div class="block-subtitle hidden-xs">Recently added item(s)</div>
-                        <ul id="cart-sidebar" class="mini-products-list">
+                      <div className="top-cart-content">
+                        <div className="block-subtitle hidden-xs">Recently added item(s)</div>
+                        <ul id="cart-sidebar" className="mini-products-list">
                         {items?.map (item=>(
-                          <li class="item odd"> <a href="shopping_cart.html" title="Ipsums Dolors Untra" class="product-image"><img  src={item.image} alt={item.name}  width="65"/></a>
-                            <div class="product-details"> <a href="#" title="Remove This Item" class="remove-cart" onClick={()=> dispatch(removeItemFromCart(item.product))}><i class="icon-close"></i></a>
-                              <p class="product-name"><a href="shopping_cart.html">{item.name}</a> </p>
-                              <strong>{item.quantity}</strong> x <span class="price"><span>&#8377;</span> {item.price}</span> </div>
+                          <li className="item odd"> <a href="shopping_cart.html" title="Ipsums Dolors Untra" className="product-image"><img  src={item.image} alt={item.name}  width="65"/></a>
+                            <div className="product-details"> <a title="Remove This Item" className="remove-cart"  onClick={()=> dispatch(removeItemFromCart(item.product))}><i className="icon-close"></i></a>
+                              <p className="product-name"><a href="shopping_cart.html">{item.name}</a> </p>
+                              <strong>1</strong> x <span className="price"><span>&#8377;</span> {item.price}</span> </div>
                           </li>
-                        ))}
-                       
+                          ))}
+
                         </ul>
-                        <div class="top-subtotal">Subtotal: <span class="price"><span>&#8377;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
-                        <div class="actions">
-                        <Link to='/check_out'><button class="btn-checkout" type="button"><i class="fa fa-check"></i><span>Checkout</span></button> </Link>
-                        <Link to='/check_out'><button class="view-cart" type="button"><i class="fa fa-shopping-cart"></i> <span>View Cart</span></button></Link>
+                        <div className="top-subtotal">Subtotal: <span className="price"><span>&#8377;</span> {items.reduce((acc,item)=>(acc + item.quantity * item.price),0)}</span></div>
+                        <div className="actions">
+                        <Link to='/check_out'><button className="btn-checkout" type="button"><i className="fa fa-check"></i><span>Checkout</span></button></Link>
+                        <Link to='/cart'> <button className="view-cart" type="button"><i className="fa fa-shopping-cart"></i> <span>View Cart</span></button></Link>
                         </div>
                       </div>
                     </div>
@@ -174,19 +211,37 @@ const showDashboard = ()=>{
                 </div>
               </div>
 
+ 
 
-
-
-
-
+             </div>
+          </div>
+        </div>
+        
+      </div>
+   
+      <div id="hambarger">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4 col-sm-6 hidden-xs"> 
+              {/* <!-- Default Welcome Message --> */}
+              <div className="welcome-bar" onClick={()=> setShowNavbar(!showNavbar)} data-bs-toggle="offcanvas" role="button" aria-controls='sidebar'><i class="fa-solid fa-bars"></i></div>
             </div>
+            
+            {/* <!-- top links --> */}
+          
+          {/* offcanvas */}
+   
+            
           </div>
         </div>
       </div>
+    
+
     </div>
   </header>
   {/* <!-- end header -->  */}
-  
+   
+
 
   </div>
         </div>

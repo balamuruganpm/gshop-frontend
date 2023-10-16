@@ -9,7 +9,7 @@ import Adminpanel from '../Adminpanel';
 import {getAdminCategories} from '../../../actions/categoryAction'
 
 function AddProduct(props) {
-
+     const{token} =  useSelector(state=>state.authState)
      const{categories } = useSelector(state => state.categoryState)
     const{loading, isProductCreated, error } = useSelector(state => state.productState)
     const[categoryname,setCategoryName] = useState("");
@@ -70,7 +70,7 @@ function AddProduct(props) {
      formData.append('images', image)
     })
   
-  dispatch(createNewProduct(formData))
+  dispatch(createNewProduct(formData, token))
  
 
 }
@@ -85,7 +85,7 @@ function AddProduct(props) {
          
         })
          
-        navigate('/products')
+        navigate('/activeproducts')
         return;
        
     }

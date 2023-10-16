@@ -33,6 +33,27 @@ const categorySlice = createSlice({
                 error: action.payload
             }
         },
+        categoriesRequest(state, action){
+            return {
+                loading:true,
+            }
+        },
+        categoriesSuccess(state,action){
+           
+            return {
+                loading:false,
+                category:action.payload.categories
+            }
+        },
+
+        categoriesFail(state, action)
+        {
+            
+            return{
+                loading: false,
+                error: action.payload
+            }
+        },
         clearError(state,action){
            return{
             ...state,
@@ -157,6 +178,9 @@ export const{
     categoryRequest,
     categorySuccess,
     categoryFail,
+    categoriesFail,
+    categoriesRequest,
+    categoriesSuccess,
     clearError,
     newCategoryRequest,
     newCategorySuccess,

@@ -10,7 +10,7 @@ import '../../../css/admin css/order.css'
 import Adminpanel from '../Adminpanel';
 import {clearError, clearOrderDeleted } from '../../../slice/orderSlice';
 
-import { NavLink } from 'react-router-dom';
+import { Link,NavLink } from 'react-router-dom';
 
 
 function Order(props) {
@@ -80,11 +80,19 @@ function Order(props) {
             data.rows.push({
                 serialno:<p>{index+1}</p>,
                 id: order._id,
-                date:order.createdAt,
+                date: new Date(order.createdAt).toLocaleDateString('en-GB'),
                 name: order.user,
                 mobile:order.shippingInfo.phoneNo,
-                total: `$${order.totalPrice}`,
-                status: <p style={{color: order.orderStatus.includes('Processing') ? 'red' : 'green'}}>{order.orderStatus}</p> ,
+                total:  <><span>&#8377;</span> {order.totalPrice}</>,
+                // status: <p style={{color: order.orderStatus.includes('Processing') ? 'red' : 'green'}}>{order.orderStatus}</p> ,
+                status: (
+                    <Fragment>
+                        {/* <Link to={`/admin/updateorder/${order._id}`} className="btn btn-primary"> <i className="fa fa-pencil"></i></Link> */}
+                       <Link to="/vieworder"> <Button className="btn btn-primary py-1 px-2 ml-2">
+                            View
+                        </Button></Link>
+                    </Fragment>
+                ),
                 actions: (
                     <Fragment>
                         {/* <Link to={`/admin/updateorder/${order._id}`} className="btn btn-primary"> <i className="fa fa-pencil"></i></Link> */}
@@ -132,13 +140,13 @@ function Order(props) {
               <div className='add_title'>
                <h2>Order List</h2>
                <div className='status_btns_container'>
-               <NavLink to='/addcategory'><button className='status_btn'>Order Placed (0)</button></NavLink>
-               <NavLink to='/addcategory'><button className='status_btn'> Processing(0)</button></NavLink>
+               <NavLink to='/addcategory'><button className='status_btn'>Order Placed ({adminOrders.length})</button></NavLink>
+               {/* <NavLink to='/addcategory'><button className='status_btn'> Processing(0)</button></NavLink> */}
                <NavLink to='/addcategory'><button className='status_btn'>Dispatch(0)</button></NavLink>
-               <NavLink to='/addcategory'><button className='status_btn'> Delivered(0)</button></NavLink>
-               <NavLink to='/addcategory'><button className='status_btn'> Completed(`${adminOrders.length}`)</button></NavLink>
+               {/* <NavLink to='/addcategory'><button className='status_btn'> Delivered(0)</button></NavLink> */}
+               <NavLink to='/addcategory'><button className='status_btn'> Completed(0)</button></NavLink>
                <NavLink to='/addcategory'><button className='status_btn'>Cacelled(0)</button></NavLink>
-               <NavLink to='/addcategory'><button className='status_btn'>Returned(0)</button></NavLink>
+               {/* <NavLink to='/addcategory'><button className='status_btn'>Returned(0)</button></NavLink> */}
                </div>
             </div>
             <div  className='res_order'>
@@ -151,7 +159,7 @@ function Order(props) {
                 striped
                 responsive
                 hover
-                className="py-1 w-100 h-10 mt-2 ml-3"
+                className="py-1 w-80 h-10 mt-2 ml-3"
                 />
     }
                 </div>

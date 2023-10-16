@@ -20,6 +20,8 @@ import AddProduct from './components/admin/products/AddProductDetail'
 import Dashboard from './components/admin/Dashboard';
 import Customers from './components/admin/customers/Customers';
 import Order from './components/admin/orders/Order'
+import ViewOrder from './components/admin/orders/ViewOrder'
+import ProductedRoute from './components/route/ProductedRoute'
 import Category from './components/admin/categories/Category';
 import AddCategory from './components/admin/categories/AddCategory';
 import UpdateCategory from './components/admin/categories/UpdateCategory';
@@ -34,6 +36,8 @@ import "react-bootstrap/dist/react-bootstrap.min.js";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { HelmetProvider } from 'react-helmet-async';
+import './css/styleSheet.css'
+import './css/style.css'
 
 function App() {
 
@@ -52,11 +56,11 @@ function App() {
       <Route path="/shop" element={<Shop/>}/>
       <Route path="/my_account" element={<UserLogin/>}/>
       <Route path="/register" element={<Register/>}/>
-      <Route path="/profile" element={<Profile/>}/>
+      <Route path="/profile" element={<ProductedRoute><Profile/></ProductedRoute>}/>
       <Route path="/blog" element={<Blog/>}/>
       <Route path="/wishlist" element={<WishList/>}/>
       <Route path="/cart" element={<Cart/>}/>
-      <Route path="/check_out" element={<CheckOut/>}/>
+      <Route path="/check_out" element={<ProductedRoute><CheckOut/></ProductedRoute>}/>
       <Route path="/product/:id" element={<SingleProduct/>}/>
       <Route path="/gift" element={<Gift/>}/>
       <Route path="/indoor_plants" element={<IndoorPlants/>}/>
@@ -75,7 +79,8 @@ function App() {
       <Route path="/inactiveproducts" element={<InActiveProducts/>}/>
       <Route path="/addproduct" element={<AddProduct/>}/>
       <Route path="/customers" element={<Customers/>}/>
-      <Route path="/orders" element={<Order/>}/>
+      <Route path="/orders" element={<ProductedRoute><Order/></ProductedRoute>}/>
+      <Route path="/vieworder" element={<ViewOrder/>}/>
       <Route path="/category" element={<Category/>}/>
       <Route path="/addcategory" element={<AddCategory/>}/>
       <Route path="/admin/category/updatecategory/:id" element={<UpdateCategory/>}/>

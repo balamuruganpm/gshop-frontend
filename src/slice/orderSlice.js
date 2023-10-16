@@ -156,6 +156,7 @@ const orderSlice = createSlice({
         }
 
     }
+    
 });
 
 const { actions, reducer } = orderSlice;

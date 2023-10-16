@@ -64,7 +64,8 @@ export const register = (userData) => async (dispatch) => {
         dispatch(registerRequest())
         const config = {
             headers: {
-                'Content-type': 'multipart/form-data'
+                'Content-type': 'multipart/form-data',
+      
             }
         }
 
@@ -101,13 +102,14 @@ export const logout =  async (dispatch) => {
 
 }
 
-export const updateProfile = (userData) => async (dispatch) => {
+export const updateProfile = (userData,token) => async (dispatch) => {
 
     try {
         dispatch(updateProfileRequest())
         const config = {
             headers: {
-                'Content-type': 'multipart/form-data'
+                'Content-type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
             }
         }
 

@@ -59,7 +59,7 @@ function Adminpanel(props) {
                    }
                          <li className='admin-sideContent'>             
                             <h3 className='nav-link  admin-side-content'  style={{color:"#fff"}}>
-                            <p className='icon'  onClick={()=>setProducts(!showProducts)} ><i class="fa-brands fa-product-hunt" style={{marginLeft:"-0.5rem"}}></i></p><p className='ms-1  d-sm-inline show_side_title title'  onClick={()=>setProducts(!showProducts)} >Product</p><p id="right-icon"><i class="fa-solid fa-angles-left fa-fade" onClick={()=>setProducts(!showProducts)} ></i></p></h3>
+                            <p className='icon'  onClick={()=>setProducts(!showProducts)} ><i class="fa-brands fa-product-hunt" style={{fontSize:"20px"}}></i></p><p className='ms-1  d-sm-inline show_side_title title'  onClick={()=>setProducts(!showProducts)} >Product</p><p id="right-icon"><i class="fa-solid fa-angles-left fa-fade" onClick={()=>setProducts(!showProducts)} ></i></p></h3>
                         </li>
                         {showProducts &&
                         <>

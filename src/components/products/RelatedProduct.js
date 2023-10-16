@@ -29,7 +29,7 @@ function RelatedProduct(props) {
                    
                     
                             <div id="related-product-slider" className="slider-items  slider-width-col4">
-                            <Slider {...settings} className='relate-item '>
+                            <Slider {...settings} className='relate-item'>
                             <div className="product-item">
                             <div className="item-inner" style={{width:"265px",height:"330px",}}>
                             <div className="product-thumb has-hover-img"  > 

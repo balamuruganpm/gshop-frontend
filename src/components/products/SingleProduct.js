@@ -127,7 +127,8 @@ function SingleProduct(props) {
                       <div onClick={increseQty} className="inc qtybutton"><i className="fa fa-plus">&nbsp;</i></div>
                     </div>
                   </div>
-                  <button className="button pro-add-to-cart" disabled={product.stock === 0 ? true : false} onClick={()=>
+                  {/* disabled={product.stock === 0 ? true : false}  */}
+                  <button className="button pro-add-to-cart" onClick={()=>
                 { dispatch(addCartItem(product._id,quantity))
                   
                     toast('Cart Item Added',{

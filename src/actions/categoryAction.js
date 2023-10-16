@@ -3,7 +3,9 @@ import {
     categoryFail,
     categoryRequest,
     categorySuccess,
-
+     categoriesFail,
+     categoriesRequest,
+     categoriesSuccess,
     newCategoryRequest,
     newCategorySuccess,
     newCategoryFail,
@@ -35,6 +37,22 @@ export const getCategory = id => async (dispatch)=>{
        //handle error
 
        dispatch(categoryFail(error.response.data.message)) 
+
+    }
+     
+}
+export const getCategories = async (dispatch)=>{
+ 
+    try{
+         dispatch(categoriesRequest())
+         const {data} = await axios.get(`${process.env.REACT_APP_URL}/api/v1/categories`);
+         dispatch(categoriesSuccess(data))
+
+    }
+    catch(error){
+       //handle error
+
+       dispatch(categoriesFail(error.response.data.message)) 
 
     }
      

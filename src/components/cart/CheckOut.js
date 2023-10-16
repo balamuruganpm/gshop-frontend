@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react';
-import {Link,useNavigate} from 'react-router-dom';
+import {Link,useNavigate, useParams} from 'react-router-dom';
 import '../../css/style.css'
 import { useSelector,useDispatch } from 'react-redux';
 import Service from '../../components/home/Service'
@@ -12,7 +12,10 @@ import { orderCompleted } from '../../slice/cartSlice';
 import {createOrder} from '../../actions/orderAction'
 import {shippingInfo} from '../../slice/cartSlice'
 import {clearError as clearOrderError} from "../../slice/orderSlice"
+// import { loadStripe } from '@stripe/stripe-js';
+import axios from 'axios';
 
+// import {CardCvcElement, CardExpiryElement, CardNumberElement, Elements, useElements,useStripe } from '@stripe/react-stripe-js';
 export const validateShipping = (shippingInfo, navigate) => {
    
   if(
@@ -29,26 +32,29 @@ export const validateShipping = (shippingInfo, navigate) => {
 } 
 
 function CheckOut(props) {
-  const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
-  const{shippingInfo = {}, items:cartItems =[]}= useSelector(state=>state.cartState);
-  const { error:orderError } = useSelector(state => state.orderState)
-
+   const { user =[]} = useSelector(state=>state.authState);
+   const {loading, error, isAuthenticated} = useSelector(state=>state.authState)
+   const{shippingInfo = {}, items:cartItems =[]}= useSelector(state=>state.cartState);
+   const { error:orderError } = useSelector(state => state.orderState)
+   const {id} = useParams()
    const [billingInfo, setBillingInfo] = useState(false)
    const [shippingDetail, setShippingDetail] = useState(false)
    const [shippingMethod, setShippingMethod] = useState(false)
    const [paymentInfo, setPaymentInfo] = useState(false)
    const [orderReview, setOrderView] = useState(false)
+
    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
-   const { user} = useSelector(state=>state.authState);
+  
    const itemsPrice = cartItems.reduce((acc, item)=> (acc + item.price * item.quantity),0);
    const shippingPrice = itemsPrice > 200 ? 0 : 25;
    let taxPrice = Number( 0.05 * itemsPrice);
    const totalPrice = Number(itemsPrice  + taxPrice).toFixed(2);
    taxPrice = Number( 0.05 * itemsPrice).toFixed(2)
+
    const dispatch = useDispatch()
    const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("")
-  const navigate = useNavigate()
+   const [password,setPassword] = useState("")
+   const navigate = useNavigate()
   
 
   
@@ -60,16 +66,17 @@ function CheckOut(props) {
          itemsPrice,
          shippingInfo,
          taxPrice,
-         totalPrice
-     }
+         totalPrice,
+       
+     } 
      sessionStorage.setItem('orderInfo', JSON.stringify(data))
-     dispatch(createOrder(order)) 
  }
 
  const paymentData = {
   amount : Math.round( orderInfo?.totalPrice * 100),
   shipping :{
-      name: user?.name,
+      firstname: user?.firstname,
+      
       address:{
           city: shippingInfo.city,
           postal_code : shippingInfo.postalCode,
@@ -78,7 +85,8 @@ function CheckOut(props) {
           line1 : shippingInfo.address
       },
       phone: shippingInfo.phoneNo
-  }
+  },
+
 }
 
    
@@ -95,24 +103,11 @@ const submitHandler= (e)=>{
       
       })
     }
-
-  // if(!isAuthenticated){
-    //     toast('Please Register',{
-    //         position:toast.POSITION.TOP_RIGHT,
-          
-    //       })
-    // }
-
- 
-
 }
- 
-
-    
-
 const order = {
   orderItems: cartItems,
-  shippingInfo
+  shippingInfo,
+  user:user.firstName
 }
 
 if(orderInfo) {
@@ -155,6 +150,64 @@ useEffect(()=>{
  useEffect(()=>{
     dispatch(register)
  },[dispatch])
+ const submitOrder = async (e) => {
+  e.preventDefault();
+  console.log(user);
+  // document.querySelector('#reg-btn').disabled = true;
+  dispatch(createOrder(order))
+  // navigate('/confirmorder')
+
+  try{
+      const {data} = await axios.post('/api/v1/payment/process', paymentData)
+      const clientSecret = data.client_secret
+      //  const result = await stripe.confirmCardPayment(clientSecret,
+      //  {
+
+      //     payment_method: {
+      //         card: elements.getElement(CardNumberElement),
+      //         billing_details: {
+      //             name: user.name,
+      //             email: user.email
+      //         }
+            
+      //      } 
+        
+      //   }) 
+ 
+      //    console.log(result);
+
+      //   if(result.error){
+      //     toast(result.error.message, {
+      //         type: 'error',
+      //         position: toast.POSITION.BOTTOM_CENTER
+      //     })
+      //     document.querySelector('#reg-btn').disabled=false;
+      //   }else{
+      //     if((await result).paymentIntent.status === 'succeeded') {
+      //         toast('Payment Success!', {
+      //             type: 'success',
+      //             position: toast.POSITION.BOTTOM_CENTER
+      //         })
+      //         order.paymentInfo = {
+      //             id: result.paymentIntent.id,
+      //             status: result.paymentIntent.status
+      //         }
+      //         dispatch(orderCompleted())
+              
+             
+           
+      //     }else{
+      //         toast('Please Try again!', {
+      //             type: 'warning',
+      //             position: toast.POSITION.BOTTOM_CENTER
+      //         })
+      //       }
+        
+                
+  }catch(error){
+
+  }
+}
 
 
     return (
@@ -323,7 +376,7 @@ useEffect(()=>{
                         </tr>
                     </tfoot>    
                 </table></div>
-               <button className="button pull-right"  onClick={orderFinished}><span>continue</span></button>
+               <button className="button pull-right"  onClick={submitOrder}><span>continue</span></button>
                <button className="button pull-right"  onClick={processPayment}><span>Place Order</span></button>
                  
               </div>

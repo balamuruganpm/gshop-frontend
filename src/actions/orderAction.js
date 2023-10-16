@@ -1,5 +1,5 @@
 import {
-     adminOrdersFail, 
+    adminOrdersFail, 
     adminOrdersRequest, 
     adminOrdersSuccess, 
     createOrderFail, 
@@ -9,29 +9,31 @@ import {
     deleteOrderRequest, 
     deleteOrderSuccess, 
     orderDetailFail,
-     orderDetailRequest, 
-     orderDetailSuccess, 
-     updateOrderFail, 
-     updateOrderRequest, 
-     updateOrderSuccess, 
-     userOrdersFail, 
-     userOrdersRequest,
-      userOrdersSuccess
+    orderDetailRequest, 
+    orderDetailSuccess, 
+    updateOrderFail, 
+    updateOrderRequest, 
+    updateOrderSuccess, 
+    userOrdersFail, 
+    userOrdersRequest,
+    userOrdersSuccess
      } from "../slice/orderSlice"
 import axios from 'axios'
 
-export const createOrder = order => async(dispatch) => {
+export const createOrder = (order,token) => async(dispatch) => {
     try {
        dispatch(createOrderRequest())
+
        const {data} = await axios.post(`${process.env.REACT_APP_URL}/api/v1/order/new`, order)
        dispatch(createOrderSuccess(data))
     } catch (error) {
         dispatch(createOrderFail(error.response.data.message))
     }
 }
-export const userOrder =  async(dispatch) => {
+export const userOrder = token=> async(dispatch) => {
     try {
        dispatch(userOrdersRequest())
+    
        const {data} = await axios.get(`${process.env.REACT_APP_URL}/api/v1/myorders`)
        dispatch(userOrdersSuccess(data))
     } catch (error) {
@@ -49,9 +51,10 @@ export const orderDetail = id =>async(dispatch) => {
         dispatch(orderDetailFail(error.response.data.message))
     }
 }
-export const adminOrders = async(dispatch) => {
+export const adminOrders = (token) =>async(dispatch) => {
     try {
        dispatch(adminOrdersRequest())
+    
        const {data} = await axios.get(`${process.env.REACT_APP_URL}/api/v1/admin/orders`)
        dispatch(adminOrdersSuccess(data))
     } catch (error) {
@@ -59,18 +62,20 @@ export const adminOrders = async(dispatch) => {
     }
 }
 
-export const deleteOrder = id => async(dispatch) => {
+export const deleteOrder = (id,token) => async(dispatch) => {
     try {
        dispatch(deleteOrderRequest())
+    
        await axios.delete(`${process.env.REACT_APP_URL}/api/v1/admin/order/${id}`)
        dispatch(deleteOrderSuccess())
     } catch (error) {
         dispatch(deleteOrderFail(error.response.data.message))
     }
 }
-export const updateOrder = (id,orderData) => async(dispatch) => {
+export const updateOrder = (id,orderData,token) => async(dispatch) => {
     try {
        dispatch(updateOrderRequest())
+    
        const {data} = await axios.put(`${process.env.REACT_APP_URL}/api/v1/admin/order/${id}`,orderData)
        dispatch(updateOrderSuccess(data))
     } catch (error) {

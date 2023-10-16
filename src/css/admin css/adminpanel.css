@@ -1,8 +1,8 @@
- :root{
+ /* :root{
      --offcanvs-width:270px;
      --topNavbarHeight:56px;
      --sidenav-width:400px;
- }
+ } */
 
 
 
@@ -15,45 +15,45 @@
   position: absolute;
   display: none;
  }
- .admin-drop-down-container{
+ /* .admin-drop-down-container{
      width:150px;
      height:40px;
      color:#333333;
      outline-width:0;
-      margin-right:3rem;
-      margin-top:-0.6rem;
+     margin-right:3rem;
+     margin-top:-0.6rem;
 
- }
- .acc-img{
+ } */
+ /* .acc-img{
     width:35px;
     height:35px;
     border-radius:50%;
     position: absolute;
     right:15rem;
-  }
-.admin-drop-container{
+  } */
+/* .admin-drop-container{
     width:130px;
     height:auto;
-    background:#fff;
+    background:red;
     display: flex;
     flex-direction: column;
     align-items:center;
     justify-content: center;
     box-shadow:0px 6px 18px -9px rgba(0, 0, 0, 0.75);
     border:none;           
-     }
-.admin-list-drop{
+     } */
+/* .admin-list-drop{
     width:170px;
     margin:5px;
     text-align:left;
     }
-            
+             */
 .admin-list-drop:hover{
     cursor: pointer;
     background:#fe5800/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
                 
     }   
-.admin-drop-menu{
+/* .admin-drop-menu{
     border:none;
     outline-width:0;
     width:180px;
@@ -63,12 +63,10 @@
     margin-top:-0.1rem;
               
 }
-
+ */
 
  .admin-sidebar{
-   margin-top:rem;
-   border-right:0.5px solid lightgray;
-   height:150vh;
+   /* min-height:150vh; */
    background-color: #525252;
    z-index: 10;
 
@@ -79,12 +77,12 @@
      list-style: none;
      margin:0;
      padding:0;
-     width:230px;
      min-height:400px;
      margin-top:5rem;
      position: relative;
      display: flex;
      align-items: center;
+    
  
 
  }
@@ -98,12 +96,23 @@
     width:100%;
     min-height:50vh;
     position: relative;
+
 }
-.admin-orders{
+/* .admin-orders{
     width:150px;
     height:100px;
     transition:400ms;
     transform:scaleY(1.03);
+} */
+.admin-sideContent{        
+    width:180px;  
+    height:40px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    transition: 400ms;
+  
+              
 }
 .admin-side-content{
     width:180px;
@@ -139,17 +148,7 @@
     cursor: pointer;
     transform: scale(1.03);
     }
-.admin-sideContent
-         {
-            
-    width:180px;  
-    height:40px;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    transition: 400ms;
-              
-}
+
 .admin-nestedContent{
     width:180px;  
     min-height:40px;
@@ -230,11 +229,8 @@ display: none;
       }
      
      .admin-side-nav-element{
-   
         align-items:flex-start;
         left:0.5rem;
-
-
    
     }
  .show_side_title{
@@ -252,8 +248,6 @@ display: none;
   
 .admin-sideContent {
            width:50px;  
-    
-
         }
 
 .admin-side-content{
